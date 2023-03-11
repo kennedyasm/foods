@@ -18,12 +18,11 @@ import kotlin.reflect.KClass
 internal annotation class ViewModelKey(val value: KClass<out ViewModel>)
 
 
-class ViewModelFactory  @Inject constructor(
+class ViewModelFactory @Inject constructor(
     private val viewModels: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
-
         val creator = viewModels[modelClass] ?: viewModels.entries.firstOrNull {
             modelClass.isAssignableFrom(it.key)
         }?.value ?: throw IllegalArgumentException("unknown model class $modelClass")

@@ -1,22 +1,24 @@
 package com.example.foods.di.modules.app
 
-import com.example.foods.domain.usecases.GetFoodRecipeByIdUseCase
+import com.example.foods.core.rx.RxSchedulers
+import com.example.foods.domain.repository.FoodRecipesRepository
+import com.example.foods.domain.usecases.GetFoodRecipeDetailsByIdUseCase
 import com.example.foods.domain.usecases.GetFoodRecipesUseCase
-import com.example.foods.domain.usecasesimpl.GetFoodRecipeByIdUseCaseImpl
-import com.example.foods.domain.usecasesimpl.GetFoodRecipesUseCaseImpl
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 
 @Module
-interface UseCasesModule {
+object UseCasesModule {
 
-    @Binds
-    fun bindGetFoodRecipesUseCase(
-        getFoodRecipesUseCaseImpl: GetFoodRecipesUseCaseImpl
-    ): GetFoodRecipesUseCase
+    @Provides
+    fun provideGetFoodRecipesUseCase(
+        foodRecipesRepository: FoodRecipesRepository,
+        rxSchedulers: RxSchedulers
+    ) = GetFoodRecipesUseCase(foodRecipesRepository, rxSchedulers)
 
-    @Binds
-    fun bindGetFoodRecipeByIdUseCase(
-        getFoodRecipeByIdUseCaseImpl: GetFoodRecipeByIdUseCaseImpl
-    ): GetFoodRecipeByIdUseCase
+    @Provides
+    fun provideGetFoodRecipeByIdUseCase(
+        foodRecipesRepository: FoodRecipesRepository,
+        rxSchedulers: RxSchedulers
+    ) = GetFoodRecipeDetailsByIdUseCase(foodRecipesRepository, rxSchedulers)
 }

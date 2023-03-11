@@ -1,15 +1,8 @@
-package com.example.foods.domain.network
+package com.example.foods.data.network.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class FoodRecipesResponse(
-    @SerializedName("totalResults")
-    val totalResults: Int,
-    @SerializedName("foodRecipes")
-    val foodRecipes: List<FoodRecipeItemResponse>
-)
-
-data class FoodRecipeItemResponse(
+data class FoodRecipeItemDto(
     @SerializedName("id")
     val id: Int,
     @SerializedName("name")

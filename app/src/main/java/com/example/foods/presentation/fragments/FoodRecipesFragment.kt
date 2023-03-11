@@ -10,7 +10,7 @@ import com.example.foods.R
 import com.example.foods.core.State
 import com.example.foods.core.State.Companion.checkActionBy
 import com.example.foods.databinding.FragmentFoodRecipesBinding
-import com.example.foods.domain.dto.FoodRecipeItemDTO
+import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.presentation.adapters.FoodRecipesAdapter
 import com.example.foods.presentation.viewmodel.FoodRecipesViewModel
 import javax.inject.Inject
@@ -51,16 +51,16 @@ class FoodRecipesFragment :
     }
 
     private fun handleFoodRecipesState(state: State) {
-        state.checkActionBy(::handleFoodRecipesList, ::handleFoodRecipesError, ::showLoading)
+        state.checkActionBy(::foodRecipesList, ::foodRecipesError, ::showLoading)
     }
 
-    private fun handleFoodRecipesList(list: List<FoodRecipeItemDTO>) {
+    private fun foodRecipesList(list: List<FoodRecipeItemUi>) {
         hideLoading()
         binding.totalResultsText.text = String.format(getString(R.string.total_results), list.size)
         foodRecipesAdapter?.setList(list)
     }
 
-    private fun handleFoodRecipesError(throwable: Throwable) {
+    private fun foodRecipesError(throwable: Throwable) {
         hideLoading()
     }
 
@@ -72,12 +72,14 @@ class FoodRecipesFragment :
 
     }
 
-    private fun openFoodRecipeDetails(id: Int) {
-        findNavController().navigate(buildDirectionToFoodRecipeDetails(id))
+    private fun openFoodRecipeDetails(item: FoodRecipeItemUi) {
+        findNavController().navigate(buildDirectionToFoodRecipeDetails(item))
     }
 
-    private fun buildDirectionToFoodRecipeDetails(id: Int): NavDirections {
-        return FoodRecipesFragmentDirections.actionFoodRecipesFragmentToFoodRecipeDetails(id)
+    private fun buildDirectionToFoodRecipeDetails(item: FoodRecipeItemUi): NavDirections {
+        return FoodRecipesFragmentDirections.actionFoodRecipesFragmentToFoodRecipeDetails(
+            item.id,
+            item.name
+        )
     }
-
 }

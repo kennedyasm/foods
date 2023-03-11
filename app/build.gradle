@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
     id 'androidx.navigation.safeargs.kotlin'
@@ -32,9 +31,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
+            buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
         }
         debug {
             buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
+            buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
         }
     }
     compileOptions {
@@ -46,9 +47,6 @@ android {
     }
 
     viewBinding {
-        enabled = true
-    }
-    dataBinding {
         enabled = true
     }
 }

@@ -21,6 +21,9 @@
             <argument
                 android:name="food_recipe_id"
                 app:argType="integer" />
+            <argument
+                android:name="food_recipe_name"
+                app:argType="string"/>
         </action>
     </fragment>
 

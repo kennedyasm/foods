@@ -16,7 +16,7 @@ object NetworkModule {
 
     @Named("base_http_url")
     @Provides
-    fun provideBaseHttpUrl(): HttpUrl  = (BuildConfig.BASE_URL).toHttpUrl()
+    fun provideBaseHttpUrl(): HttpUrl = (BuildConfig.BASE_URL).toHttpUrl()
 
     @Provides
     fun provideRetrofitHelper(

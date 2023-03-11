@@ -23,7 +23,7 @@ class RetrofitHelperImpl constructor(
         .readTimeout(TIME_OUT, TimeUnit.SECONDS)
         .writeTimeout(TIME_OUT, TimeUnit.SECONDS)
         .apply { if (BuildConfig.DEBUG) addInterceptor(loggingInterceptor) }
-       // .apply { interceptors.forEach(::addInterceptor) }
+        .apply { interceptors.forEach(::addInterceptor) }
         .build()
 
     private val retrofit: Retrofit

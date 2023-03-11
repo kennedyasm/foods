@@ -1,11 +1,14 @@
 package com.example.foods.core
 
 sealed class State {
+
     object Loading : State()
     data class Success(val result: Any) : State()
     data class Error(val throwable: Throwable) : State()
+
     companion object {
-        fun <T> Success.to(): T {
+
+        private fun <T> Success.to(): T {
             @Suppress("UNCHECKED_CAST")
             return this.result as T
         }

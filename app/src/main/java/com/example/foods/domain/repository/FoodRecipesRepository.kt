@@ -1,11 +1,12 @@
 package com.example.foods.domain.repository
 
-import com.example.foods.domain.dto.FoodRecipeItemDTO
+import com.example.foods.domain.models.FoodRecipeDetailsUi
+import com.example.foods.domain.models.FoodRecipeItemUi
 import io.reactivex.rxjava3.core.Single
 
 interface FoodRecipesRepository {
 
-    fun getFoodRecipes(): Single<List<FoodRecipeItemDTO>>
+    fun getFoodRecipes(): Single<List<FoodRecipeItemUi>>
 
-    fun getFoodRecipeById(id: Int): Single<FoodRecipeItemDTO>
+    fun getFoodRecipeDetailsById(id: Int): Single<FoodRecipeDetailsUi>
 }

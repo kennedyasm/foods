@@ -5,17 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foods.core.extensions.binding
 import com.example.foods.databinding.FoodRecipeItemViewBinding
-import com.example.foods.domain.dto.FoodRecipeItemDTO
+import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.presentation.holders.FoodRecipeViewHolder
 
 class FoodRecipesAdapter(
-    private val listener: (Int) -> Unit
+    private val listener: (FoodRecipeItemUi) -> Unit
 ) : RecyclerView.Adapter<FoodRecipeViewHolder>() {
 
-    private var foodRecipesList = mutableListOf<FoodRecipeItemDTO>()
+    private var foodRecipesList = mutableListOf<FoodRecipeItemUi>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(list: List<FoodRecipeItemDTO>) {
+    fun setList(list: List<FoodRecipeItemUi>) {
         foodRecipesList.clear()
         foodRecipesList.addAll(list)
         notifyDataSetChanged()
