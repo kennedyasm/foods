@@ -1,11 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
     namespace 'com.example.foods'
     compileSdk 33
+
+    Properties properties = new Properties()
 
     defaultConfig {
         applicationId "com.example.foods"
@@ -15,12 +21,20 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        if (rootProject.file("local.properties").exists()) {
+            properties.load(rootProject.file("local.properties").newDataInputStream())
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
+        }
+        debug {
+            buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
         }
     }
     compileOptions {
@@ -30,15 +44,96 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    viewBinding {
+        enabled = true
+    }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    // base
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    debugImplementation "androidx.fragment:fragment-testing:1.5.5"
+
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    // ok http
+    implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
+    testImplementation "com.squareup.okhttp3:okhttp:4.10.0"
+
+    // rx
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+    implementation "androidx.room:room-rxjava3:2.5.0"
+
+    // arch core
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
+
+    // dagger
+    implementation 'com.google.dagger:dagger:2.44.2'
+    implementation 'com.google.dagger:dagger-android-support:2.44.2'
+    kapt 'com.google.dagger:dagger-android-processor:2.44.2'
+    kapt 'com.google.dagger:dagger-compiler:2.44.2'
+
+    // dagger android test
+    kaptAndroidTest 'com.google.dagger:dagger-compiler:2.44.2'
+    androidTestAnnotationProcessor 'com.google.dagger:dagger-compiler:2.44.2'
+
+    // glide
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+
+    // mockito test
+    testImplementation 'org.mockito:mockito-core:5.1.1'
+    implementation 'com.squareup.okhttp3:mockwebserver:5.0.0-alpha.11'
+
+    androidTestImplementation 'org.mockito:mockito-core:5.1.1'
+
+    androidTestImplementation "androidx.test:runner:1.5.2"
+    androidTestImplementation "androidx.test:rules:1.5.0"
+
+    testImplementation "androidx.test:core:1.5.0"
+    testImplementation "androidx.test:monitor:1.6.1"
+    debugImplementation "androidx.test:monitor:1.6.1"
+
+
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.3.0"
+
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:2.2.0"
+
+    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:3.3.0"
+
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.3.0"
+
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    // Kotlin
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+
+    // Testing Navigation
+    androidTestImplementation "androidx.navigation:navigation-testing:2.5.3"
+
+    implementation "androidx.room:room-runtime:2.5.0"
+    kapt "androidx.room:room-compiler:2.5.0"
+
+    // optional - Test helpers
+    testImplementation "androidx.room:room-testing:2.5.0"
+
 }
