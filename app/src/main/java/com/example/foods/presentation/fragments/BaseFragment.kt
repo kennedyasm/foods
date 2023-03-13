@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
+import com.example.foods.R
+import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerFragment
 
 abstract class BaseFragment<viewBinding : ViewBinding>(
@@ -30,5 +32,11 @@ abstract class BaseFragment<viewBinding : ViewBinding>(
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    protected fun showRetrySnackBar(view: View, message: String, listener: () -> Unit) {
+        Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE)
+            .setAction(R.string.retry_label) { listener.invoke() }
+            .show()
     }
 }

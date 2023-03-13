@@ -40,7 +40,6 @@ class FoodRecipesFragment :
     }
 
     private fun setAdapterInRecyclerView() {
-
         binding.foodRecipesRecyclerView.adapter = foodRecipesAdapter
     }
 
@@ -56,30 +55,40 @@ class FoodRecipesFragment :
 
     private fun foodRecipesList(list: List<FoodRecipeItemUi>) {
         hideLoading()
-        binding.totalResultsText.text = String.format(getString(R.string.total_results), list.size)
+        binding.totalResultsText.text = String.format(getString(R.string.results), list.size)
         foodRecipesAdapter?.setList(list)
     }
 
     private fun foodRecipesError(throwable: Throwable) {
         hideLoading()
+        val message = String.format(getString(R.string.error), throwable.message)
+        showRetrySnackBar(binding.root, message, ::getFoodRecipes)
     }
 
-    private fun showLoading() {
+    private fun showLoading() = binding.linearProgressIndicator.show()
 
-    }
-
-    private fun hideLoading() {
-
-    }
+    private fun hideLoading() = binding.linearProgressIndicator.hide()
 
     private fun openFoodRecipeDetails(item: FoodRecipeItemUi) {
         findNavController().navigate(buildDirectionToFoodRecipeDetails(item))
     }
 
     private fun buildDirectionToFoodRecipeDetails(item: FoodRecipeItemUi): NavDirections {
-        return FoodRecipesFragmentDirections.actionFoodRecipesFragmentToFoodRecipeDetails(
-            item.id,
-            item.name
-        )
+        return FoodRecipesFragmentDirections.toFoodRecipeDetails(item.id, item.name)
     }
+/*
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        if (savedInstanceState != null) {
+            val savedRecyclerLayoutState: Parcelable? =
+                savedInstanceState.getParcelable("recycler_position")
+            binding.foodRecipesRecyclerView.layoutManager?.onRestoreInstanceState(savedRecyclerLayoutState)
+        }
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable("recycler_position", binding.foodRecipesRecyclerView.layoutManager?.onSaveInstanceState())
+    }
+
+ */
 }

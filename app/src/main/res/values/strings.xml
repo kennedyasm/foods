@@ -1,7 +1,12 @@
 <resources>
+
     <string name="app_name">Foods</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="total_results">Total results: %s</string>
-    <string name="search_recipes">Search food recipes</string>
+    <string name="results">Resultados \n%s</string>
+    <string name="error">ERROR: %s</string>
+    <string name="retry_label">Reintentar</string>
+    <string name="origin">Origen: %s</string>
+    <string name="ingredients_label">Ingredientes:</string>
+    <string name="preparation_steps_label">Pasos para preparar:</string>
+
 </resources>

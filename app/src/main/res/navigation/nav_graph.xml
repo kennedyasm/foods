@@ -12,19 +12,23 @@
         tools:layout="@layout/fragment_food_recipes">
 
         <action
-            android:id="@+id/action_foodRecipesFragment_to_foodRecipeDetails"
+            android:id="@+id/to_foodRecipeDetails"
             app:destination="@id/foodRecipeDetails"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim">
+
             <argument
                 android:name="food_recipe_id"
                 app:argType="integer" />
+
             <argument
                 android:name="food_recipe_name"
-                app:argType="string"/>
+                app:argType="string" />
+
         </action>
+
     </fragment>
 
     <fragment
@@ -32,4 +36,5 @@
         android:name="com.example.foods.presentation.fragments.FoodRecipeDetails"
         android:label="fragment_food_recipe_details"
         tools:layout="@layout/fragment_food_recipe_details" />
+
 </navigation>

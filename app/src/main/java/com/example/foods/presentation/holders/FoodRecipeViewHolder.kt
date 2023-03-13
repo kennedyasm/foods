@@ -6,11 +6,11 @@ import com.example.foods.databinding.FoodRecipeItemViewBinding
 import com.example.foods.domain.models.FoodRecipeItemUi
 
 class FoodRecipeViewHolder(
-    private val foodRecipeItemViewBinding: FoodRecipeItemViewBinding,
+    private val binding: FoodRecipeItemViewBinding,
     private val listener: (FoodRecipeItemUi) -> Unit
-): RecyclerView.ViewHolder(foodRecipeItemViewBinding.root) {
+): RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: FoodRecipeItemUi) = foodRecipeItemViewBinding.run {
+    fun bind(item: FoodRecipeItemUi) = binding.run {
         foodRecipeTitle.text = item.name
         foodRecipeImage.loadImage(item.imageUrl)
         foodRecipeItemContainer.setOnClickListener { listener.invoke(item) }

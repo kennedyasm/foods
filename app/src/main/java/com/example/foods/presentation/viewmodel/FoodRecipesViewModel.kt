@@ -16,6 +16,7 @@ class FoodRecipesViewModel @Inject constructor(
         get() = _getFoodRecipesState
 
     fun getFoodRecipes() {
+        _getFoodRecipesState.value = State.Loading
         getFoodRecipesUseCase.invoke()
             .subscribe(::successGetFoodRecipes, ::errorGetFoodRecipes)
             .also(disposables::add)

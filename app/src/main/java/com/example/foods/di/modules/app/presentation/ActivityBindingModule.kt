@@ -11,7 +11,7 @@ interface ActivityBindingModule {
 
     @ActivityScoped
     @ContributesAndroidInjector(
-        modules = [MainActivityFragmentModules::class, ViewModelBindsModule::class]
+        modules = [ViewModelBindsModule::class, MainActivityFragmentModules::class]
     )
     fun mainActivity(): MainActivity
 }
