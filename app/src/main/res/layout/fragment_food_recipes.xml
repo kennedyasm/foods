@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.FoodRecipesFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/search_view_container"
-        android:layout_width="0dp"
-        android:clickable="false"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@id/total_results_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
@@ -21,11 +13,10 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             app:iconifiedByDefault="false"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/total_results_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:queryHint="search" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -34,10 +25,10 @@
         android:layout_height="0dp"
         android:layout_margin="@dimen/dimen_8dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/search_view_container"
+        app:layout_constraintBottom_toBottomOf="@+id/search_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/search_view_container"
-        app:layout_constraintTop_toTopOf="@+id/search_view_container"
+        app:layout_constraintStart_toEndOf="@+id/search_view"
+        app:layout_constraintTop_toTopOf="@+id/search_view"
         tools:text="@string/results" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -61,6 +52,6 @@
         android:indeterminate="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_view_container" />
+        app:layout_constraintTop_toBottomOf="@+id/search_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
