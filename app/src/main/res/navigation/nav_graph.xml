@@ -35,6 +35,37 @@
         android:id="@+id/foodRecipeDetails"
         android:name="com.example.foods.presentation.fragments.FoodRecipeDetails"
         android:label="fragment_food_recipe_details"
-        tools:layout="@layout/fragment_food_recipe_details" />
+        tools:layout="@layout/fragment_food_recipe_details">
+
+        <action
+            android:id="@+id/to_foodRecipeOriginMapFragment"
+            app:destination="@id/foodRecipeOriginMapFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+
+            <argument
+                android:name="food_recipe_name"
+                app:argType="string" />
+
+            <argument
+                android:name="latitude"
+                app:argType="string" />
+
+            <argument
+                android:name="longitude"
+                app:argType="string" />
+
+
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/foodRecipeOriginMapFragment"
+        android:name="com.example.foods.presentation.fragments.FoodRecipeOriginMapFragment"
+        android:label="fragment_food_recipe_origin_map"
+        tools:layout="@layout/fragment_food_recipe_origin_map" />
 
 </navigation>

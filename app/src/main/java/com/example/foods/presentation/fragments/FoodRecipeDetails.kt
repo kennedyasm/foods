@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.foods.R
 import com.example.foods.core.State
 import com.example.foods.core.State.Companion.checkActionBy
+import com.example.foods.core.State.Companion.to
 import com.example.foods.core.extensions.getIntOrDefault
 import com.example.foods.core.extensions.getStringOrDefault
 import com.example.foods.core.extensions.loadImage
@@ -34,6 +36,7 @@ class FoodRecipeDetails :
         super.onViewCreated(view, savedInstanceState)
         initObservers()
         setupActionToolbar()
+        setupSeeMapClickListener()
     }
 
     private fun initAdapter() {
@@ -43,6 +46,22 @@ class FoodRecipeDetails :
     private fun setupActionToolbar() {
         requireActivity().setActionBar(binding.toolbar)
         binding.collapsingToolbarLayout.title = getStringOrDefault(FOOD_RECIPE_NAME)
+    }
+
+    private fun setupSeeMapClickListener() {
+        binding.seeMapLocation.setOnClickListener {
+            val state = (viewModel.getFoodRecipeDetails.value as State.Success)
+            val item = state.to<FoodRecipeDetailsUi>()
+
+            val direction =FoodRecipeDetailsDirections.toFoodRecipeOriginMapFragment(
+                getStringOrDefault(FOOD_RECIPE_NAME),
+                item.latitude.toString(),
+                item.longitude.toString()
+            )
+
+            findNavController().navigate(direction)
+
+        }
     }
 
     private fun initObservers() {
@@ -95,6 +114,6 @@ class FoodRecipeDetails :
 
     companion object {
         private const val FOOD_RECIPE_ID = "food_recipe_id"
-        private const val FOOD_RECIPE_NAME = "food_recipe_name"
+        const val FOOD_RECIPE_NAME = "food_recipe_name"
     }
 }

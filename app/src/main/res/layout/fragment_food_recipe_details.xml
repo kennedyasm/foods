@@ -66,15 +66,34 @@
                 android:textSize="@dimen/dimen_16sp"
                 tools:text="@tools:sample/lorem/random" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/food_recipe_origin"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_8dp"
-                android:lineSpacingExtra="4dp"
-                android:textSize="@dimen/dimen_16sp"
-                android:textStyle="bold"
-                tools:text="@tools:sample/lorem" />
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/food_recipe_origin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:lineSpacingExtra="4dp"
+                    android:textSize="@dimen/dimen_16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@tools:sample/lorem" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/see_map_location"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8dp"
+                    android:text="@string/open_detail_map"
+                    app:layout_constraintTop_toTopOf="@id/food_recipe_origin"
+                    app:layout_constraintStart_toEndOf="@id/food_recipe_origin"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <ExpandableListView
                 android:id="@+id/preparation_ingredients_list"

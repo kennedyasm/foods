@@ -8,7 +8,7 @@ sealed class State {
 
     companion object {
 
-        private fun <T> Success.to(): T {
+        fun <T> Success.to(): T {
             @Suppress("UNCHECKED_CAST")
             return this.result as T
         }
