@@ -1,4 +1,4 @@
-package com.example.foods.data.local
+package com.example.foods.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -12,13 +12,10 @@ import io.reactivex.rxjava3.core.Single
 interface FoodRecipesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(foodRecipeItemEntity: FoodRecipeItemEntity): Completable
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(foodRecipeItemEntityList: List<FoodRecipeItemEntity>): Completable
 
     @Query("SELECT * FROM food_recipes")
-    fun getAll(): Single<List<FoodRecipeItemEntity>>
+    suspend fun getAll(): List<FoodRecipeItemEntity>
 
     @Query("SELECT * FROM food_recipes WHERE id=:id")
     fun getById(id: Int): Single<FoodRecipeItemEntity>

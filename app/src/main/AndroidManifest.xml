@@ -19,6 +19,7 @@
 
         <activity
             android:name=".presentation.MainActivity"
+            android:screenOrientation="fullUser"
             android:exported="true">
 
             <intent-filter>

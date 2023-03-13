@@ -37,12 +37,16 @@ class FoodRecipeOriginMapFragment :
         binding.googleMap.getFragment<SupportMapFragment>().getMapAsync(this)
     }
 
-    private fun getFoodRecipeName() = getStringOrDefault(FoodRecipeDetails.FOOD_RECIPE_NAME)
+    private fun getFoodRecipeName() = getStringOrDefault(FoodRecipeDetailsFragment.FOOD_RECIPE_NAME)
 
     private fun getLatitude() = arguments?.getString(LATITUDE)?.toDouble() ?: 0.0
 
     private fun getLongitude() = arguments?.getString(LONGITUDE)?.toDouble() ?: 0.0
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mGoogleMap = null
+    }
     companion object {
         private const val LATITUDE = "latitude"
         private const val LONGITUDE = "longitude"

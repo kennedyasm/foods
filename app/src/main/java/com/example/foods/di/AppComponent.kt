@@ -2,10 +2,7 @@ package com.example.foods.di
 
 import android.content.Context
 import com.example.foods.App
-import com.example.foods.di.modules.LocalModule
-import com.example.foods.di.modules.NetworkModule
-import com.example.foods.di.modules.RxSchedulersModule
-import com.example.foods.di.modules.ViewModelFactoryModule
+import com.example.foods.di.modules.*
 import com.example.foods.di.modules.app.AppModule
 import dagger.BindsInstance
 import dagger.Component
@@ -20,6 +17,7 @@ interface AppComponent : AndroidInjector<App>
         AppModule::class,
         ViewModelFactoryModule::class,
         RxSchedulersModule::class,
+        DispatchersModule::class,
         NetworkModule::class,
         LocalModule::class
     ]

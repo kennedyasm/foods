@@ -18,7 +18,7 @@ import com.example.foods.presentation.adapters.RecipePreparationIngredientsAdapt
 import com.example.foods.presentation.viewmodel.FoodRecipeDetailsViewModel
 import javax.inject.Inject
 
-class FoodRecipeDetails :
+class FoodRecipeDetailsFragment :
     BaseFragment<FragmentFoodRecipeDetailsBinding>(FragmentFoodRecipeDetailsBinding::inflate) {
 
     @Inject
@@ -50,17 +50,15 @@ class FoodRecipeDetails :
 
     private fun setupSeeMapClickListener() {
         binding.seeMapLocation.setOnClickListener {
-            val state = (viewModel.getFoodRecipeDetails.value as State.Success)
-            val item = state.to<FoodRecipeDetailsUi>()
-
-            val direction =FoodRecipeDetailsDirections.toFoodRecipeOriginMapFragment(
-                getStringOrDefault(FOOD_RECIPE_NAME),
-                item.latitude.toString(),
-                item.longitude.toString()
-            )
-
-            findNavController().navigate(direction)
-
+            val state = (viewModel.getFoodRecipeDetails.value as? State.Success)
+            state?.to<FoodRecipeDetailsUi>()?.let {
+                val direction = FoodRecipeDetailsFragmentDirections.toFoodRecipeOriginMapFragment(
+                    getStringOrDefault(FOOD_RECIPE_NAME),
+                    it.latitude.toString(),
+                    it.longitude.toString()
+                )
+                findNavController().navigate(direction)
+            }
         }
     }
 
@@ -112,6 +110,10 @@ class FoodRecipeDetails :
     private fun getFoodRecipeDetailsById() =
         viewModel.getFoodRecipeDetailsById(getIntOrDefault(FOOD_RECIPE_ID))
 
+    override fun onDestroy() {
+        super.onDestroy()
+        preparationIngredientsAdapter = null
+    }
     companion object {
         private const val FOOD_RECIPE_ID = "food_recipe_id"
         const val FOOD_RECIPE_NAME = "food_recipe_name"

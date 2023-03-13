@@ -2,7 +2,7 @@ package com.example.foods.di.modules
 
 import android.content.Context
 import androidx.room.Room
-import com.example.foods.data.local.FoodRecipesDao
+import com.example.foods.data.local.dao.FoodRecipesDao
 import com.example.foods.data.local.FoodRecipesRoomDatabase
 import dagger.Module
 import dagger.Provides

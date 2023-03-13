@@ -1,16 +1,19 @@
 package com.example.foods.data.repository
 
+import com.example.foods.data.local.datasource.FoodRecipesLocalDataSource
 import com.example.foods.data.local.entities.FoodRecipeItemEntity
+import com.example.foods.data.network.datasource.FoodRecipesNetworkDataSource
 import com.example.foods.data.network.dto.FoodRecipesResponseDto
-import com.example.foods.data.toFoodRecipeItemUiList
 import com.example.foods.data.toFoodRecipeDetailsUi
 import com.example.foods.data.toFoodRecipeItemEntityList
-import com.example.foods.domain.local.FoodRecipesLocalDataSource
+import com.example.foods.data.toFoodRecipeItemUi
+import com.example.foods.data.toFoodRecipeItemUiList
 import com.example.foods.domain.models.FoodRecipeDetailsUi
 import com.example.foods.domain.models.FoodRecipeItemUi
-import com.example.foods.domain.network.FoodRecipesNetworkDataSource
 import com.example.foods.domain.repository.FoodRecipesRepository
 import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class FoodRecipesRepositoryImpl @Inject constructor(
@@ -19,14 +22,12 @@ class FoodRecipesRepositoryImpl @Inject constructor(
 ) : FoodRecipesRepository {
 
     override fun getFoodRecipes(): Single<List<FoodRecipeItemUi>> {
-        return networkDataSource.getFoodRecipes()
-            .flatMap(::insertFoodRecipesInDatabase)
-            .map(FoodRecipesResponseDto::toFoodRecipeItemUiList)
+        return localDataSource.deleteFoodRecipes().andThen(fetchFoodRecipes())
     }
 
-    override fun getFoodRecipeDetailsById(id: Int): Single<FoodRecipeDetailsUi> {
-        return localDataSource.getFoodRecipeById(id)
-            .map(FoodRecipeItemEntity::toFoodRecipeDetailsUi)
+    private fun fetchFoodRecipes(): Single<List<FoodRecipeItemUi>> {
+        return networkDataSource.getFoodRecipes().flatMap(::insertFoodRecipesInDatabase)
+            .map(FoodRecipesResponseDto::toFoodRecipeItemUiList)
     }
 
     private fun insertFoodRecipesInDatabase(
@@ -34,5 +35,21 @@ class FoodRecipesRepositoryImpl @Inject constructor(
     ): Single<FoodRecipesResponseDto> {
         return localDataSource.insertFoodRecipes(foodRecipesResponseDto.toFoodRecipeItemEntityList())
             .toSingle { foodRecipesResponseDto }
+    }
+
+    override fun getFoodRecipeDetailsById(id: Int): Single<FoodRecipeDetailsUi> {
+        return localDataSource.getFoodRecipeById(id).map { it.toFoodRecipeDetailsUi() }
+    }
+
+    override fun getFoodRecipesByQuery(query: String): Flow<List<FoodRecipeItemUi>> = flow {
+        val data = localDataSource.getFoodRecipes()
+            .filter { it.isMatchingWithSearchQuery(query) }
+            .map(FoodRecipeItemEntity::toFoodRecipeItemUi)
+        emit(data)
+    }
+
+    companion object {
+        private fun FoodRecipeItemEntity.isMatchingWithSearchQuery(query: String): Boolean =
+            (name.contains(query, true) || ingredients.any { it.contains(query) })
     }
 }

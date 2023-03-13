@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/foodRecipeDetails"
-        android:name="com.example.foods.presentation.fragments.FoodRecipeDetails"
+        android:name="com.example.foods.presentation.fragments.FoodRecipeDetailsFragment"
         android:label="fragment_food_recipe_details"
         tools:layout="@layout/fragment_food_recipe_details">
 
@@ -56,7 +56,6 @@
             <argument
                 android:name="longitude"
                 app:argType="string" />
-
 
         </action>
 

@@ -37,3 +37,6 @@ fun FoodRecipeItemEntity.toFoodRecipeDetailsUi(): FoodRecipeDetailsUi =
         ingredients,
         preparation
     )
+
+fun FoodRecipeItemEntity.toFoodRecipeItemUi(): FoodRecipeItemUi =
+    FoodRecipeItemUi(id, name, imageUrl)
