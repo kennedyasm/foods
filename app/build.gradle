@@ -12,6 +12,7 @@ android {
     compileSdk 33
 
     Properties properties = new Properties()
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
 
     defaultConfig {
         applicationId "com.example.foods"
@@ -22,8 +23,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        if (rootProject.file("local.properties").exists()) {
-            properties.load(rootProject.file("local.properties").newDataInputStream())
+        if (keystorePropertiesFile.exists()) {
+            properties.load(keystorePropertiesFile.newDataInputStream())
         }
     }
 
