@@ -1,6 +1,7 @@
 package com.example.foods.presentation.adapters
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foods.core.extensions.binding
@@ -16,6 +17,7 @@ class FoodRecipesAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun setList(list: List<FoodRecipeItemUi>) {
+        Log.d("kTest -> "," setList :$list")
         foodRecipesList.clear()
         foodRecipesList.addAll(list)
         notifyDataSetChanged()

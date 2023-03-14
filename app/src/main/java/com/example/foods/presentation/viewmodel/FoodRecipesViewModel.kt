@@ -1,13 +1,16 @@
 package com.example.foods.presentation.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
+import androidx.lifecycle.viewModelScope
 import com.example.foods.core.State
 import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.domain.usecases.GetFoodRecipesByQueryUseCase
 import com.example.foods.domain.usecases.GetFoodRecipesUseCase
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FoodRecipesViewModel @Inject constructor(
@@ -15,18 +18,22 @@ class FoodRecipesViewModel @Inject constructor(
     private val getFoodRecipesByQueryUseCase: GetFoodRecipesByQueryUseCase
 ) : BaseViewModel() {
 
-    private val _getFoodRecipesState: MutableLiveData<State> = MutableLiveData()
-    val getFoodRecipesState: LiveData<State>
+    private val _getFoodRecipesState: MutableStateFlow<State> = MutableStateFlow(State.Loading)
+    val getFoodRecipesState: StateFlow<State>
         get() = _getFoodRecipesState
 
+    init {
+        getFoodRecipes()
+    }
+
     fun getFoodRecipes() {
-        _getFoodRecipesState.value = State.Loading
         getFoodRecipesUseCase.invoke()
             .subscribe(::successGetFoodRecipes, ::errorGetFoodRecipes)
             .also(disposables::add)
     }
 
     private fun successGetFoodRecipes(foodRecipes: List<FoodRecipeItemUi>) {
+        Log.d("kTest -> ", " successGetFoodRecipes")
         _getFoodRecipesState.value = State.Success(foodRecipes)
     }
 
@@ -34,16 +41,11 @@ class FoodRecipesViewModel @Inject constructor(
         _getFoodRecipesState.value = State.Error(throwable)
     }
 
-    fun getFoodRecipesByQuery(query: String): Flow<List<FoodRecipeItemUi>> {
-        return getFoodRecipesByQueryUseCase(query)
-    }
-
-    private val _query: MutableLiveData<String> = MutableLiveData()
-
-    val query: LiveData<String> get() = _query
-
-    fun searchFoodRecipesByQuery(query: String = "") {
-
-        _query.value = query
+    fun getFoodRecipesByQuery(query: String) {
+        viewModelScope.launch {
+            getFoodRecipesByQueryUseCase(query).distinctUntilChanged().collectLatest {
+                _getFoodRecipesState.value = State.Success(it)
+            }
+        }
     }
 }

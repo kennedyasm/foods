@@ -1,7 +1,9 @@
 package com.example.foods.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.SearchAutoComplete
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -29,51 +31,50 @@ class FoodRecipesFragment :
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel: FoodRecipesViewModel by viewModels { viewModelFactory }
     private var foodRecipesAdapter: FoodRecipesAdapter? = null
+    private var queryListener: SearchView.OnQueryTextListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initFoodRecipesAdapter()
-        getFoodRecipes()
+        initObservers()
+        initObserverSearchViewQuery()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setAdapterInRecyclerView()
-        initObservers()
-        initObserverSearchViewQuery()
+        initBindingViews()
     }
 
     private fun initFoodRecipesAdapter() {
         foodRecipesAdapter = FoodRecipesAdapter(::openFoodRecipeDetails)
     }
 
-    private fun setAdapterInRecyclerView() {
-        binding.foodRecipesRecyclerView.adapter = foodRecipesAdapter
+    private fun initBindingViews() = binding.run {
+        foodRecipesRecyclerView.adapter = foodRecipesAdapter
+        searchView.setOnQueryTextListener(queryListener)
     }
 
     private fun getFoodRecipes() = viewModel.getFoodRecipes()
 
     private fun initObservers() {
-        viewModel.getFoodRecipesState.observe(viewLifecycleOwner, ::handleFoodRecipesState)
-        viewModel.query.observe(viewLifecycleOwner, ::getFoodRecipesByQuery)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getFoodRecipesState.collectLatest {
+                    handleFoodRecipesState(it)
+                }
+            }
+        }
     }
 
     private fun initObserverSearchViewQuery() {
-        binding.searchView.queries(lifecycle) { query ->
-            query?.let {
-                viewModel.searchFoodRecipesByQuery(it)
-            } ?: viewModel.searchFoodRecipesByQuery()
+        queryListener = queries(lifecycle) { query ->
+            Log.d("kTest -> ","query: $query")
+            query?.let(::getFoodRecipesByQuery)
         }
     }
 
     private fun getFoodRecipesByQuery(query: String) {
-        lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                viewModel.getFoodRecipesByQuery(query).collectLatest {
-                    foodRecipesList(it)
-                }
-            }
-        }
+        viewModel.getFoodRecipesByQuery(query)
     }
 
     private fun handleFoodRecipesState(state: State) {
@@ -101,7 +102,6 @@ class FoodRecipesFragment :
     private fun enableSearchView(isEnabledSearchView: Boolean) {
         binding.searchView.findViewById<SearchAutoComplete>(androidx.appcompat.R.id.search_src_text)
             .run { isEnabled = isEnabledSearchView }
-
     }
 
     private fun hideLoading() = binding.linearProgressIndicator.hide()

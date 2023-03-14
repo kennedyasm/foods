@@ -55,7 +55,9 @@
                 android:id="@+id/linear_progress_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:indeterminate="true" />
+                android:indeterminate="true"
+                android:visibility="gone"
+                tools:visibility="visible" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/food_recipe_description"
@@ -87,9 +89,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_8dp"
                     android:text="@string/open_detail_map"
-                    app:layout_constraintTop_toTopOf="@id/food_recipe_origin"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/food_recipe_origin"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintTop_toTopOf="@id/food_recipe_origin" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

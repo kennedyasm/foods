@@ -11,7 +11,7 @@ class GetFoodRecipesByQueryUseCase(
     private val dispatcher: CoroutineDispatcher
 ) {
 
-    operator fun invoke(query: String): Flow<List<FoodRecipeItemUi>> {
-        return foodRecipesRepository.getFoodRecipesByQuery(query).flowOn(dispatcher)
-    }
+    operator fun invoke(query: String): Flow<List<FoodRecipeItemUi>> =
+        foodRecipesRepository.getFoodRecipesByQuery(query).flowOn(dispatcher)
+
 }

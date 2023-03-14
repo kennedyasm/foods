@@ -8,13 +8,14 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-internal fun SearchView.queries(
+internal fun queries(
     lifecycle: Lifecycle,
     mQuery: (textChange: String?) -> Unit
-) {
+): SearchView.OnQueryTextListener {
+
     var stateJob: Job? = null
     val coroutineScope = lifecycle.coroutineScope
-    setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+    val queryListener = object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String?): Boolean {
             mQuery(query)
             return true
@@ -25,12 +26,13 @@ internal fun SearchView.queries(
             stateJob = coroutineScope.launch {
                 lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     newText?.let {
-                        delay(500)
+                        delay(700)
                         mQuery(it)
                     }
                 }
             }
             return true
         }
-    })
+    }
+    return queryListener
 }
