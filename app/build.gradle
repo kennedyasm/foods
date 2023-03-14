@@ -8,24 +8,24 @@ plugins {
 }
 
 android {
-    namespace 'com.example.foods'
-    compileSdk 33
-
     Properties properties = new Properties()
+
     def keystorePropertiesFile = rootProject.file("keystore.properties")
+    if (keystorePropertiesFile.exists()) {
+        properties.load(keystorePropertiesFile.newDataInputStream())
+    }
+
+    namespace 'com.example.foods'
+    compileSdk properties.getProperty("compile.sdk").toInteger()
 
     defaultConfig {
         applicationId "com.example.foods"
-        minSdk 23
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
-
+        minSdk properties.getProperty("min.sdk").toInteger()
+        targetSdk properties.getProperty("target.sdk").toInteger()
+        versionCode properties.getProperty("version.code").toInteger()
+        versionName properties.getProperty("version.name")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        if (keystorePropertiesFile.exists()) {
-            properties.load(keystorePropertiesFile.newDataInputStream())
-        }
     }
 
     buildTypes {
@@ -40,10 +40,12 @@ android {
             buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -138,5 +140,4 @@ dependencies {
     testImplementation "androidx.room:room-testing:2.5.0"
 
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
-
 }
