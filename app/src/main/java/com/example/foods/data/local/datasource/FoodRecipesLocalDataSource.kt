@@ -7,6 +7,6 @@ import io.reactivex.rxjava3.core.Single
 interface FoodRecipesLocalDataSource {
     fun insertFoodRecipes(foodRecipes: List<FoodRecipeItemEntity>): Completable
     suspend fun getFoodRecipes(): List<FoodRecipeItemEntity>
-    fun deleteFoodRecipes(): Completable
     fun getFoodRecipeById(id: Int): Single<FoodRecipeItemEntity>
+    fun deleteFoodRecipes(): Completable
 }

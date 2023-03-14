@@ -1,6 +1,5 @@
 package com.example.foods.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.foods.core.State
 import com.example.foods.domain.models.FoodRecipeItemUi
@@ -32,20 +31,19 @@ class FoodRecipesViewModel @Inject constructor(
             .also(disposables::add)
     }
 
-    private fun successGetFoodRecipes(foodRecipes: List<FoodRecipeItemUi>) {
-        Log.d("kTest -> ", " successGetFoodRecipes")
-        _getFoodRecipesState.value = State.Success(foodRecipes)
-    }
-
-    private fun errorGetFoodRecipes(throwable: Throwable) {
-        _getFoodRecipesState.value = State.Error(throwable)
-    }
-
     fun getFoodRecipesByQuery(query: String) {
         viewModelScope.launch {
             getFoodRecipesByQueryUseCase(query).distinctUntilChanged().collectLatest {
                 _getFoodRecipesState.value = State.Success(it)
             }
         }
+    }
+
+    private fun successGetFoodRecipes(foodRecipes: List<FoodRecipeItemUi>) {
+        _getFoodRecipesState.value = State.Success(foodRecipes)
+    }
+
+    private fun errorGetFoodRecipes(throwable: Throwable) {
+        _getFoodRecipesState.value = State.Error(throwable)
     }
 }

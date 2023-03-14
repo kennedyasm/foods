@@ -25,6 +25,19 @@ class FoodRecipesRepositoryImpl @Inject constructor(
         return localDataSource.deleteFoodRecipes().andThen(fetchFoodRecipes())
     }
 
+    override fun getFoodRecipeDetailsById(id: Int): Single<FoodRecipeDetailsUi> {
+        return localDataSource.getFoodRecipeById(id).map { it.toFoodRecipeDetailsUi() }
+    }
+
+    override fun getFoodRecipesByQuery(query: String): Flow<List<FoodRecipeItemUi>> {
+        return flow {
+            val data = localDataSource.getFoodRecipes()
+                .filter { it.isMatchingWithSearchQuery(query) }
+                .map(FoodRecipeItemEntity::toFoodRecipeItemUi)
+            emit(data)
+        }
+    }
+
     private fun fetchFoodRecipes(): Single<List<FoodRecipeItemUi>> {
         return networkDataSource.getFoodRecipes().flatMap(::insertFoodRecipesInDatabase)
             .map(FoodRecipesResponseDto::toFoodRecipeItemUiList)
@@ -35,17 +48,6 @@ class FoodRecipesRepositoryImpl @Inject constructor(
     ): Single<FoodRecipesResponseDto> {
         return localDataSource.insertFoodRecipes(foodRecipesResponseDto.toFoodRecipeItemEntityList())
             .toSingle { foodRecipesResponseDto }
-    }
-
-    override fun getFoodRecipeDetailsById(id: Int): Single<FoodRecipeDetailsUi> {
-        return localDataSource.getFoodRecipeById(id).map { it.toFoodRecipeDetailsUi() }
-    }
-
-    override fun getFoodRecipesByQuery(query: String): Flow<List<FoodRecipeItemUi>> = flow {
-        val data = localDataSource.getFoodRecipes()
-            .filter { it.isMatchingWithSearchQuery(query) }
-            .map(FoodRecipeItemEntity::toFoodRecipeItemUi)
-        emit(data)
     }
 
     companion object {

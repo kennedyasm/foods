@@ -1,7 +1,6 @@
 package com.example.foods.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.SearchAutoComplete
@@ -15,12 +14,15 @@ import androidx.navigation.fragment.findNavController
 import com.example.foods.R
 import com.example.foods.core.State
 import com.example.foods.core.State.Companion.checkActionBy
-import com.example.foods.core.extensions.queries
+import com.example.foods.core.extensions.getSearchViewQueryTextListener
 import com.example.foods.databinding.FragmentFoodRecipesBinding
 import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.presentation.adapters.FoodRecipesAdapter
 import com.example.foods.presentation.viewmodel.FoodRecipesViewModel
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -36,8 +38,8 @@ class FoodRecipesFragment :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initFoodRecipesAdapter()
-        initObservers()
-        initObserverSearchViewQuery()
+        startFoodRecipeStateFlow()
+        startSearchQueryTextStateFlow()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,20 +58,23 @@ class FoodRecipesFragment :
 
     private fun getFoodRecipes() = viewModel.getFoodRecipes()
 
-    private fun initObservers() {
+    private fun startFoodRecipeStateFlow() {
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getFoodRecipesState.collectLatest {
-                    handleFoodRecipesState(it)
-                }
+                viewModel.getFoodRecipesState.collectLatest(::handleFoodRecipesState)
             }
         }
     }
 
-    private fun initObserverSearchViewQuery() {
-        queryListener = queries(lifecycle) { query ->
-            Log.d("kTest -> ","query: $query")
-            query?.let(::getFoodRecipesByQuery)
+    @OptIn(FlowPreview::class)
+    private fun startSearchQueryTextStateFlow() {
+        queryListener = getSearchViewQueryTextListener { stateFlowQueryText ->
+            lifecycleScope.launch {
+                lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    stateFlowQueryText.drop(SKIP_FLOW_TIMES).debounce(DEBOUNCE_TIME)
+                        .collectLatest(::getFoodRecipesByQuery)
+                }
+            }
         }
     }
 
@@ -115,7 +120,14 @@ class FoodRecipesFragment :
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         foodRecipesAdapter = null
+        queryListener = null
+        binding.searchView.setOnQueryTextListener(null)
+        super.onDestroy()
+    }
+
+    companion object {
+        private const val SKIP_FLOW_TIMES = 1
+        private const val DEBOUNCE_TIME = 600L
     }
 }
