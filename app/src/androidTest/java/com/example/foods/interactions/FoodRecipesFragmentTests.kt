@@ -1,5 +1,6 @@
-package com.example.foods
+package com.example.foods.interactions
 
+import com.example.foods.R
 import com.example.foods.core.*
 
 fun userInteractionInFoodRecipesFragment() {

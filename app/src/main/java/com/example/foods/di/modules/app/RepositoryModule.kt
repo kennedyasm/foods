@@ -9,7 +9,5 @@ import dagger.Module
 interface RepositoryModule {
 
     @Binds
-    fun bindFoodRecipesRepository(
-        foodRecipesRepository: FoodRecipesRepositoryImpl
-    ): FoodRecipesRepository
+    fun bindFoodRecipesRepository(foodRecipesRepository: FoodRecipesRepositoryImpl): FoodRecipesRepository
 }

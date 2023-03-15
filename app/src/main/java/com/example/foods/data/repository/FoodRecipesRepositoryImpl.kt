@@ -1,5 +1,7 @@
 package com.example.foods.data.repository
 
+import com.example.foods.core.extensions.runIo
+import com.example.foods.core.rx.RxSchedulers
 import com.example.foods.data.local.datasource.FoodRecipesLocalDataSource
 import com.example.foods.data.local.entities.FoodRecipeItemEntity
 import com.example.foods.data.network.datasource.FoodRecipesNetworkDataSource
@@ -13,23 +15,26 @@ import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.domain.repository.FoodRecipesRepository
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class FoodRecipesRepositoryImpl @Inject constructor(
     private val networkDataSource: FoodRecipesNetworkDataSource,
-    private val localDataSource: FoodRecipesLocalDataSource
+    private val localDataSource: FoodRecipesLocalDataSource,
+    private val schedulers: RxSchedulers,
+    private val dispatcherIO: CoroutineDispatcher
 ) : FoodRecipesRepository {
 
     override fun getFoodRecipes(): Single<List<FoodRecipeItemUi>> {
-        return fetchFoodRecipes().doOnTerminate {
-            localDataSource.deleteFoodRecipes()
-        }
+        return localDataSource.deleteFoodRecipes().andThen(fetchFoodRecipes()).runIo(schedulers)
     }
 
     override fun getFoodRecipeDetailsById(id: Int): Single<FoodRecipeDetailsUi> {
         return localDataSource.getFoodRecipeById(id).map { it.toFoodRecipeDetailsUi() }
+            .runIo(schedulers)
     }
 
     override fun getFoodRecipesByQuery(query: String): Flow<List<FoodRecipeItemUi>> {
@@ -38,7 +43,7 @@ class FoodRecipesRepositoryImpl @Inject constructor(
                 .filter { it.isMatchingWithSearchQuery(query) }
                 .map(FoodRecipeItemEntity::toFoodRecipeItemUi)
             emit(data)
-        }
+        }.flowOn(dispatcherIO)
     }
 
     override fun deleteFoodRecipes(): Completable {
@@ -48,6 +53,7 @@ class FoodRecipesRepositoryImpl @Inject constructor(
     private fun fetchFoodRecipes(): Single<List<FoodRecipeItemUi>> {
         return networkDataSource.getFoodRecipes().flatMap(::insertFoodRecipesInDatabase)
             .map(FoodRecipesResponseDto::toFoodRecipeItemUiList)
+            .runIo(schedulers)
     }
 
     private fun insertFoodRecipesInDatabase(
@@ -55,6 +61,7 @@ class FoodRecipesRepositoryImpl @Inject constructor(
     ): Single<FoodRecipesResponseDto> {
         return localDataSource.insertFoodRecipes(foodRecipesResponseDto.toFoodRecipeItemEntityList())
             .toSingle { foodRecipesResponseDto }
+            .runIo(schedulers)
     }
 
     companion object {

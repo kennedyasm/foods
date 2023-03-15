@@ -14,17 +14,17 @@ fun userInteractionsInFoodRecipeDetailsFragment(device: UiDevice) {
 
     mediumScreenDelay()
 
-    clickOnIngredients()
+    onClickIngredients()
     swipeInIngredientList()
 
     mediumScreenDelay()
 
-    clickOnStepsToPrepare()
+    onClickStepsToPrepare()
 
     mediumScreenDelay()
 
-    clickOnIngredients()
-    clickOnStepsToPrepare()
+    onClickIngredients()
+    onClickStepsToPrepare()
 
     openAppBarLayoutInFoodRecipeDetails()
 
@@ -66,7 +66,7 @@ private fun openAppBarLayoutInFoodRecipeDetails() {
     rootViewSwipeDown()
 }
 
-private fun clickOnIngredients() {
+private fun onClickIngredients() {
     findStringInstanceByValueAndClickOn("Ingredientes:")
 }
 
@@ -74,14 +74,13 @@ private fun swipeInIngredientList() {
     findStringInstanceByValueAndSwipeUp("suficiente de hoja de plátano, para tamal, asadas")
 }
 
-private fun clickOnStepsToPrepare() {
+private fun onClickStepsToPrepare() {
     findStringInstanceByValueAndClickOn("Pasos para preparar:")
 }
 
 private fun openFoodRecipeOriginInMap() {
     onClickInDisplayedView(R.id.see_map_location, "Ver en mapa")
 }
-
 
 private fun assertCorrectMapMarkerTitle(device: UiDevice) {
     val marker = device.findObject(UiSelector().descriptionContains("TAMALES DE MOLE"))

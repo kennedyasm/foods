@@ -9,6 +9,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
 import com.example.foods.common.enqueueOkHttpJsonResponse
 import com.example.foods.core.*
+import com.example.foods.interactions.userInteractionInFoodRecipesFragment
 import com.example.foods.interactions.userInteractionsInFoodRecipeDetailsFragment
 import com.example.foods.presentation.MainActivity
 import org.hamcrest.CoreMatchers.*
