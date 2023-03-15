@@ -1,6 +1,5 @@
-package com.example.foods.common
+package com.example.foods.core
 
-import com.example.foods.core.ReadFileHelper
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import java.net.HttpURLConnection

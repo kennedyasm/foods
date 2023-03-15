@@ -7,7 +7,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
-import com.example.foods.common.enqueueOkHttpJsonResponse
+import com.example.foods.core.enqueueOkHttpJsonResponse
 import com.example.foods.core.*
 import com.example.foods.interactions.userInteractionInFoodRecipesFragment
 import com.example.foods.interactions.userInteractionsInFoodRecipeDetailsFragment
