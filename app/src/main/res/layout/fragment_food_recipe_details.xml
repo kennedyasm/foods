@@ -96,7 +96,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ExpandableListView
-                android:id="@+id/preparation_ingredients_list"
+                android:id="@+id/preparation_ingredients_expandable_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_8dp"

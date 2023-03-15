@@ -1,4 +1,4 @@
-package com.example.foods.modules
+package com.example.foods.di.modules
 
 import android.content.Context
 import androidx.room.Room

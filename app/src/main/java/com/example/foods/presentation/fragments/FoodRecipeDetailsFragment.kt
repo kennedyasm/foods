@@ -82,7 +82,7 @@ class FoodRecipeDetailsFragment :
             getPreparationIngredientsHashMap(item)
         )
 
-        preparationIngredientsList.setAdapter(preparationIngredientsAdapter)
+        preparationIngredientsExpandableList.setAdapter(preparationIngredientsAdapter)
     }
 
     private fun foodRecipeDetailsError(throwable: Throwable) {

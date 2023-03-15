@@ -1,7 +1,7 @@
-package com.example.foods.modules
+package com.example.foods.di.modules
 
 import com.example.foods.BuildConfig
-import com.example.foods.common.Mocks
+import com.example.foods.core.MySharedMockWebServer
 import com.example.foods.core.network.auth.AuthInterceptor
 import com.example.foods.core.network.retrofit.RetrofitHelper
 import com.example.foods.core.network.retrofit.RetrofitHelperImpl
@@ -16,7 +16,7 @@ object FakeNetworkModule {
 
     @Named("base_http_url")
     @Provides
-    fun provideBaseHttpUrl(): HttpUrl = Mocks.mockWebServer.url(BuildConfig.SERVICES_PATH)
+    fun provideBaseHttpUrl(): HttpUrl = MySharedMockWebServer.mockWebServer.url(BuildConfig.SERVICES_PATH)
 
     @Provides
     fun provideRetrofitHelper(

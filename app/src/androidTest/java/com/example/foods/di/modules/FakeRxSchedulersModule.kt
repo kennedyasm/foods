@@ -1,4 +1,4 @@
-package com.example.foods.modules
+package com.example.foods.di.modules
 
 
 import com.example.foods.core.rx.RxSchedulers
