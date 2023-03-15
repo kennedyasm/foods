@@ -8,7 +8,7 @@ import com.example.foods.core.given
 import com.example.foods.data.local.dao.FoodRecipesDao
 import com.example.foods.data.local.datasource.FoodRecipesLocalDataSource
 import com.example.foods.data.local.datasource.FoodRecipesLocalDataSourceImpl
-import com.example.foods.doubles.provideCaldoDeCamaronFoodRecipeItemEntity
+import com.example.foods.doubles.provideCaldoDePiedraFoodRecipeItemEntity
 import com.example.foods.doubles.provideFoodRecipeItemEntityList
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
@@ -79,7 +79,7 @@ class FoodRecipesLocalDataSourceTest {
 
     @Test
     fun assertDataFromGetByIdWhenGetFoodRecipeByIdIsExecuted() {
-        val foodRecipeItemEntity = provideCaldoDeCamaronFoodRecipeItemEntity()
+        val foodRecipeItemEntity = provideCaldoDePiedraFoodRecipeItemEntity()
         given(foodRecipesDao.getById(2)).thenReturn(Single.just(foodRecipeItemEntity))
 
         val item = foodRecipesLocalDataSource.getFoodRecipeById(2).testAndGetData()

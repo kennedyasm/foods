@@ -7,7 +7,3 @@ import io.reactivex.rxjava3.core.Single
 fun <T : Any> Single<T>.runIo(rxSchedulers: RxSchedulers): Single<T> {
     return this.subscribeOn(rxSchedulers.io).observeOn(rxSchedulers.mainThread)
 }
-
-fun Completable.runIo(rxSchedulers: RxSchedulers): Completable {
-    return this.subscribeOn(rxSchedulers.io).observeOn(rxSchedulers.mainThread)
-}

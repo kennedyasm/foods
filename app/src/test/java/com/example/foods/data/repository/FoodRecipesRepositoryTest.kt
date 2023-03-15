@@ -10,7 +10,7 @@ import com.example.foods.data.local.datasource.FoodRecipesLocalDataSource
 import com.example.foods.data.network.datasource.FoodRecipesNetworkDataSource
 import com.example.foods.data.toFoodRecipeItemEntityList
 import com.example.foods.domain.repository.FoodRecipesRepository
-import com.example.foods.doubles.provideCaldoDeCamaronFoodRecipeItemEntity
+import com.example.foods.doubles.provideCaldoDePiedraFoodRecipeItemEntity
 import com.example.foods.doubles.provideFoodRecipeItemEntityList
 import com.example.foods.doubles.provideFoodRecipesResponseDto
 import io.reactivex.rxjava3.core.Completable
@@ -96,7 +96,7 @@ class FoodRecipesRepositoryTest {
 
     @Test
     fun callGetFoodRecipeByIdWhenGetFoodRecipeDetailsByIdIsExecuted() {
-        val foodRecipeItemEntity = provideCaldoDeCamaronFoodRecipeItemEntity()
+        val foodRecipeItemEntity = provideCaldoDePiedraFoodRecipeItemEntity()
         given(localDataSource.getFoodRecipeById(2)).thenReturn(Single.just(foodRecipeItemEntity))
 
         foodRecipesRepository.getFoodRecipeDetailsById(2)
@@ -106,7 +106,7 @@ class FoodRecipesRepositoryTest {
 
     @Test
     fun assertDataFromGetFoodRecipeByIdWhenGetFoodRecipeDetailsByIdIsExecuted() {
-        val foodRecipeItemEntity = provideCaldoDeCamaronFoodRecipeItemEntity()
+        val foodRecipeItemEntity = provideCaldoDePiedraFoodRecipeItemEntity()
         given(localDataSource.getFoodRecipeById(2)).thenReturn(Single.just(foodRecipeItemEntity))
 
         val item = foodRecipesRepository.getFoodRecipeDetailsById(2).testAndGetData()

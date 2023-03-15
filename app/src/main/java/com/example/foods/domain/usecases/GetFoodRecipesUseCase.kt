@@ -1,6 +1,5 @@
 package com.example.foods.domain.usecases
 
-import com.example.foods.core.extensions.runIo
 import com.example.foods.core.rx.RxSchedulers
 import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.domain.repository.FoodRecipesRepository
@@ -11,6 +10,7 @@ class GetFoodRecipesUseCase constructor(
     private val schedulers: RxSchedulers
 ) {
     operator fun invoke(): Single<List<FoodRecipeItemUi>> {
-        return foodRecipesRepository.getFoodRecipes().runIo(schedulers)
+        return foodRecipesRepository.getFoodRecipes().subscribeOn(schedulers.io)
+            .observeOn(schedulers.mainThread)
     }
 }

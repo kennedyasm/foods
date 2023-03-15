@@ -6,7 +6,7 @@ import com.example.foods.data.network.dto.FoodRecipesResponseDto
 fun provideFoodRecipesResponseDto() =
     FoodRecipesResponseDto(
         2,
-        listOf(provideBowThaiFoodRecipeItemDto(), provideCaldoDeCamaronFoodRecipeItemDto())
+        listOf(provideBowThaiFoodRecipeItemDto(), provideCaldoDePiedraFoodRecipeItemDto())
     )
 
 fun provideBowThaiFoodRecipeItemDto() =
@@ -52,7 +52,7 @@ val bowlThaiPreparation = listOf(
     "5.- Decora el bowl thai con cilantro y acompaña con limón y hojuelas de chile."
 )
 
-fun provideCaldoDeCamaronFoodRecipeItemDto() =
+fun provideCaldoDePiedraFoodRecipeItemDto() =
     FoodRecipeItemDto(
         2,
         "CALDO DE PIEDRA",
