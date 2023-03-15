@@ -1,0 +1,200 @@
+{
+  "totalResults": 6,
+  "foodRecipes":[
+    {
+      "id":1,
+      "name":"BOWL THAI",
+      "description":"¿Eres fan de la comida tailandesa? Entonces prepara este bowl thai elaborado con una mezcla de arroz sazonado con salsa de soya, aceite de ajonjolí y coronado con pechuga a la parrilla, la cual tiene un delicioso toque agridulce, ¡es la combinación perfecta entre sabor y frescura! ¡Dales sazón a tus alimentos con la Conserva McCormick Balance fresa con chía, elaborada con ingredientes 100% naturales!",
+      "ingredients": [
+        "1 pechuga de pollo",
+        "1/4 tazas de Conserva de fresa con chía McCormick® Balance, para marinar",
+        "2 cucharadas de soya, para marinar",
+        "1 cucharada de jengibre, finamente picado, para marinar",
+        "1 cucharada de ajo, finamente picado, para marinar",
+        "3 rebanadas de piña, para marinar",
+        "2 tazas de arroz para sushi , cocido",
+        "1 cucharada de aceite de ajonjolí, para el arroz",
+        "1 cucharada de ajonjolí negro, para el arroz",
+        "1 cucharada de soya, para el arroz",
+        "1/4 tazas de tallo de cebolla cambray, para el arroz",
+        "1 taza de germen de soya, para acompañar",
+        "1/2 tazas de col morada, en tiritas, para acompañar",
+        "1/2 tazas de edamame, para acompañar",
+        "1/2 tazas de kale, frito",
+        "al gusto de cilantro",
+        "al gusto de limón",
+        "al gusto de hojuela de chile, para decorar"
+      ],
+      "preparation": [
+        "1.- Para marinar: Mezcla la pechuga de pollo, la Conserva de fresa con chía McCormick® Balance, la salsa de soya, el jengibre, el ajo y las rebanadas de piña en un bowl. Marina en refrigeración." ,
+        "2.- En una parrilla a fuego medio, cocina la pechuga de pollo y las rebanadas de piña.",
+        "3.- Agrega el arroz en un bowl y mezcla con aceite de ajonjolí, ajonjolí negro, la salsa de soya y los tallos de cebolla cambray. Mezcla hasta integrar.",
+        "4.- Sirve el arroz en un bowl y agrega el germen de soya, la col morada, los edamames, el kale frito, la pechuga de pollo en rebanadas y la piña.",
+        "5.- Decora el bowl thai con cilantro y acompaña con limón y hojuelas de chile."
+      ],
+      "imageUrl":"https://i0.wp.com/bestofvegan.com/wp-content/uploads/2020/12/Thai-Noodle-Bowl.jpg",
+      "origin":"Tahilandia",
+      "latitude":15.322381634068169,
+      "longitude":101.32069488271185
+    },
+    {
+      "id":2,
+      "name":"CALDO DE PIEDRA",
+      "description":"Prueba esta receta de caldo de piedra, ya que se trata de un platillo elaborado por la comunidad de San Felipe Usila, en Oaxaca. Por si fuera poco, este caldo data de la época prehispánica y se prepara en una jícara, en donde se mezcla el pescado, el camarón, las verduras, el caldo y, por último, una piedra al rojo vivo. En esta ocasión, en kiwilimón prepararemos un caldo de piedra en molcajete, ¡atrévete a probarlo!",
+      "ingredients":[
+        "2 cucharadas de aceite vegetal, para el fondo de camarón",
+        "2 tazas de cabeza de camarón , para el fondo de camarón",
+        "6 tazas de agua, para el fondo de camarón",
+        "1/4 tazas de epazote, para el fondo de camarón",
+        "3 hojas de laurel, para el fondo de camarón",
+        "2 ramas de tomillo, para el fondo de camarón",
+        "1/4 tazas de cilantro, para el fondo de camarón",
+        "1 taza de zanahoria, en rebanadas, para el fondo de camarón",
+        "1 taza de cebolla cambray, en rebanadas, para el fondo de camarón",
+        "2 tazas de filete de mero, en cubos medianos",
+        "2 tazas de camarón mediano, sin cáscara, limpios",
+        "1 diente de ajo",
+        "1 taza de jitomate, en cubos pequeños",
+        "3 chiles de árbol",
+        "3 epazotes",
+        "al gusto de sal",
+        "al gusto de pimienta",
+        "al gusto de limón, para acompañar"
+      ],
+      "preparation":[
+        "1.- Calienta el aceite vegetal en una olla a fuego medio, agrega las cabezas de camarón, la zanahoria y la cebolla. Cocina por 5 minutos o hasta que cambien de color. Posteriormente, vierte el agua, el epazote, el laurel, el tomillo y el cilantro. Cocina a fuego medio por 30 minutos. Retira del fuego, cuela, reserva y mantén el caldo caliente.",
+        "2.- Calienta el molcajete en una estufa u horno, pero recuerda que tiene que estar muy caliente para que pueda cocerse. Cuando esté bien caliente, retira con guantes y coloca sobre una tabla de madera. Agrega inmediatamente el pescado y el camarón. Mezcla con una pala de madera y cocina por 5 minutos. Vierte el caldo de camarón hasta cubrir y añade el ajo, el jitomate, el chile de árbol, el epazote y sazona con sal, pimienta. Cocina el caldo de piedra por 5 minutos más.",
+        "3.- Sirve el caldo de piedra en el mismo molcajete y acompaña con limón."
+      ],
+      "imageUrl":"https://www.cocinavital.mx/wp-content/uploads/2017/09/caldo-de-piedra.jpg",
+      "origin":"Oaxaca",
+      "latitude":16.762218717945395,
+      "longitude":-96.9274728874135
+    },
+    {
+      "id":3,
+      "name":"CEVICHE DE CAMARON ESTILO NAYARIT",
+      "description":"Prueba este ceviche de camarón estilo Nayarit, pues se trata de un platillo fresco, fácil de preparar y lleno de sabor, todo gracias a la combinación de ingredientes. ¡No hay mejor opción para Cuaresma!",
+      "ingredients":[
+        "4 tazas de camarón mediano, limpio y en cubos medianos",
+        "2 tazas de jugo de limón, para marinar el camarón",
+        "1 taza de cebolla morada, en cubos pequeños",
+        "2 tazas de jitomate, en cubos pequeños y sin semillas",
+        "2 tazas de pepino, sin cáscara, sin semillas y en cubos pequeños",
+        "1/2 tazas de cilantro, finamente picado",
+        "1 taza de Kermato®",
+        "suficiente de sal, para marinar el camarón",
+        "suficiente de pimienta, para marinar el camarón",
+        "al gusto de aguacate, en rebanadas delgadas, para decorar",
+        "al gusto de hoja de cilantro, para decorar",
+        "al gusto de tostadas, para acompañar"
+      ],
+      "preparation":[
+        "1.- Mezcla el camarón y el jugo de limón, tapa con plástico y refrigera por una hora.",
+        "2.- Agrega la cebolla morada, el jitomate, el pepino, el cilantro, el Kermato®, la sal y la pimienta al bowl. Mezcla muy bien y deja reposar por 15 minutos.",
+        "3.- Sirve el ceviche de camarón en un bowl, decora con aguacate y hojas de cilantro y acompaña con tostadas."
+      ],
+      "imageUrl":"https://recetinas.com/wp-content/uploads/2022/09/ceviche-de-camaron.jpg",
+      "origin":"Nayarit",
+      "latitude":21.962395110618893,
+      "longitude":-104.9303953167903
+    },
+    {
+      "id":4,
+      "name":"SPAGHETTI A LA BOLOÑESA",
+      "description":"No puede faltar este clásico de la gastronomía en tu recetario del día a día. Prepara este increíble spaghetti a la boloñesa empezando con carne fresca picada al momento, cocinada con zanahoria, apio, un toque de vino tinto y jitomate natural. La salsa queda espectacular por la frescura de los ingredientes.",
+      "ingredients":[
+        "250 gramos de lomo de res, limpio",
+        "250 gramos de lomo de cerdo, limpio",
+        "1/2 cebollas",
+        "2 zanahorias, pelada",
+        "2 apios, tallos",
+        "3 cucharadas de mantequilla",
+        "1 taza de puré de tomate",
+        "1/4 tazas de vino tinto",
+        "5 jitomates, escalfado y picado",
+        "1 taza de caldo de res",
+        "1 hoja de laurel",
+        "2 ramas de orégano",
+        "al gusto de sal y pimienta",
+        "suficiente de agua",
+        "1 cucharadita de sal",
+        "2 paquetes de spaghetti, (200 g c/u)",
+        "al gusto de queso parmesano, rallado, para acompañar",
+        "al gusto de orégano, fresco, para acompañar"
+      ],
+      "preparation":[
+        "1.- Para la salsa boloñesa, con ayuda de tu procesador Braun® MultiQuick 7, pica la carne en trozos muy pequeños. Reserva.",
+        "2.- Repite con la cebolla, las zanahorias y el apio hasta obtener las verduras finamente picadas.",
+        "3.- En una sartén profundo calienta el aceite con la mantequilla, cocina la carne picada hasta que esté cocida y agrega la cebolla, el apio y la zanahoria. Cocina unos minutos.",
+        "4.- Agrega el puré de tomate y cocina unos minutos. Añade el vino y deja que reduzca, después el jitomate, el caldo y las especias. Reduce el fuego y cocina alrededor de 20 a 30 minutos hasta que se reduzca la mayor parte del líquido, pero no se seque por completo. Sazona.",
+        "5.- Cocina la pasta en agua hirviendo con sal hasta que esté “al dente” o en su punto. Escurre.",
+        "6.- Sirve la pasta con la salsa y termina con queso parmesano y orégano."
+      ],
+      "imageUrl":"https://cdn2.cocinadelirante.com/sites/default/files/images/2022/12/espagueti-la-bolonesa_0.jpg",
+      "origin":"Bolonia",
+      "latitude":44.493954118615136,
+      "longitude":11.345072907441624
+    },
+    {
+      "id":5,
+      "name":"COCHINITA DE POLLO",
+      "description":"Prueba esta cochinita de pollo llena de sabor y con un giro, pues lleva la tradicional salsa de la cochinita, pero se prepara con pollo, todo elaborado con el rico Aceite de Oliva Virgen Extra europeo®.",
+      "ingredients":[
+        "2 cucharadas de Aceite de Oliva Virgen Extra europeo®",
+        "1 cebolla, en cuartos",
+        "1 diente de ajo, pelado",
+        "5 jitomates, en cuartos",
+        "1 taza de jugo de naranja",
+        "1/2 tazas de vinagre de manzana",
+        "1 taza de caldo de pollo",
+        "2 clavos",
+        "1 cucharadita de pimienta negra, entera",
+        "1 achiote, en barra",
+        "suficiente de sal",
+        "2 cucharadas de Aceite de Oliva Virgen Extra europeo®, para dorar el pollo",
+        "1 1/2 kilos de pechuga de pollo, sin piel y sin hueso",
+        "al gusto de tortillas de maíz, para acompañar",
+        "al gusto de cebollas encurtidas con habanero , para acompañar"
+      ],
+      "preparation":[
+        "1.- Calienta el Aceite de Oliva Virgen Extra europeo® en una olla a fuego medio, agrega la cebolla, el ajo y el jitomate. Cocina por 5 minutos. Retira y reserva.",
+        "2.- Licúa la cebolla, el ajo y los jitomates previamente cocidos, así como el jugo de naranja, el vinagre de manzana, el caldo de pollo, el clavo, la pimienta negra, la barra de achiote y sal por 5 minutos o hasta obtener una salsa homogénea. Reserva.",
+        "3.- Calienta el Aceite de Oliva Virgen Extra europeo® en una olla, agrega el pollo y dora por 5 minutos. Baña con la salsa previamente licuada y cocina por 30 minutos.",
+        "4.- Saca el pollo de la olla y desmenuza con ayuda de unos tenedores. Regresa a la olla junto con la salsa y cocina por 5 minutos más.",
+        "5.- Sirve en la misma olla, acompaña con tortillas y las cebollitas y disfruta con un chorrito de Aceite de Oliva Virgen Extra europeo®. ¡Saborea la Vida!"
+      ],
+      "imageUrl":"https://www.deliciosi.com/images/1400/1491/pollo-al-pilbil.jpg",
+      "origin":"Yucatan",
+      "latitude":20.31748226857358,
+      "longitude":-89.3176577927495
+    },
+    {
+      "id":6,
+      "name":"TAMALES DE MOLE",
+      "description":"Los tamales de mole son todo un manjar, pues la combinación de sabores es simplemente irresistible. Además, se preparan con hoja de plátano, la cual aporta mucho sabor y hace que queden muy húmedos y esponjosos. ¡Anímate a preparar estos tamales de mole paso a paso!",
+      "ingredients":[
+        "1 frasco de Mole Doña María®",
+        "2 tazas de caldo de pollo",
+        "suficiente de sal",
+        "2 tazas de pollo, cocido y deshebrado",
+        "250 gramos de manteca de cerdo, para la masa",
+        "1 kilo de masa de maíz, para la masa, para tamal",
+        "1 cucharada de sal, para la masa",
+        "2 cucharadas de polvo para hornear, para la masa",
+        "suficiente de caldo de pollo, para la masa",
+        "suficiente de hoja de plátano, para tamal, asadas"
+      ],
+      "preparation":[
+        "1.- En una olla, agrega Mole Doña María® y el caldo de pollo y calienta a fuego medio por 5 minutos aproximadamente hasta incorporar por completo. Sazona con un poco de sal y agrega el pollo. Mezcla bien y cocina por 3 minutos más. Reserva.",
+        "2.- En un bowl, bate la manteca de cerdo por 5 minutos o hasta que se suavice por completo. Agrega la masa poco a poco sin dejar de batir hasta integrar. Añade la sal, el polvo para hornear y el caldo y continúa batiendo hasta obtener una masa semiespesa y homogénea.",
+        "3.- Coloca una cucharada de masa en cada hoja de plátano y extiende. Agrega el pollo con Mole Doña María® y envuelve en forma de tamal; puedes amarrarlos con tiras de la misma hoja de plátano.",
+        "4.- Coloca los tamales de mole en una vaporera con agua y cocina por 1 hora o hasta que la masa se despegue de la hoja. Deja reposar por 10 minutos antes de servir."
+      ],
+      "imageUrl":"https://cdn7.kiwilimon.com/recetaimagen/39938/52677.jpg",
+      "origin":"Chiapas",
+      "latitude":17.014869675014438,
+      "longitude":-93.11305630447508
+    }
+  ]
+}

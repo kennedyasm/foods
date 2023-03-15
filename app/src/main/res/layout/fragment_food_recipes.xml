@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toStartOf="@id/total_results_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="search" />
+        app:queryHint="@string/search_hint_label" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/total_results_text"

@@ -11,6 +11,7 @@ import com.example.foods.data.toFoodRecipeItemUiList
 import com.example.foods.domain.models.FoodRecipeDetailsUi
 import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.domain.repository.FoodRecipesRepository
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,7 +23,9 @@ class FoodRecipesRepositoryImpl @Inject constructor(
 ) : FoodRecipesRepository {
 
     override fun getFoodRecipes(): Single<List<FoodRecipeItemUi>> {
-        return localDataSource.deleteFoodRecipes().andThen(fetchFoodRecipes())
+        return fetchFoodRecipes().doOnTerminate {
+            localDataSource.deleteFoodRecipes()
+        }
     }
 
     override fun getFoodRecipeDetailsById(id: Int): Single<FoodRecipeDetailsUi> {
@@ -36,6 +39,10 @@ class FoodRecipesRepositoryImpl @Inject constructor(
                 .map(FoodRecipeItemEntity::toFoodRecipeItemUi)
             emit(data)
         }
+    }
+
+    override fun deleteFoodRecipes(): Completable {
+        return localDataSource.deleteFoodRecipes()
     }
 
     private fun fetchFoodRecipes(): Single<List<FoodRecipeItemUi>> {

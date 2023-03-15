@@ -20,12 +20,14 @@ android {
 
     defaultConfig {
         applicationId "com.example.foods"
+
         minSdk properties.getProperty("min.sdk").toInteger()
         targetSdk properties.getProperty("target.sdk").toInteger()
+
         versionCode properties.getProperty("version.code").toInteger()
         versionName properties.getProperty("version.name")
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        testInstrumentationRunner "com.example.foods.FoodRecipesTestRunner"
     }
 
     buildTypes {
@@ -34,10 +36,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
             buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
+            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path") ?: ""
         }
         debug {
             buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
             buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
+            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path") ?: ""
         }
     }
 
@@ -140,4 +144,10 @@ dependencies {
     testImplementation "androidx.room:room-testing:2.5.0"
 
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+
 }

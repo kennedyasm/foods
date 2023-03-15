@@ -128,6 +128,6 @@ class FoodRecipesFragment :
 
     companion object {
         private const val SKIP_FLOW_TIMES = 1
-        private const val DEBOUNCE_TIME = 600L
+        const val DEBOUNCE_TIME = 600L
     }
 }

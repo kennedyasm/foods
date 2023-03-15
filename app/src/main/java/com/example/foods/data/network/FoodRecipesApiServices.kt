@@ -10,6 +10,6 @@ interface FoodRecipesApiServices {
     fun getFoodRecipes(): Single<FoodRecipesResponseDto>
 
     companion object {
-        private const val FOOD_RECIPES = "foods/recipes"
+        private const val FOOD_RECIPES = "recipes"
     }
 }
