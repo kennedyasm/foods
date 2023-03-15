@@ -27,8 +27,7 @@ class FoodRecipeOriginMapFragment :
         val latLong = LatLng(getLatitude(), getLongitude())
         mGoogleMap?.run {
             uiSettings.isZoomControlsEnabled = true
-            val marker = MarkerOptions().position(latLong).title(getFoodRecipeName())
-            addMarker(marker)?.showInfoWindow()
+            addMarker(MarkerOptions().position(latLong).title(getFoodRecipeName()))
             moveCamera(CameraUpdateFactory.newLatLng(latLong))
             animateCamera(CameraUpdateFactory.zoomTo(ZOOM), DURATION, null)
         }

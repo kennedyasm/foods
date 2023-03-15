@@ -5,6 +5,9 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.UiSelector
 import com.example.foods.common.enqueueOkHttpJsonResponse
 import com.example.foods.core.*
 import com.example.foods.core.extensions.openItemInRecyclerViewByPosition
@@ -28,8 +31,12 @@ class FoodRecipesAutomationUITests {
     private val mockWebServer
         get() = MySharedMockWebServer.mockWebServer
 
+    private lateinit var device: UiDevice
+
+
     @Before
     fun setUp() {
+        device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
         mockWebServer.enqueueOkHttpJsonResponse("food_recipes_response.json")
         mockWebServer.start()
     }
@@ -77,6 +84,7 @@ class FoodRecipesAutomationUITests {
         mediumScreenDelay()
 
         openFoodRecipeOriginInMap()
+        assertCorrectMapMarkerTitle()
 
         mediumScreenDelay()
 
@@ -126,6 +134,12 @@ class FoodRecipesAutomationUITests {
 
     private fun openFoodRecipeOriginInMap() {
         onClickInDisplayedView(R.id.see_map_location, "Ver en mapa")
+    }
+
+    private fun assertCorrectMapMarkerTitle() {
+        val marker = device.findObject(UiSelector().descriptionContains("TAMALES DE MOLE"))
+        marker.exists()
+        marker.click()
     }
 
     private fun closeAppBarLayoutInFoodRecipeDetails() {

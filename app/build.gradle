@@ -150,4 +150,6 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
 
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+
 }
