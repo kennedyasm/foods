@@ -5,10 +5,10 @@ ext {
     androidxConstraintsVersion = '2.1.4'
 
     baseDependencies = [
-            androidxCore      : "androidx.core:core-ktx:$androidxCoreVersion",
-            androidxAppCompat : "androidx.appcompat:appcompat:$androidxAppCompatVersion",
-            materialDesign    : "com.google.android.material:material:$materialDesignVersion",
-            androidxConstraing: "androidx.constraintlayout:constraintlayout:$androidxConstraintsVersion"
+            androidxCore       : "androidx.core:core-ktx:$androidxCoreVersion",
+            androidxAppCompat  : "androidx.appcompat:appcompat:$androidxAppCompatVersion",
+            materialDesign     : "com.google.android.material:material:$materialDesignVersion",
+            androidxConstraints: "androidx.constraintlayout:constraintlayout:$androidxConstraintsVersion"
     ]
 
     retrofitVersion = '2.9.0'
@@ -19,45 +19,70 @@ ext {
     androidxRoomKtxVersion = '2.5.0'
     daggerVersion = '2.44.2'
     glideVersion = '4.14.2'
+    androidxNavigationFragmentKtxVersion = '2.5.3'
+    androidxRoomRuntimeVersion = '2.5.0'
+    playServicesMapVersion = '18.1.0'
+    kotlinxCoroutinesVersion = '1.6.4'
+    androidxFragmentTestingVersion = '1.5.5'
 
     generalDependencies = [
-            retrofit: "com.squareup.retrofit2:retrofit:$retrofitVersion",
-            retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
-            okHttpLoginInterceptor:"com.squareup.okhttp3:logging-interceptor:$okHttpLoginInterceptorVersion",
-            retrofitAdapterRxJava: "com.squareup.retrofit2:adapter-rxjava3:$retrofitAdapterRxJavaVersion",
-            reactivexRxAndroid: "io.reactivex.rxjava3:rxandroid:$reactivexRxAndroidVersion",
-            androidxRoomRxJava3: "androidx.room:room-rxjava3:$roomRxJava3Version",
-            androidxRoomKtx: "androidx.room:room-ktx:$androidxRoomKtxVersion",
-            dagger: "com.google.dagger:dagger:$daggerVersion",
-            daggerAndroidSupport: "com.google.dagger:dagger-android-support:$daggerVersion",
-            daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:$daggerVersion",
-            daggerCompile: "com.google.dagger:dagger-compiler:$daggerVersion",
-            glide: "com.github.bumptech.glide:glide:$glideVersion",
-            glideCompiler: "com.github.bumptech.glide:compiler:$glideVersion",
-
+            retrofit                     : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofitGsonConverter        : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            okHttpLoginInterceptor       : "com.squareup.okhttp3:logging-interceptor:$okHttpLoginInterceptorVersion",
+            retrofitAdapterRxJava        : "com.squareup.retrofit2:adapter-rxjava3:$retrofitAdapterRxJavaVersion",
+            reactivexRxAndroid           : "io.reactivex.rxjava3:rxandroid:$reactivexRxAndroidVersion",
+            androidxRoomRxJava3          : "androidx.room:room-rxjava3:$roomRxJava3Version",
+            androidxRoomKtx              : "androidx.room:room-ktx:$androidxRoomKtxVersion",
+            dagger                       : "com.google.dagger:dagger:$daggerVersion",
+            daggerAndroidSupport         : "com.google.dagger:dagger-android-support:$daggerVersion",
+            daggerAndroidProcessor       : "com.google.dagger:dagger-android-processor:$daggerVersion",
+            daggerCompile                : "com.google.dagger:dagger-compiler:$daggerVersion",
+            glide                        : "com.github.bumptech.glide:glide:$glideVersion",
+            glideCompiler                : "com.github.bumptech.glide:compiler:$glideVersion",
+            androidxNavigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:$androidxNavigationFragmentKtxVersion",
+            androidxNavigationUiKtx      : "androidx.navigation:navigation-ui-ktx:$androidxNavigationFragmentKtxVersion",
+            androidxRoomRuntime          : "androidx.room:room-runtime:$androidxRoomRuntimeVersion",
+            androidxRoomCompile          : "androidx.room:room-compiler:$androidxRoomRuntimeVersion",
+            playServicesMap              : "com.google.android.gms:play-services-maps:$playServicesMapVersion",
+            kotlinxCoroutines            : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutinesVersion",
+            androidxFragmentTesting      : "androidx.fragment:fragment-testing:$androidxFragmentTestingVersion"
     ]
 
     jUnitVersion = '4.13.2'
     androidxArchCoreTestVersion = '2.1.0'
     mockitoCoreVersion = '5.1.1'
     mockWerbServerVersion = '5.0.0-alpha.11'
+    androidxTestCoreVersion = '1.5.0'
+    androidxTestMonitor = '1.6.1'
 
     testDependencies = [
-            jUnitTest: "junit:junit:$jUnitVersion",
-            androidxArchCoreTest: "androidx.arch.core:core-testing:$androidxArchCoreTestVersion",
-            mockitoCore: "org.mockito:mockito-core:$mockitoCoreVersion",
-            mockWebServer: "com.squareup.okhttp3:mockwebserver:$mockWerbServerVersion"
+            jUnitTest            : "junit:junit:$jUnitVersion",
+            androidxArchCoreTest : "androidx.arch.core:core-testing:$androidxArchCoreTestVersion",
+            mockitoCore          : "org.mockito:mockito-core:$mockitoCoreVersion",
+            mockWebServer        : "com.squareup.okhttp3:mockwebserver:$mockWerbServerVersion",
+            androidxTestMonitor  : "androidx.test:monitor:$androidxTestMonitor",
+            androidxTestCore     : "androidx.test:core:$androidxTestCoreVersion",
+            kotlinxCoroutinesTest: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinxCoroutinesVersion"
     ]
-
 
     androidxTestJUnitVersion = '1.1.5'
     androidxTestEspressoVersion = '3.5.1'
     androidxArchCoreVersion = '2.1.0'
+    androidxTestRunner = '1.5.2'
+    androidxTestRules = '1.5.0'
+    androidxTestEspressoVersion = '3.3.0'
+    androidxTestUiautomatorVersion = '2.2.0'
 
     androidTestDependencies = [
-            androidxJUnitTest   : "androidx.test.ext:junit:$androidxTestJUnitVersion",
-            androidxEspressoTest: "androidx.test.espresso:espresso-core:$androidxTestEspressoVersion",
-            androidxArchCoreTest: "androidx.arch.core:core-testing:$androidxArchCoreVersion",
-            daggerCompiler: "com.google.dagger:dagger-compiler:$daggerVersion"
+            androidxJUnitTest          : "androidx.test.ext:junit:$androidxTestJUnitVersion",
+            androidxEspressoTest       : "androidx.test.espresso:espresso-core:$androidxTestEspressoVersion",
+            androidxArchCoreTest       : "androidx.arch.core:core-testing:$androidxArchCoreVersion",
+            daggerCompiler             : "com.google.dagger:dagger-compiler:$daggerVersion",
+            androidxTextRunner         : "androidx.test:runner:$androidxTestRunner",
+            androidxTestRules          : "androidx.test:rules:$androidxTestRules",
+            androidxTestEspresso       : "androidx.test.espresso:espresso-contrib:$androidxTestEspressoVersion",
+            androidxTestUiautomator    : "androidx.test.uiautomator:uiautomator:$androidxTestUiautomatorVersion",
+            androidxEspressoConcurrent : "androidx.test.espresso.idling:idling-concurrent:$androidxTestEspressoVersion",
+            androidxTestEspressoContrib: "androidx.test.espresso:espresso-contrib:$androidxTestEspressoVersion"
     ]
 }
