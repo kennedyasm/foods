@@ -39,9 +39,9 @@ android {
             buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path") ?: ""
         }
         debug {
-            buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
-            buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
-            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path") ?: ""
+            buildConfigField "String", "BASE_URL", properties.getProperty("base.url.debug") ?: ""
+            buildConfigField "String", "API_KEY", properties.getProperty("api.key.debug") ?: ""
+            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path.debug") ?: ""
         }
     }
 

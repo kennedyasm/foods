@@ -38,6 +38,10 @@ fun isEnabledView(@IdRes id: Int) {
     onView(withId(id)).check(matches(isEnabled()))
 }
 
+fun isDisabledView(@IdRes id: Int) {
+    onView(withId(id)).check(matches(not(isEnabled())))
+}
+
 fun isDisplayedView(@IdRes id: Int) {
     onView(withId(id)).check(matches(isDisplayed()))
 }

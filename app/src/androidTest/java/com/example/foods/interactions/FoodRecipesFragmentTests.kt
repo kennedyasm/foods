@@ -3,12 +3,24 @@ package com.example.foods.interactions
 import com.example.foods.R
 import com.example.foods.core.clearTextInDisplayedView
 import com.example.foods.core.containsTotalChildItemsInView
+import com.example.foods.core.isDisabledView
 import com.example.foods.core.isDisplayedViewWithHintText
 import com.example.foods.core.isDisplayedViewWithText
 import com.example.foods.core.isEnabledView
 import com.example.foods.core.isHiddenView
 import com.example.foods.core.largeScreenDelay
+import com.example.foods.core.mediumScreenDelay
+import com.example.foods.core.onClickInDisplayedView
 import com.example.foods.core.typeTextInDisplayedView
+
+inline fun userInteractionInFoodRecipesFragmentWithError(retryListener: () -> Unit) {
+    mediumScreenDelay()
+    isDisabledView(androidx.appcompat.R.id.search_src_text)
+    retryListener.invoke()
+    onClickInDisplayedView(com.google.android.material.R.id.snackbar_action, "Reintentar")
+    isEnabledView(androidx.appcompat.R.id.search_src_text)
+    largeScreenDelay()
+}
 
 fun userInteractionInFoodRecipesFragment() {
     assertCorrectDisplayedViewsInFoodRecipesFragment()
