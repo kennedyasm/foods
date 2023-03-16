@@ -1,6 +1,7 @@
 package com.example.foods.presentation.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.example.foods.asserts.assertFoodRecipeItemUi
 import com.example.foods.core.MainCoroutineRule
 import com.example.foods.core.State
 import com.example.foods.core.State.Companion.to
@@ -67,7 +68,7 @@ class FoodRecipesViewModelTest {
     }
 
     @Test
-    fun assertErrorMessageWhenGetFoodRecipesIsExecuted() = runTest {
+    fun assertErrorMessageWhenGetFoodRecipesIsExecutedButThrowsError() = runTest {
         val throwable = Throwable("some error")
         given(getFoodRecipesUseCase.invoke()).thenReturn(Single.error(throwable))
 
@@ -101,8 +102,23 @@ class FoodRecipesViewModelTest {
         foodRecipesViewModel.getFoodRecipesByQuery("CALDO DE PIEDRA")
 
         val state = foodRecipesViewModel.getFoodRecipesState.value
-        val successState = state as State.Success
+        val items = (state as State.Success).to<List<FoodRecipeItemUi>>()
 
-        assertThat(successState.to<List<FoodRecipeItemUi>>().size, equalTo(1))
+        assertThat(items.size, equalTo(1))
+        assertFoodRecipeItemUi(items.first())
+    }
+
+    @Test
+    fun assertDataWhenRecipesByQueryUseCaseIsExecutedButNoMatchingQuery() = runTest {
+        val foodRecipeItemUiList = listOf<FoodRecipeItemUi>()
+        val flow = flow { emit(foodRecipeItemUiList) }
+        given(getFoodRecipesByQueryUseCase.invoke("some query")).thenReturn(flow)
+
+        foodRecipesViewModel.getFoodRecipesByQuery("some query")
+
+        val state = foodRecipesViewModel.getFoodRecipesState.value
+        val items = (state as State.Success).to<List<FoodRecipeItemUi>>()
+
+        assertThat(items.isEmpty(), equalTo(true))
     }
 }

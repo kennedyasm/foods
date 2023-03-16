@@ -10,7 +10,6 @@ import com.example.foods.core.isHiddenView
 import com.example.foods.core.largeScreenDelay
 import com.example.foods.core.typeTextInDisplayedView
 
-
 fun userInteractionInFoodRecipesFragment() {
     assertCorrectDisplayedViewsInFoodRecipesFragment()
     assertCorrectDisplayedItemViewsWhenTextIsTypedInSearchView()

@@ -1,7 +1,7 @@
 package com.example.foods.di.modules.app.presentation
 
-import com.example.foods.presentation.MainActivity
 import com.example.foods.di.MainActivityScoped
+import com.example.foods.presentation.MainActivity
 import dagger.Module
 import dagger.android.AndroidInjectionModule
 import dagger.android.ContributesAndroidInjector

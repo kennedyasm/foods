@@ -42,7 +42,7 @@ class FoodRecipesNetworkDataSourceTest {
     }
 
     @Test
-    fun assertDataFromGetFoodRecipesWhenGetFoodRecipesIsExecuted() {
+    fun assertDataWhenGetFoodRecipesIsExecuted() {
         val foodRecipesResponseDto = provideFoodRecipesResponseDto()
         given(foodRecipesApiServices.getFoodRecipes()).thenReturn(Single.just(foodRecipesResponseDto))
 

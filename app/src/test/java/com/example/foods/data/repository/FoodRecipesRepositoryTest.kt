@@ -105,7 +105,7 @@ class FoodRecipesRepositoryTest {
     }
 
     @Test
-    fun assertDataFromGetFoodRecipeByIdWhenGetFoodRecipeDetailsByIdIsExecuted() {
+    fun assertDataWhenGetFoodRecipeDetailsByIdIsExecuted() {
         val foodRecipeItemEntity = provideCaldoDePiedraFoodRecipeItemEntity()
         given(localDataSource.getFoodRecipeById(2)).thenReturn(Single.just(foodRecipeItemEntity))
 

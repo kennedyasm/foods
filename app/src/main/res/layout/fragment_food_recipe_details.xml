@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="@dimen/dimen_4dp"
                 android:textSize="@dimen/dimen_16sp"
-                tools:text="@tools:sample/lorem/random" />
+                tools:text="@tools:sample/lorem" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

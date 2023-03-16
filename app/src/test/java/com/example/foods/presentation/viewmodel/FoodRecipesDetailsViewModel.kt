@@ -68,7 +68,7 @@ class FoodRecipesDetailsViewModel {
     }
 
     @Test
-    fun verifyObserverStateChangedToErrorWhenGetFoodDetailsByIdIsExecuted() {
+    fun verifyObserverStateChangedToErrorWhenGetFoodDetailsByIdIsExecutedButThrowsError() {
         val throwable = Throwable("some error")
         given(getFoodRecipeDetailsByIdUseCase.invoke(2)).thenReturn(Single.error(throwable))
 

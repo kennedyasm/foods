@@ -61,7 +61,7 @@ class FoodRecipesLocalDataSourceTest {
     }
 
     @Test
-    fun assertDataFromGetAllWhenGetFoodRecipesIsExecuted() = runTest {
+    fun assertDataWhenGetFoodRecipesIsExecuted() = runTest {
         val foodRecipeItemEntityList = provideFoodRecipeItemEntityList()
         given(foodRecipesDao.getAll()).thenReturn(foodRecipeItemEntityList)
 
@@ -78,7 +78,7 @@ class FoodRecipesLocalDataSourceTest {
     }
 
     @Test
-    fun assertDataFromGetByIdWhenGetFoodRecipeByIdIsExecuted() {
+    fun assertDataWhenGetFoodRecipeByIdIsExecuted() {
         val foodRecipeItemEntity = provideCaldoDePiedraFoodRecipeItemEntity()
         given(foodRecipesDao.getById(2)).thenReturn(Single.just(foodRecipeItemEntity))
 

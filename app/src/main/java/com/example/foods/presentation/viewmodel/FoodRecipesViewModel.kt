@@ -5,7 +5,6 @@ import com.example.foods.core.State
 import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.domain.usecases.GetFoodRecipesByQueryUseCase
 import com.example.foods.domain.usecases.GetFoodRecipesUseCase
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest

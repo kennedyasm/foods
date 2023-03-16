@@ -8,6 +8,7 @@ import com.example.foods.di.modules.NetworkModule
 import com.example.foods.di.modules.RxSchedulersModule
 import com.example.foods.di.modules.ViewModelFactoryModule
 import com.example.foods.di.modules.app.AppModule
+import com.example.foods.di.modules.app.presentation.ActivityModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

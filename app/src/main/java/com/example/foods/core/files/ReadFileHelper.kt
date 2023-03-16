@@ -1,4 +1,4 @@
-package com.example.foods.core
+package com.example.foods.core.files
 
 import java.io.BufferedReader
 import java.io.IOException
@@ -10,7 +10,6 @@ object ReadFileHelper {
     @Throws(IOException::class)
     fun readFileWithoutNewLineFromResources(fileName: String): String {
         var inputStream: InputStream? = null
-
         try {
             inputStream =
                 javaClass.classLoader?.getResourceAsStream(fileName)

@@ -12,14 +12,16 @@ class FoodRecipesAdapter : RecyclerView.Adapter<FoodRecipeViewHolder>() {
 
     private var foodRecipesList = mutableListOf<FoodRecipeItemUi>()
     private var listener: ((FoodRecipeItemUi) -> Unit)? = null
-    fun setListener(listener: (FoodRecipeItemUi) -> Unit) {
-       this.listener = listener
-    }
+
     @SuppressLint("NotifyDataSetChanged")
     fun setList(list: List<FoodRecipeItemUi>) {
         foodRecipesList.clear()
         foodRecipesList.addAll(list)
         notifyDataSetChanged()
+    }
+
+    fun setListener(listener: (FoodRecipeItemUi) -> Unit) {
+        this.listener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodRecipeViewHolder {

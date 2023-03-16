@@ -6,7 +6,7 @@ import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
 import com.example.foods.core.MySharedMockWebServer
-import com.example.foods.core.enqueueOkHttpJsonResponse
+import com.example.foods.core.extensions.enqueueOkHttpJsonResponse
 import com.example.foods.interactions.userInteractionInFoodRecipesFragment
 import com.example.foods.interactions.userInteractionsInFoodRecipeDetailsFragment
 import com.example.foods.presentation.MainActivity
@@ -18,7 +18,7 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class FoodRecipesAppCompleteUITest {
+class FoodRecipesAppCompleteUITestModule {
 
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
