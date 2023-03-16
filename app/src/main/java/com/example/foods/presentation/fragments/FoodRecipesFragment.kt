@@ -1,5 +1,6 @@
 package com.example.foods.presentation.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
@@ -15,6 +16,7 @@ import com.example.foods.R
 import com.example.foods.core.State
 import com.example.foods.core.State.Companion.checkActionBy
 import com.example.foods.core.extensions.getSearchViewQueryTextListener
+import com.example.foods.core.extensions.hideKeyBoard
 import com.example.foods.databinding.FragmentFoodRecipesBinding
 import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.presentation.adapters.FoodRecipesAdapter
@@ -53,9 +55,19 @@ class FoodRecipesFragment :
         foodRecipesAdapter.setListener(::openFoodRecipeDetails)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun initBindingViews() = binding.run {
-        foodRecipesRecyclerView.adapter = foodRecipesAdapter
-        searchView.setOnQueryTextListener(queryListener)
+        foodRecipesRecyclerView.run {
+            adapter = foodRecipesAdapter
+            setOnTouchListener { _, _ -> root.requestFocus(); false }
+        }
+        searchView.run {
+            setOnQueryTextListener(queryListener)
+            findViewById<SearchAutoComplete>(androidx.appcompat.R.id.search_src_text)
+                .setOnFocusChangeListener { searchEditText, hasFocus ->
+                    if (hasFocus.not()) searchEditText.hideKeyBoard()
+                }
+        }
     }
 
     private fun getFoodRecipes() = viewModel.getFoodRecipes()

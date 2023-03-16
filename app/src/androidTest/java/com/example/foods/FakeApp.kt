@@ -16,5 +16,6 @@ class FakeApp : App() {
 
     override fun initializeComponent(): AndroidInjector<out DaggerApplication> {
         return DaggerFakeApplicationComponent.factory().create(applicationContext)
+            .also { it.inject(this) }
     }
 }
