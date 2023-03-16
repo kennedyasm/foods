@@ -2,7 +2,6 @@ package com.example.foods.domain.usecases
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.foods.asserts.assertFoodRecipeItemUi
-import com.example.foods.asserts.assertFoodRecipeItemUiList
 import com.example.foods.core.given
 import com.example.foods.domain.repository.FoodRecipesRepository
 import com.example.foods.doubles.provideFoodRecipeItemUiCaldoDePiedra
@@ -21,7 +20,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.atMost
 import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
-
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(MockitoJUnitRunner::class)
