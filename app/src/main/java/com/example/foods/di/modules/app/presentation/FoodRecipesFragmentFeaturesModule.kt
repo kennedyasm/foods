@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-object FoodFragmentFeaturesModule {
+object FoodRecipesFragmentFeaturesModule {
 
     @FoodRecipesFragmentScoped
     @Provides

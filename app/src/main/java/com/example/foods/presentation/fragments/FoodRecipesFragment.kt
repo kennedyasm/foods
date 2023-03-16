@@ -29,11 +29,12 @@ import javax.inject.Inject
 class FoodRecipesFragment :
     BaseFragment<FragmentFoodRecipesBinding>(FragmentFoodRecipesBinding::inflate) {
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var foodRecipesAdapter: FoodRecipesAdapter
     private val viewModel: FoodRecipesViewModel by viewModels { viewModelFactory }
-
-    @Inject lateinit var foodRecipesAdapter: FoodRecipesAdapter
-
     private var queryListener: SearchView.OnQueryTextListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,13 +92,12 @@ class FoodRecipesFragment :
         enableSearchView(true)
         hideLoading()
         binding.totalResultsText.text = String.format(getString(R.string.results), list.size)
-        foodRecipesAdapter?.setList(list)
+        foodRecipesAdapter.setList(list)
     }
 
     private fun foodRecipesError(errorMessage: String) {
         enableSearchView(false)
         hideLoading()
-
         showRetrySnackBar(binding.root, errorMessage, ::getFoodRecipes)
     }
 
@@ -121,7 +121,6 @@ class FoodRecipesFragment :
     }
 
     override fun onDestroy() {
-        //foodRecipesAdapter = null
         queryListener = null
         binding.searchView.setOnQueryTextListener(null)
         super.onDestroy()

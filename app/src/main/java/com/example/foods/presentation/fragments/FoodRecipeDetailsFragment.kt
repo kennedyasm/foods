@@ -23,8 +23,10 @@ class FoodRecipeDetailsFragment :
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var preparationIngredientsAdapter: RecipePreparationIngredientsAdapter
     private val viewModel: FoodRecipeDetailsViewModel by viewModels { factory }
-    private var preparationIngredientsAdapter: RecipePreparationIngredientsAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,7 +79,7 @@ class FoodRecipeDetailsFragment :
         foodRecipeDescription.text = item.description
         foodRecipeOrigin.text = String.format(getString(R.string.origin), item.origin)
 
-        preparationIngredientsAdapter?.setItems(
+        preparationIngredientsAdapter.setItems(
             getPreparationIngredientsTitleList(),
             getPreparationIngredientsHashMap(item)
         )
@@ -109,11 +111,6 @@ class FoodRecipeDetailsFragment :
 
     private fun getFoodRecipeDetailsById() =
         viewModel.getFoodRecipeDetailsById(getIntOrDefault(FOOD_RECIPE_ID))
-
-    override fun onDestroy() {
-        super.onDestroy()
-        preparationIngredientsAdapter = null
-    }
 
     companion object {
         private const val FOOD_RECIPE_ID = "food_recipe_id"

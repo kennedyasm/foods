@@ -11,3 +11,9 @@ annotation class MainActivityScoped
 @Scope
 @Retention(AnnotationRetention.RUNTIME)
 annotation class FoodRecipesFragmentScoped
+
+@MustBeDocumented
+@Scope
+@Retention(AnnotationRetention.RUNTIME)
+annotation class FoodRecipeDetailsFragmentScoped
+
