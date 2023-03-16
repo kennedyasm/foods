@@ -15,6 +15,7 @@ class FoodRecipeDetailsViewModel @Inject constructor(
     val getFoodRecipeDetails: LiveData<State> get() = _getFoodRecipeDetails
 
     fun getFoodRecipeDetailsById(id: Int) {
+        _getFoodRecipeDetails.value = State.Loading
         getFoodRecipeDetailsByIdUseCase(id)
             .subscribe(::getFoodRecipeDetailsSuccess, ::getFoodRecipeDetailsError)
             .also(disposables::add)

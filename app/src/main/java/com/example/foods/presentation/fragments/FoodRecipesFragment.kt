@@ -93,11 +93,11 @@ class FoodRecipesFragment :
         foodRecipesAdapter?.setList(list)
     }
 
-    private fun foodRecipesError(throwable: Throwable) {
+    private fun foodRecipesError(errorMessage: String) {
         enableSearchView(false)
         hideLoading()
-        val message = String.format(getString(R.string.error), throwable.message)
-        showRetrySnackBar(binding.root, message, ::getFoodRecipes)
+
+        showRetrySnackBar(binding.root, errorMessage, ::getFoodRecipes)
     }
 
     private fun showLoading() {

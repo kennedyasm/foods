@@ -5,6 +5,7 @@ import com.example.foods.core.State
 import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.domain.usecases.GetFoodRecipesByQueryUseCase
 import com.example.foods.domain.usecases.GetFoodRecipesUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 class FoodRecipesViewModel @Inject constructor(
     private val getFoodRecipesUseCase: GetFoodRecipesUseCase,
-    private val getFoodRecipesByQueryUseCase: GetFoodRecipesByQueryUseCase
+    private val getFoodRecipesByQueryUseCase: GetFoodRecipesByQueryUseCase,
 ) : BaseViewModel() {
 
     private val _getFoodRecipesState: MutableStateFlow<State> = MutableStateFlow(State.Loading)
@@ -26,12 +27,14 @@ class FoodRecipesViewModel @Inject constructor(
     }
 
     fun getFoodRecipes() {
+        loadingGetFoodRecipes()
         getFoodRecipesUseCase.invoke()
             .subscribe(::successGetFoodRecipes, ::errorGetFoodRecipes)
             .also(disposables::add)
     }
 
     fun getFoodRecipesByQuery(query: String) {
+        loadingGetFoodRecipes()
         viewModelScope.launch {
             getFoodRecipesByQueryUseCase(query).distinctUntilChanged().collectLatest {
                 _getFoodRecipesState.value = State.Success(it)
@@ -45,5 +48,9 @@ class FoodRecipesViewModel @Inject constructor(
 
     private fun errorGetFoodRecipes(throwable: Throwable) {
         _getFoodRecipesState.value = State.Error(throwable)
+    }
+
+    private fun loadingGetFoodRecipes() {
+        _getFoodRecipesState.value = State.Loading
     }
 }

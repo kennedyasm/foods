@@ -85,10 +85,9 @@ class FoodRecipeDetailsFragment :
         preparationIngredientsExpandableList.setAdapter(preparationIngredientsAdapter)
     }
 
-    private fun foodRecipeDetailsError(throwable: Throwable) {
+    private fun foodRecipeDetailsError(errorMessage: String) {
         hideLoading()
-        val message = String.format(getString(R.string.error), throwable.message)
-        showRetrySnackBar(binding.root, message, ::getFoodRecipeDetailsById)
+        showRetrySnackBar(binding.root, errorMessage, ::getFoodRecipeDetailsById)
     }
 
     private fun showLoading() {
@@ -115,6 +114,7 @@ class FoodRecipeDetailsFragment :
         super.onDestroy()
         preparationIngredientsAdapter = null
     }
+
     companion object {
         private const val FOOD_RECIPE_ID = "food_recipe_id"
         const val FOOD_RECIPE_NAME = "food_recipe_name"

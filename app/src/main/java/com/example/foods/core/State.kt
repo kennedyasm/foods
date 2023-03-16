@@ -1,10 +1,11 @@
 package com.example.foods.core
 
 sealed class State {
-
     object Loading : State()
     data class Success(val result: Any) : State()
-    data class Error(val throwable: Throwable) : State()
+    data class Error(val throwable: Throwable) : State() {
+        val message = "Error: ${throwable.message ?: "general error"}, intenta más tarde."
+    }
 
     companion object {
 
@@ -15,13 +16,13 @@ sealed class State {
 
         fun <T> State.checkActionBy(
             onSuccess: (T) -> Unit,
-            onError: (Throwable) -> Unit,
+            onError: (String) -> Unit,
             onLoading: () -> Unit = { },
         ) {
             when (this) {
                 is Loading -> onLoading.invoke()
                 is Success -> onSuccess.invoke(to())
-                is Error -> onError.invoke(this.throwable)
+                is Error -> onError.invoke(this.message)
             }
         }
     }
