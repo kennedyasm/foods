@@ -1,7 +1,6 @@
 package com.example.foods.presentation.adapters
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foods.core.extensions.binding
@@ -9,15 +8,15 @@ import com.example.foods.databinding.FoodRecipeItemViewBinding
 import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.presentation.holders.FoodRecipeViewHolder
 
-class FoodRecipesAdapter(
-    private val listener: (FoodRecipeItemUi) -> Unit
-) : RecyclerView.Adapter<FoodRecipeViewHolder>() {
+class FoodRecipesAdapter : RecyclerView.Adapter<FoodRecipeViewHolder>() {
 
     private var foodRecipesList = mutableListOf<FoodRecipeItemUi>()
-
+    private var listener: ((FoodRecipeItemUi) -> Unit)? = null
+    fun setListener(listener: (FoodRecipeItemUi) -> Unit) {
+       this.listener = listener
+    }
     @SuppressLint("NotifyDataSetChanged")
     fun setList(list: List<FoodRecipeItemUi>) {
-        Log.d("kTest -> "," setList :$list")
         foodRecipesList.clear()
         foodRecipesList.addAll(list)
         notifyDataSetChanged()

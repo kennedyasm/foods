@@ -30,13 +30,11 @@ class FoodRecipesRepositoryImpl @Inject constructor(
         return localDataSource.getFoodRecipeById(id).map { it.toFoodRecipeDetailsUi() }
     }
 
-    override fun getFoodRecipesByQuery(query: String): Flow<List<FoodRecipeItemUi>> {
-        return flow {
-            val data = localDataSource.getFoodRecipes()
-                .filter { it.isMatchingWithSearchQuery(query) }
-                .map(FoodRecipeItemEntity::toFoodRecipeItemUi)
-            emit(data)
-        }
+    override fun getFoodRecipesByQuery(query: String): Flow<List<FoodRecipeItemUi>> = flow {
+        val data = localDataSource.getFoodRecipes()
+            .filter { it.isMatchingWithSearchQuery(query) }
+            .map(FoodRecipeItemEntity::toFoodRecipeItemUi)
+        emit(data)
     }
 
     override fun deleteFoodRecipes(): Completable {

@@ -1,18 +1,15 @@
 package com.example.foods
 
-import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
+import com.example.foods.core.MySharedMockWebServer
 import com.example.foods.core.enqueueOkHttpJsonResponse
-import com.example.foods.core.*
 import com.example.foods.interactions.userInteractionInFoodRecipesFragment
 import com.example.foods.interactions.userInteractionsInFoodRecipeDetailsFragment
 import com.example.foods.presentation.MainActivity
-import org.hamcrest.CoreMatchers.*
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule

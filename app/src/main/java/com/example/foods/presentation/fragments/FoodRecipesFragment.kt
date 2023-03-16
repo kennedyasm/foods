@@ -29,15 +29,16 @@ import javax.inject.Inject
 class FoodRecipesFragment :
     BaseFragment<FragmentFoodRecipesBinding>(FragmentFoodRecipesBinding::inflate) {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel: FoodRecipesViewModel by viewModels { viewModelFactory }
-    private var foodRecipesAdapter: FoodRecipesAdapter? = null
+
+    @Inject lateinit var foodRecipesAdapter: FoodRecipesAdapter
+
     private var queryListener: SearchView.OnQueryTextListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initFoodRecipesAdapter()
+        initFoodRecipesAdapterListener()
         startFoodRecipeStateFlow()
         startSearchQueryTextStateFlow()
     }
@@ -47,8 +48,8 @@ class FoodRecipesFragment :
         initBindingViews()
     }
 
-    private fun initFoodRecipesAdapter() {
-        foodRecipesAdapter = FoodRecipesAdapter(::openFoodRecipeDetails)
+    private fun initFoodRecipesAdapterListener() {
+        foodRecipesAdapter.setListener(::openFoodRecipeDetails)
     }
 
     private fun initBindingViews() = binding.run {
@@ -120,7 +121,7 @@ class FoodRecipesFragment :
     }
 
     override fun onDestroy() {
-        foodRecipesAdapter = null
+        //foodRecipesAdapter = null
         queryListener = null
         binding.searchView.setOnQueryTextListener(null)
         super.onDestroy()

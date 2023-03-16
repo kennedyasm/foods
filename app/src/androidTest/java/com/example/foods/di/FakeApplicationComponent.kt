@@ -1,13 +1,12 @@
 package com.example.foods.di
 
 import android.content.Context
-import com.example.foods.di.AppComponent
-import com.example.foods.di.modules.*
 import com.example.foods.di.modules.app.AppModule
 import com.example.foods.di.modules.FakeDispatchersModule
 import com.example.foods.di.modules.FakeNetworkModule
 import com.example.foods.di.modules.FakeLocalModule
 import com.example.foods.di.modules.FakeRxSchedulersModule
+import com.example.foods.di.modules.ViewModelFactoryModule
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

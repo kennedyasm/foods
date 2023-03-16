@@ -3,8 +3,18 @@ package com.example.foods.interactions
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiSelector
 import com.example.foods.R
-import com.example.foods.core.*
+import com.example.foods.core.containsTotalChildItemsInView
 import com.example.foods.core.extensions.openItemInRecyclerViewByPosition
+import com.example.foods.core.findStringInstanceByValueAndClickOn
+import com.example.foods.core.findStringInstanceByValueAndSwipeUp
+import com.example.foods.core.isDisplayedView
+import com.example.foods.core.isDisplayedViewWithText
+import com.example.foods.core.mediumScreenDelay
+import com.example.foods.core.onClickInBackButton
+import com.example.foods.core.onClickInDisplayedView
+import com.example.foods.core.rootViewSwipeDown
+import com.example.foods.core.rootViewSwipeUp
+import com.example.foods.core.smallScreenDelay
 import com.example.foods.presentation.holders.FoodRecipeViewHolder
 
 fun userInteractionsInFoodRecipeDetailsFragment(device: UiDevice) {
