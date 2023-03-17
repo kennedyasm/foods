@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.SearchAutoComplete
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavDirections
@@ -33,7 +35,9 @@ class FoodRecipesFragment :
     lateinit var foodRecipesAdapter: FoodRecipesAdapter
 
     @Inject
-    lateinit var viewModel: FoodRecipesViewModel
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel: FoodRecipesViewModel by viewModels { viewModelFactory }
 
     private var queryListener: SearchView.OnQueryTextListener? = null
 
@@ -116,8 +120,8 @@ class FoodRecipesFragment :
     }
 
     private fun enableSearchView(isEnabledSearchView: Boolean) {
-        binding.searchView.findViewById<SearchAutoComplete>(androidx.appcompat.R.id.search_src_text)
-            .run { isEnabled = isEnabledSearchView }
+        // binding.searchView.findViewById<SearchAutoComplete>(androidx.appcompat.R.id.search_src_text)
+        //   .run { isEnabled = isEnabledSearchView }
     }
 
     private fun hideLoading() = binding.linearProgressIndicator.hide()
@@ -132,7 +136,7 @@ class FoodRecipesFragment :
 
     override fun onDestroy() {
         queryListener = null
-        binding.searchView.setOnQueryTextListener(null)
+        //  binding.searchView.setOnQueryTextListener(null)
         super.onDestroy()
     }
 
