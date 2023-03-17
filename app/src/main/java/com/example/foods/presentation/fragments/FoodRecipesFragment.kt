@@ -120,8 +120,8 @@ class FoodRecipesFragment :
     }
 
     private fun enableSearchView(isEnabledSearchView: Boolean) {
-        // binding.searchView.findViewById<SearchAutoComplete>(androidx.appcompat.R.id.search_src_text)
-        //   .run { isEnabled = isEnabledSearchView }
+        binding.searchView.findViewById<SearchAutoComplete>(androidx.appcompat.R.id.search_src_text)
+            .run { isEnabled = isEnabledSearchView }
     }
 
     private fun hideLoading() = binding.linearProgressIndicator.hide()
