@@ -47,8 +47,6 @@ class FoodRecipeDetailsFragment :
     }
 
     private fun setupActionToolbar() {
-        requireActivity().setActionBar(binding.toolbar)
-
         binding.collapsingToolbarLayout.title = getStringOrDefault(FOOD_RECIPE_NAME)
     }
 
