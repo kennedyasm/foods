@@ -1,6 +1,7 @@
 package com.example.foods.di.modules.app.presentation
 
 import com.example.foods.di.MainActivityScoped
+import com.example.foods.di.modules.ViewModelFactoryModule
 import com.example.foods.presentation.MainActivity
 import dagger.Module
 import dagger.android.AndroidInjectionModule
@@ -11,7 +12,7 @@ interface ActivityModule {
 
     @MainActivityScoped
     @ContributesAndroidInjector(
-        modules = [ViewModelBindsModule::class, MainActivityFragmentModules::class]
+        modules = [ViewModelFactoryModule::class, ViewModelBindsModule::class, MainActivityFragmentModules::class]
     )
     fun mainActivity(): MainActivity
 }

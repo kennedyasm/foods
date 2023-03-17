@@ -2,7 +2,6 @@ package com.example.foods.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.foods.R
@@ -26,7 +25,9 @@ class FoodRecipeDetailsFragment :
 
     @Inject
     lateinit var preparationIngredientsAdapter: RecipePreparationIngredientsAdapter
-    private val viewModel: FoodRecipeDetailsViewModel by viewModels { factory }
+
+    @Inject
+    lateinit var viewModel: FoodRecipeDetailsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

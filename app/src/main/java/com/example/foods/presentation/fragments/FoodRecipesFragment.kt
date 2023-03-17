@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.SearchAutoComplete
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavDirections
@@ -32,11 +30,11 @@ class FoodRecipesFragment :
     BaseFragment<FragmentFoodRecipesBinding>(FragmentFoodRecipesBinding::inflate) {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    lateinit var foodRecipesAdapter: FoodRecipesAdapter
 
     @Inject
-    lateinit var foodRecipesAdapter: FoodRecipesAdapter
-    private val viewModel: FoodRecipesViewModel by viewModels { viewModelFactory }
+    lateinit var viewModel: FoodRecipesViewModel
+
     private var queryListener: SearchView.OnQueryTextListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
