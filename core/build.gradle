@@ -1,0 +1,82 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+}
+
+android {
+
+    Properties properties = new Properties()
+
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    if (keystorePropertiesFile.exists()) {
+        properties.load(keystorePropertiesFile.newDataInputStream())
+    }
+
+    namespace 'com.example.core'
+    compileSdk properties.getProperty("target.sdk").toInteger()
+
+    defaultConfig {
+        applicationId "com.example.core"
+
+        minSdk properties.getProperty("min.sdk").toInteger()
+        targetSdk properties.getProperty("target.sdk").toInteger()
+
+        versionCode properties.getProperty("version.code").toInteger()
+        versionName properties.getProperty("version.name")
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
+            buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
+            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path") ?: ""
+        }
+        debug {
+            buildConfigField "String", "BASE_URL", properties.getProperty("base.url.debug") ?: ""
+            buildConfigField "String", "API_KEY", properties.getProperty("api.key.debug") ?: ""
+            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path.debug") ?: ""
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation baseDependencies.androidxCore
+    implementation baseDependencies.androidxAppCompat
+    implementation baseDependencies.materialDesign
+    implementation baseDependencies.androidxConstraints
+
+    implementation generalDependencies.glide
+
+    annotationProcessor generalDependencies.glideCompiler
+
+    implementation generalDependencies.dagger
+    implementation generalDependencies.daggerAndroidSupport
+
+    kapt generalDependencies.daggerAndroidProcessor
+    kapt generalDependencies.daggerCompile
+
+    kaptAndroidTest androidTestDependencies.daggerCompiler
+    androidTestAnnotationProcessor androidTestDependencies.daggerCompiler
+
+    implementation generalDependencies.okHttpLoginInterceptor
+
+    implementation generalDependencies.retrofit
+    implementation generalDependencies.retrofitGsonConverter
+
+    implementation generalDependencies.retrofitAdapterRxJava
+
+    implementation generalDependencies.reactivexRxAndroid
+}
