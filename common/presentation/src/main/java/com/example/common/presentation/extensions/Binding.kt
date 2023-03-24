@@ -1,4 +1,4 @@
-package com.example.core.core.extensions
+package com.example.common.presentation.extensions
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

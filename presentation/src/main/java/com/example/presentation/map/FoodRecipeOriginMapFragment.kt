@@ -2,7 +2,7 @@ package com.example.presentation.map
 
 import android.os.Bundle
 import android.view.View
-import com.example.core.core.extensions.getStringOrDefault
+import com.example.common.presentation.extensions.getStringOrDefault
 import com.example.presentation.BaseFragment
 import com.example.presentation.databinding.FragmentFoodRecipeOriginMapBinding
 import com.example.presentation.details.FoodRecipeDetailsFragment

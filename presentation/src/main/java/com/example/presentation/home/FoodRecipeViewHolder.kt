@@ -1,7 +1,7 @@
 package com.example.presentation.home
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.core.extensions.loadImage
+import com.example.common.presentation.extensions.loadImage
 import com.example.domain.models.FoodRecipeItemUi
 import com.example.presentation.databinding.FoodRecipeItemViewBinding
 

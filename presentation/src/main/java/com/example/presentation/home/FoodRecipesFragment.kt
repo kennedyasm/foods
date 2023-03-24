@@ -11,8 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.example.core.core.extensions.getSearchViewQueryTextListener
-import com.example.core.core.extensions.hideKeyBoard
+import com.example.common.presentation.extensions.getSearchViewQueryTextListener
+import com.example.common.presentation.extensions.hideKeyBoard
 import com.example.domain.State
 import com.example.domain.State.Companion.checkActionBy
 import com.example.domain.models.FoodRecipeItemUi

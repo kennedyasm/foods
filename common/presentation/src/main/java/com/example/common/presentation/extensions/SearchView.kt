@@ -1,4 +1,4 @@
-package com.example.core.core.extensions
+package com.example.common.presentation.extensions
 
 import androidx.appcompat.widget.SearchView
 import kotlinx.coroutines.flow.MutableStateFlow

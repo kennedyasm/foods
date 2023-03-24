@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.core.core.extensions.getIntOrDefault
-import com.example.core.core.extensions.getStringOrDefault
-import com.example.core.core.extensions.loadImage
+import com.example.common.presentation.extensions.getIntOrDefault
+import com.example.common.presentation.extensions.getStringOrDefault
+import com.example.common.presentation.extensions.loadImage
 import com.example.domain.State
 import com.example.domain.State.Companion.checkActionBy
 import com.example.domain.State.Companion.to

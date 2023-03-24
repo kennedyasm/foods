@@ -3,7 +3,7 @@ package com.example.presentation.home
 import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.core.extensions.binding
+import com.example.common.presentation.extensions.binding
 import com.example.domain.models.FoodRecipeItemUi
 import com.example.presentation.databinding.FoodRecipeItemViewBinding
 import dagger.hilt.android.scopes.FragmentScoped
