@@ -1,5 +1,6 @@
-package com.example.data.network
+package com.example.data.network.di
 
+import com.example.data.network.FoodRecipesApiServices
 import com.example.data.network.retrofit.RetrofitHelper
 import dagger.Module
 import dagger.Provides

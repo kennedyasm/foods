@@ -1,5 +1,6 @@
 package com.example.data.repository
 
+import com.example.common.async.rx.RxSchedulers
 import com.example.data.local.datasource.FoodRecipesLocalDataSource
 import com.example.data.local.entities.FoodRecipeItemEntity
 import com.example.data.network.datasource.FoodRecipesNetworkDataSource
@@ -11,15 +12,15 @@ import com.example.data.toFoodRecipeItemUiList
 import com.example.domain.models.FoodRecipeDetailsUi
 import com.example.domain.models.FoodRecipeItemUi
 import com.example.domain.repository.FoodRecipesRepository
-import com.example.data.rx.RxSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import javax.inject.Inject
 
-class FoodRecipesRepositoryImpl constructor(
+class FoodRecipesRepositoryImpl @Inject constructor(
     private val networkDataSource: FoodRecipesNetworkDataSource,
     private val localDataSource: FoodRecipesLocalDataSource,
     private val schedulers: RxSchedulers,

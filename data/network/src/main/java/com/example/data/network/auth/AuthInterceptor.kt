@@ -1,6 +1,6 @@
 package com.example.data.network.auth
 
-import com.example.data.BuildConfig
+import com.example.data.network.BuildConfig
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Response

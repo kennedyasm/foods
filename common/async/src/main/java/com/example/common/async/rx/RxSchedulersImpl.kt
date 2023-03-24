@@ -1,4 +1,4 @@
-package com.example.data.rx
+package com.example.common.async.rx
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Scheduler

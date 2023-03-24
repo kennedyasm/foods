@@ -6,7 +6,6 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
     id 'com.google.dagger.hilt.android'
-
 }
 
 android {
@@ -58,9 +57,6 @@ android {
 
     viewBinding {
         enabled = true
-    }
-    kapt {
-        correctErrorTypes true
     }
 }
 
@@ -115,4 +111,5 @@ dependencies {
 
     implementation project(':presentation')
     implementation project(':data')
+
 }

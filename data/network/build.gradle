@@ -15,7 +15,7 @@ android {
         properties.load(keystorePropertiesFile.newDataInputStream())
     }
 
-    namespace 'com.example.data'
+    namespace 'com.example.data.network'
     compileSdk properties.getProperty("target.sdk").toInteger()
 
 
@@ -43,7 +43,6 @@ android {
         }
     }
 }
-
 dependencies {
     implementation generalDependencies.androidxRoomRxJava3
     implementation generalDependencies.androidxRoomKtx
@@ -59,10 +58,5 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:2.44"
 
     implementation generalDependencies.okHttpLoginInterceptor
-
-    implementation project(':domain')
-    implementation project(':common:async')
-    implementation project(':data:local')
-    implementation project(':data:network')
 
 }
