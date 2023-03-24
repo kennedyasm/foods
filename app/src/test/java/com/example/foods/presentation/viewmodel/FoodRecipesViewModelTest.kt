@@ -3,8 +3,8 @@ package com.example.foods.presentation.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.foods.asserts.assertFoodRecipeItemUi
 import com.example.foods.core.MainCoroutineRule
-import com.example.foods.core.State
-import com.example.foods.core.State.Companion.to
+import com.example.domain.State
+import com.example.domain.State.Companion.to
 import com.example.foods.core.given
 import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.domain.usecases.GetFoodRecipesByQueryUseCase

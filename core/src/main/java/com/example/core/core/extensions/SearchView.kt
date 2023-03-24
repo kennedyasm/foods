@@ -4,7 +4,7 @@ import androidx.appcompat.widget.SearchView
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-internal inline fun getSearchViewQueryTextListener(
+inline fun getSearchViewQueryTextListener(
     queryStateFlowListener: (queryStateFlow: StateFlow<String>) -> Unit
 ): SearchView.OnQueryTextListener {
 

@@ -1,0 +1,64 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+
+    Properties properties = new Properties()
+
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    if (keystorePropertiesFile.exists()) {
+        properties.load(keystorePropertiesFile.newDataInputStream())
+    }
+
+    namespace 'com.example.data'
+    compileSdk properties.getProperty("target.sdk").toInteger()
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
+            buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
+            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path") ?: ""
+        }
+        debug {
+            buildConfigField "String", "BASE_URL", properties.getProperty("base.url.debug") ?: ""
+            buildConfigField "String", "API_KEY", properties.getProperty("api.key.debug") ?: ""
+            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path.debug") ?: ""
+        }
+    }
+}
+dependencies {
+    implementation generalDependencies.androidxRoomRxJava3
+    implementation generalDependencies.androidxRoomKtx
+
+    implementation generalDependencies.androidxRoomRuntime
+    kapt generalDependencies.androidxRoomCompile
+    implementation generalDependencies.retrofitGsonConverter
+
+    implementation generalDependencies.retrofitAdapterRxJava
+    implementation generalDependencies.reactivexRxAndroid
+
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
+
+    implementation generalDependencies.okHttpLoginInterceptor
+
+    implementation project(':domain')
+
+}

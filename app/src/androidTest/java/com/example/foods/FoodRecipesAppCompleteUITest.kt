@@ -11,7 +11,6 @@ import com.example.foods.core.extensions.enqueueOkHttpJsonResponse
 import com.example.foods.interactions.userInteractionInFoodRecipesFragment
 import com.example.foods.interactions.userInteractionInFoodRecipesFragmentWithError
 import com.example.foods.interactions.userInteractionsInFoodRecipeDetailsFragment
-import com.example.foods.presentation.MainActivity
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule

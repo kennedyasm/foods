@@ -1,8 +1,9 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -18,8 +19,6 @@ android {
     compileSdk properties.getProperty("target.sdk").toInteger()
 
     defaultConfig {
-        applicationId "com.example.core"
-
         minSdk properties.getProperty("min.sdk").toInteger()
         targetSdk properties.getProperty("target.sdk").toInteger()
 
@@ -62,15 +61,6 @@ dependencies {
 
     annotationProcessor generalDependencies.glideCompiler
 
-    implementation generalDependencies.dagger
-    implementation generalDependencies.daggerAndroidSupport
-
-    kapt generalDependencies.daggerAndroidProcessor
-    kapt generalDependencies.daggerCompile
-
-    kaptAndroidTest androidTestDependencies.daggerCompiler
-    androidTestAnnotationProcessor androidTestDependencies.daggerCompiler
-
     implementation generalDependencies.okHttpLoginInterceptor
 
     implementation generalDependencies.retrofit
@@ -79,4 +69,7 @@ dependencies {
     implementation generalDependencies.retrofitAdapterRxJava
 
     implementation generalDependencies.reactivexRxAndroid
+
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
 }

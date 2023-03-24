@@ -2,7 +2,7 @@ package com.example.foods.presentation.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.example.foods.core.State
+import com.example.domain.State
 import com.example.foods.core.given
 import com.example.foods.domain.usecases.GetFoodRecipeDetailsByIdUseCase
 import com.example.foods.doubles.provideFoodRecipeDetails
