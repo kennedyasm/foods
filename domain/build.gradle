@@ -51,4 +51,11 @@ dependencies {
     kaptAndroidTest androidTestDependencies.daggerCompiler
     androidTestAnnotationProcessor androidTestDependencies.daggerCompiler
 
+    testImplementation testDependencies.androidxArchCoreTest
+    testImplementation testDependencies.mockitoCore
+    testImplementation testDependencies.androidxTestCore
+    testImplementation testDependencies.kotlinxCoroutinesTest
+
+    testImplementation project(':common:testing')
+
 }

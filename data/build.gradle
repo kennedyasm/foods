@@ -60,9 +60,16 @@ dependencies {
 
     implementation generalDependencies.okHttpLoginInterceptor
 
+    testImplementation testDependencies.androidxArchCoreTest
+    testImplementation testDependencies.mockitoCore
+    testImplementation testDependencies.androidxTestCore
+    testImplementation testDependencies.kotlinxCoroutinesTest
+
     implementation project(':domain')
     implementation project(':common:async')
     implementation project(':data:local')
     implementation project(':data:network')
+    implementation project(':common:testing')
+
 
 }

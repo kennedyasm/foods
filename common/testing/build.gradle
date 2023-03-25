@@ -15,7 +15,7 @@ android {
         properties.load(keystorePropertiesFile.newDataInputStream())
     }
 
-    namespace 'com.example.data.network'
+    namespace 'com.example.common.testing'
     compileSdk properties.getProperty("target.sdk").toInteger()
 
 
@@ -59,17 +59,15 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:2.44"
 
     implementation generalDependencies.okHttpLoginInterceptor
+
+    implementation testDependencies.androidxArchCoreTest
+    implementation testDependencies.mockitoCore
+    implementation testDependencies.androidxTestCore
+    implementation testDependencies.androidxTestMonitor
+    implementation testDependencies.kotlinxCoroutinesTest
+
     implementation testDependencies.mockWebServer
 
-    testImplementation testDependencies.androidxArchCoreTest
-    testImplementation testDependencies.mockitoCore
-    testImplementation testDependencies.androidxTestCore
-    testImplementation testDependencies.androidxTestMonitor
-    testImplementation testDependencies.kotlinxCoroutinesTest
-
-
-
-    testImplementation project(path: ':common:async')
-    testImplementation project(path: ':common:testing')
+    implementation project(path: ':common:async')
 
 }

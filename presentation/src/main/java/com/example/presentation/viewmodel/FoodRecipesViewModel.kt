@@ -24,7 +24,6 @@ class FoodRecipesViewModel @Inject constructor(
         get() = _getFoodRecipesState
 
     init {
-
         getFoodRecipes()
     }
 

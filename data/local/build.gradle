@@ -18,6 +18,17 @@ android {
     namespace 'com.example.data.local'
     compileSdk properties.getProperty("target.sdk").toInteger()
 
+    defaultConfig {
+        minSdk properties.getProperty("min.sdk").toInteger()
+        targetSdk properties.getProperty("target.sdk").toInteger()
+
+        versionCode properties.getProperty("version.code").toInteger()
+        versionName properties.getProperty("version.name")
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -58,4 +69,25 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:2.44"
 
     implementation generalDependencies.okHttpLoginInterceptor
+
+
+    testImplementation testDependencies.androidxArchCoreTest
+    testImplementation testDependencies.mockitoCore
+    testImplementation testDependencies.androidxTestCore
+    testImplementation testDependencies.androidxTestMonitor
+    testImplementation testDependencies.kotlinxCoroutinesTest
+
+
+
+    implementation project(path: ':common:async')
+    testImplementation project(path: ':common:testing')
+    androidTestImplementation project(path: ':common:testing')
+
+    androidTestImplementation androidTestDependencies.androidxJUnitTest
+    androidTestImplementation androidTestDependencies.androidxEspressoTest
+    androidTestImplementation androidTestDependencies.androidxArchCoreTest
+    androidTestImplementation testDependencies.mockitoCore
+    androidTestImplementation androidTestDependencies.androidxTextRunner
+    androidTestImplementation androidTestDependencies.androidxTestRules
+    androidTestImplementation testDependencies.kotlinxCoroutinesTest
 }
