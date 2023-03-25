@@ -58,6 +58,15 @@ android {
     viewBinding {
         enabled = true
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.2.0'
+        kotlinCompilerVersion '1.2.0'
+    }
 }
 
 dependencies {
@@ -82,9 +91,26 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
 
-    //implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+    implementation ("androidx.compose.ui:ui:1.2.0")
+    implementation ("androidx.compose.ui:ui-tooling-preview:1.2.0")
+    implementation ("androidx.compose.material3:material3:1.0.0-alpha11")
+    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.2.0")
+    debugImplementation ("androidx.compose.ui:ui-tooling:1.2.0")
+    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.2.0")
+
 
     implementation("io.coil-kt:coil-compose:2.2.2")
+
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
+
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.3.1")
+
+
+
+
+    //implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-beta01")
 
 
 

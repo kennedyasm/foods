@@ -44,11 +44,6 @@ class FoodRecipesViewModel @Inject constructor(
             }
         }
     }
-    val s: StateFlow<Any> = getFoodRecipesByQueryUseCase("").distinctUntilChanged().stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = State.Loading,
-        )
 
     private fun successGetFoodRecipes(foodRecipes: List<FoodRecipeItemUi>) {
         _getFoodRecipesState.value = State.Success(foodRecipes)
