@@ -7,9 +7,11 @@ import com.example.domain.usecases.GetFoodRecipesUseCase
 import com.example.domain.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -42,9 +44,15 @@ class FoodRecipesViewModel @Inject constructor(
             }
         }
     }
+    val s: StateFlow<Any> = getFoodRecipesByQueryUseCase("").distinctUntilChanged().stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = State.Loading,
+        )
 
     private fun successGetFoodRecipes(foodRecipes: List<FoodRecipeItemUi>) {
         _getFoodRecipesState.value = State.Success(foodRecipes)
+
     }
 
     private fun errorGetFoodRecipes(throwable: Throwable) {

@@ -1,9 +1,9 @@
 package com.example.domain
 
-sealed class State {
-    object Loading : State()
-    data class Success(val result: Any) : State()
-    data class Error(val throwable: Throwable) : State() {
+sealed interface State {
+    object Loading : State
+    data class Success(val result: Any) : State
+    data class Error(val throwable: Throwable) : State {
         val message = "Error: ${throwable.message ?: "general error"}, intenta más tarde."
     }
 
