@@ -15,7 +15,7 @@ class FoodRecipesLocalDataSourceImpl @Inject constructor(
 
     override suspend fun getFoodRecipes(): List<FoodRecipeItemEntity> = foodRecipesDao.getAll()
 
-    override fun getFoodRecipeById(id: Int): Single<FoodRecipeItemEntity> =
+    override suspend fun getFoodRecipeById(id: Int): FoodRecipeItemEntity =
         foodRecipesDao.getById(id)
 
     override fun deleteFoodRecipes(): Completable = foodRecipesDao.delete()

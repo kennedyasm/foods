@@ -2,7 +2,6 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
 }
 
 android {
@@ -38,6 +37,11 @@ android {
     buildFeatures {
         compose = true
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.0'
+        kotlinCompilerVersion '1.4.0'
+    }
 }
 dependencies {
     implementation baseDependencies.androidxCore
@@ -45,12 +49,12 @@ dependencies {
     implementation baseDependencies.materialDesign
     implementation baseDependencies.androidxConstraints
 
-    implementation ("androidx.compose.ui:ui:1.2.0")
-    implementation ("androidx.compose.ui:ui-tooling-preview:1.2.0")
+    implementation ("androidx.compose.ui:ui:1.4.0")
+    implementation ("androidx.compose.ui:ui-tooling-preview:1.4.0")
     implementation ("androidx.compose.material3:material3:1.0.0-alpha11")
-    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.2.0")
-    debugImplementation ("androidx.compose.ui:ui-tooling:1.2.0")
-    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.2.0")
+    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.4.0")
+    debugImplementation ("androidx.compose.ui:ui-tooling:1.4.0")
+    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.4.0")
 
 
 }

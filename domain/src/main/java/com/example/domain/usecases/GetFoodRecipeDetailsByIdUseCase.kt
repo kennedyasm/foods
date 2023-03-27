@@ -8,7 +8,7 @@ import javax.inject.Inject
 class GetFoodRecipeDetailsByIdUseCase @Inject constructor(
     private val foodRecipesRepository: FoodRecipesRepository
 ) {
-    operator fun invoke(id: Int): Single<FoodRecipeDetailsUi> {
+    suspend operator fun invoke(id: Int): FoodRecipeDetailsUi {
         return foodRecipesRepository.getFoodRecipeDetailsById(id)
     }
 }

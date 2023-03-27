@@ -18,6 +18,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class FoodRecipesRepositoryImpl @Inject constructor(
@@ -33,9 +34,10 @@ class FoodRecipesRepositoryImpl @Inject constructor(
             .observeOn(schedulers.mainThread)
     }
 
-    override fun getFoodRecipeDetailsById(id: Int): Single<FoodRecipeDetailsUi> {
-        return localDataSource.getFoodRecipeById(id).map { it.toFoodRecipeDetailsUi() }
-            .subscribeOn(schedulers.io).observeOn(schedulers.mainThread)
+    override suspend fun getFoodRecipeDetailsById(id: Int): FoodRecipeDetailsUi = withContext(dispatcherIO){
+
+        localDataSource.getFoodRecipeById(id).toFoodRecipeDetailsUi()
+
     }
 
     override fun getFoodRecipesByQuery(query: String): Flow<List<FoodRecipeItemUi>> = flow {

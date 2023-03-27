@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface FoodRecipesRepository {
     fun getFoodRecipes(): Single<List<FoodRecipeItemUi>>
-    fun getFoodRecipeDetailsById(id: Int): Single<FoodRecipeDetailsUi>
+    suspend fun getFoodRecipeDetailsById(id: Int): FoodRecipeDetailsUi
     fun getFoodRecipesByQuery(query: String): Flow<List<FoodRecipeItemUi>>
     fun deleteFoodRecipes(): Completable
 }

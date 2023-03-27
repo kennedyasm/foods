@@ -29,11 +29,11 @@ fun FoodRecipeItemDto.toFoodRecipeItemEntity() =
 
 fun FoodRecipeItemEntity.toFoodRecipeDetailsUi(): FoodRecipeDetailsUi =
     FoodRecipeDetailsUi(
+        id,
+        name,
         imageUrl,
         description,
         origin,
-        latitude,
-        longitude,
         ingredients,
         preparation
     )

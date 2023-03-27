@@ -18,7 +18,7 @@ interface FoodRecipesDao {
     suspend fun getAll(): List<FoodRecipeItemEntity>
 
     @Query("SELECT * FROM food_recipes WHERE id=:id")
-    fun getById(id: Int): Single<FoodRecipeItemEntity>
+    suspend fun getById(id: Int): FoodRecipeItemEntity
 
     @Query("DELETE FROM food_recipes")
     fun delete(): Completable

@@ -1,33 +1,32 @@
 package com.example.presentation.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.example.domain.models.FoodRecipeDetailsUi
-import com.example.domain.usecases.GetFoodRecipeDetailsByIdUseCase
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.viewModelScope
 import com.example.domain.State
+import com.example.domain.usecases.GetFoodRecipeDetailsByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
 class FoodRecipeDetailsViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
     private val getFoodRecipeDetailsByIdUseCase: GetFoodRecipeDetailsByIdUseCase
 ) : BaseViewModel() {
 
-    private val _getFoodRecipeDetails: MutableLiveData<State> = MutableLiveData()
-    val getFoodRecipeDetails: LiveData<State> get() = _getFoodRecipeDetails
+    val foodRecipeDetails: StateFlow<State> = flow<State> {
+        val data = getFoodRecipeDetailsByIdUseCase(
+            savedStateHandle.get<String>("food_recipe_id")?.toIntOrNull() ?: 0
+        )
+        emit(State.Success(data))
 
-    fun getFoodRecipeDetailsById(id: Int) {
-        _getFoodRecipeDetails.value = State.Loading
-        getFoodRecipeDetailsByIdUseCase(id)
-            .subscribe(::getFoodRecipeDetailsSuccess, ::getFoodRecipeDetailsError)
-            .also(disposables::add)
-    }
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = State.Loading,
+    )
 
-    private fun getFoodRecipeDetailsSuccess(foodRecipeDetailsUi: FoodRecipeDetailsUi) {
-        _getFoodRecipeDetails.value = State.Success(foodRecipeDetailsUi)
-    }
-
-    private fun getFoodRecipeDetailsError(throwable: Throwable) {
-        _getFoodRecipeDetails.value = State.Error(throwable)
-    }
 }
