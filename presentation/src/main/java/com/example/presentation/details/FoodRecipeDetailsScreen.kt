@@ -32,7 +32,6 @@ import coil.request.ImageRequest
 import com.example.domain.State
 import com.example.domain.State.Companion.to
 import com.example.domain.models.FoodRecipeDetailsUi
-import com.example.presentation.Screen
 import com.example.presentation.common.CircleProgress
 import com.example.presentation.common.ErrorScreen
 import com.example.presentation.common.VerticalSpace
@@ -42,7 +41,7 @@ import com.example.presentation.viewmodel.FoodRecipeDetailsViewModel
 @Composable
 fun FoodRecipeDetailsScreen(
     viewModel: FoodRecipeDetailsViewModel = hiltViewModel(),
-    navigateTo: (Screen, Int) -> Unit
+    navigateTo: (Int) -> Unit
 ) {
 
     val composableState = viewModel.foodRecipeDetails.collectAsStateWithLifecycle()
@@ -55,16 +54,15 @@ fun FoodRecipeDetailsScreen(
 }
 
 
-
 @Composable
-fun FoodRecipeDetailsScreenView(item: FoodRecipeDetailsUi, navigateTo: (Screen, Int) -> Unit) {
+fun FoodRecipeDetailsScreenView(item: FoodRecipeDetailsUi, navigateTo: (Int) -> Unit) {
     Surface {
         Column(modifier = Modifier.padding(horizontal = 16.dp)) {
             LazyColumn {
 
                 item {
                     FoodRecipeMainDetails(item) {
-                        navigateTo.invoke(Screen.DetailsMap, item.id)
+                        navigateTo.invoke(item.id)
                     }
                 }
 

@@ -69,7 +69,7 @@ dependencies {
 
 
 
-    testImplementation project(path: ':common:async')
-    testImplementation project(path: ':common:testing')
+    testImplementation project(path: ':core:async')
+    testImplementation project(path: ':core:testing')
 
 }

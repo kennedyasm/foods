@@ -2,10 +2,11 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'com.google.dagger.hilt.android'
 }
 
 android {
+
+
     Properties properties = new Properties()
 
     def keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -13,20 +14,17 @@ android {
         properties.load(keystorePropertiesFile.newDataInputStream())
     }
 
-    namespace 'com.example.common.async'
-    compileSdk properties.getProperty("compile.sdk").toInteger()
+    namespace 'com.example.core.design'
+    compileSdk properties.getProperty("target.sdk").toInteger()
 
     defaultConfig {
-
         minSdk properties.getProperty("min.sdk").toInteger()
         targetSdk properties.getProperty("target.sdk").toInteger()
 
         versionCode properties.getProperty("version.code").toInteger()
         versionName properties.getProperty("version.name")
 
-        testInstrumentationRunner "com.example.foods.FoodRecipesTestRunner"
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -35,10 +33,23 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-}
 
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.0'
+        kotlinCompilerVersion '1.4.0'
+    }
+}
 dependencies {
-    implementation generalDependencies.reactivexRxAndroid
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-compiler:2.44"
+    implementation ("androidx.compose.ui:ui:1.4.0")
+    implementation ("androidx.compose.ui:ui-tooling-preview:1.4.0")
+    implementation ("androidx.compose.material3:material3:1.1.0-beta01")
+    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.4.0")
+    debugImplementation ("androidx.compose.ui:ui-tooling:1.4.0")
+    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.4.0")
+
+
 }

@@ -1,8 +1,8 @@
 package com.example.data.local
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.common.testing.given
-import com.example.common.testing.testAndGetData
+import com.example.core.testing.given
+import com.example.core.testing.testAndGetData
 import com.example.data.local.asserts.assertFoodRecipeItemEntity
 import com.example.data.local.asserts.assertFoodRecipeItemEntityList
 import com.example.data.local.dao.FoodRecipesDao

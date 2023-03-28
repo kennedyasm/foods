@@ -62,10 +62,10 @@ dependencies {
     debugImplementation testDependencies.kotlinxCoroutinesTest
 
     implementation project(':domain')
-    implementation project(':common:async')
+    implementation project(':core:async')
     implementation project(':data:local')
     implementation project(':data:network')
-    api project(':common:testing')
+    api project(':core:testing')
 
     // For Robolectric tests.
     debugImplementation("com.google.dagger:hilt-android-testing:2.44")

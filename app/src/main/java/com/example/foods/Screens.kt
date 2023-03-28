@@ -1,4 +1,4 @@
-package com.example.presentation
+package com.example.foods
 
 sealed class Screen(val route: String) {
     object Home : Screen("home")

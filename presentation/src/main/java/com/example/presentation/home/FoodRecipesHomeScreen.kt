@@ -52,11 +52,10 @@ import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
 import coil.request.ImageRequest
-import com.example.common.design.R
+import com.example.core.design.R
 import com.example.domain.State
 import com.example.domain.State.Companion.to
 import com.example.domain.models.FoodRecipeItemUi
-import com.example.presentation.Screen
 import com.example.presentation.common.CircleProgress
 import com.example.presentation.common.ErrorScreen
 import com.example.presentation.viewmodel.FoodRecipesViewModel
@@ -64,7 +63,7 @@ import com.example.presentation.viewmodel.FoodRecipesViewModel
 @Composable
 fun FoodRecipesHomeScreen(
     viewModel: FoodRecipesViewModel = hiltViewModel(),
-    navigateTo: (Screen, Int) -> Unit
+    navigateTo: (Int) -> Unit
 ) {
 
     val foodRecipesState by viewModel.foodRecipes.collectAsStateWithLifecycle()
@@ -87,7 +86,7 @@ fun FoodRecipesHomeScreen(
                     viewModel.hasSearchFocus(it)
                 }
             ) {
-                navigateTo.invoke(Screen.Details, it)
+                navigateTo.invoke(it)
             }
         }
         is State.Loading -> CircleProgress()

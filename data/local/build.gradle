@@ -78,9 +78,9 @@ dependencies {
 
 
 
-    implementation project(path: ':common:async')
-    testImplementation project(path: ':common:testing')
-    androidTestImplementation project(path: ':common:testing')
+    implementation project(path: ':core:async')
+    testImplementation project(path: ':core:testing')
+    androidTestImplementation project(path: ':core:testing')
 
     androidTestImplementation androidTestDependencies.androidxJUnitTest
     androidTestImplementation androidTestDependencies.androidxEspressoTest

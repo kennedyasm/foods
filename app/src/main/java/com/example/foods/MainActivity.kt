@@ -1,11 +1,10 @@
-package com.example.presentation
+package com.example.foods
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.common.design.AppTheme
+import com.example.core.design.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -20,3 +19,5 @@ class MainActivity : ComponentActivity() {
     }
 
 }
+
+

@@ -1,9 +1,9 @@
 package com.example.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.common.testing.RxSchedulersImplTest
-import com.example.common.testing.given
-import com.example.common.testing.testAndGetData
+import com.example.core.testing.RxSchedulersImplTest
+import com.example.core.testing.given
+import com.example.core.testing.testAndGetData
 import com.example.data.asserts.assertFoodRecipeDetailsUi
 import com.example.data.asserts.assertFoodRecipeItemUi
 import com.example.data.asserts.assertFoodRecipeItemUiList

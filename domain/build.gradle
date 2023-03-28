@@ -42,6 +42,6 @@ dependencies {
     testImplementation testDependencies.androidxTestCore
     testImplementation testDependencies.kotlinxCoroutinesTest
 
-    testImplementation project(':common:testing')
+    testImplementation project(':core:testing')
 
 }

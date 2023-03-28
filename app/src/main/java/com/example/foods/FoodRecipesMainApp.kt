@@ -1,4 +1,4 @@
-package com.example.presentation
+package com.example.foods
 
 
 import androidx.compose.runtime.Composable
@@ -19,14 +19,14 @@ fun FoodRecipesMainApp() {
         startDestination = Screen.Home.route,
     ) {
         composable(route = Screen.Home.route) {
-            FoodRecipesHomeScreen { screen, id ->
-                navController.navigate("${screen.route}/$id")
+            FoodRecipesHomeScreen {  id ->
+                navController.navigate("${Screen.Details.route}/$id")
             }
         }
 
         composable(route = "${Screen.Details.route}/{food_recipe_id}") {
-            FoodRecipeDetailsScreen { screen, id ->
-                navController.navigate("${screen.route}/$id")
+            FoodRecipeDetailsScreen {  id ->
+                navController.navigate("${Screen.DetailsMap.route}/$id")
             }
         }
 

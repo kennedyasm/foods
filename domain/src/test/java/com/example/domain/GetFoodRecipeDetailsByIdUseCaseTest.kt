@@ -1,8 +1,8 @@
 package com.example.domain
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.common.testing.given
-import com.example.common.testing.testAndGetData
+import com.example.core.testing.given
+import com.example.core.testing.testAndGetData
 import com.example.domain.doubles.provideFoodRecipeDetails
 import com.example.domain.repository.FoodRecipesRepository
 import com.example.domain.usecases.GetFoodRecipeDetailsByIdUseCase

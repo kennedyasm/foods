@@ -14,7 +14,7 @@ android {
         properties.load(keystorePropertiesFile.newDataInputStream())
     }
 
-    namespace 'com.example.common.testing'
+    namespace 'com.example.core.testing'
     compileSdk properties.getProperty("target.sdk").toInteger()
 
 
@@ -67,6 +67,6 @@ dependencies {
 
     implementation testDependencies.mockWebServer
 
-    implementation project(path: ':common:async')
+    implementation project(path: ':core:async')
 
 }

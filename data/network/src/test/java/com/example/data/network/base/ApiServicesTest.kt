@@ -1,7 +1,7 @@
 package com.example.data.network.base
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.common.testing.ReadFileHelper
+import com.example.core.testing.ReadFileHelper
 import com.example.data.network.BuildConfig
 import com.example.data.network.auth.AuthInterceptor
 import com.example.data.network.retrofit.RetrofitHelper

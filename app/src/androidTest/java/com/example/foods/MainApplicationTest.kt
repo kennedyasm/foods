@@ -3,8 +3,7 @@ package com.example.foods
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import com.example.common.testing.MySharedMockWebServer
-import com.example.presentation.MainActivity
+import com.example.core.testing.MySharedMockWebServer
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

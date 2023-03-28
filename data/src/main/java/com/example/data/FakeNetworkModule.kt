@@ -1,7 +1,7 @@
 package com.example.data
 
 
-import com.example.common.testing.MySharedMockWebServer
+import com.example.core.testing.MySharedMockWebServer
 import com.example.data.network.BuildConfig
 import com.example.data.network.auth.AuthInterceptor
 import com.example.data.network.di.NetworkModule
