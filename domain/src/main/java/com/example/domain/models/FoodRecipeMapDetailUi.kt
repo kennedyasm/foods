@@ -5,6 +5,6 @@ data class FoodRecipeMapDetailUi(val id: Int, val name: String, val latitude: Do
     fun isEmpty() = id == -1
 
     companion object {
-        fun empty(): FoodRecipeItemUi =  FoodRecipeItemUi(-1, "","", emptyList())
+        fun empty(): FoodRecipeMapDetailUi =  FoodRecipeMapDetailUi(-1, "",0.0, 0.0)
     }
 }

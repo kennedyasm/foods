@@ -23,7 +23,7 @@ class FoodRecipeDetailsViewModel @Inject constructor(
         }?:emit(State.Error(Throwable()))
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(500),
+        started = SharingStarted.WhileSubscribed(0),
         initialValue = State.Loading,
     )
 

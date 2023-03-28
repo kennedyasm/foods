@@ -24,7 +24,7 @@ class FoodRecipeDetailMapViewModel @Inject constructor(
         } ?: emit(State.Success(FoodRecipeMapDetailUi.empty()))
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(500),
+        started = SharingStarted.WhileSubscribed(0),
         initialValue = State.Loading,
     )
 

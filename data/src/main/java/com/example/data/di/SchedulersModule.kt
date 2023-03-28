@@ -4,13 +4,29 @@ import com.example.common.async.rx.RxSchedulers
 import com.example.common.async.rx.RxSchedulersImpl
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dagger.hilt.testing.TestInstallIn
+import javax.inject.Singleton
+
+@Module
+@TestInstallIn(
+    components = [SingletonComponent::class],
+    replaces = [SchedulersModule::class]
+)
+object FakeSchedulersModule {
+
+    @Singleton
+    @Provides
+    fun providesRxSchedulers(): RxSchedulers = FakeRxSchedulers()
+}
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface SchedulersModule {
+object SchedulersModule {
 
-    @Binds
-    fun bindsRxSchedulers(impl: RxSchedulersImpl): RxSchedulers
+    @Provides
+    @Singleton
+    fun providesRxSchedulers(): RxSchedulers = RxSchedulersImpl()
 }

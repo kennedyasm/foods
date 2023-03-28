@@ -24,9 +24,7 @@ class FoodRecipesViewModel @Inject constructor(
     private val getFoodRecipesUseCase: GetFoodRecipesUseCase,
 ) : BaseViewModel() {
 
-    init {
-        getFoodRecipes()
-    }
+
 
     private val _hasSearchFocus: MutableStateFlow<Boolean> = MutableStateFlow(false)
     private val _foodRecipes: MutableStateFlow<State> = MutableStateFlow(State.Loading)
@@ -36,6 +34,7 @@ class FoodRecipesViewModel @Inject constructor(
 
     private val _isSearching: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val isSearching: StateFlow<Boolean> = _isSearching.asStateFlow()
+
 
     @OptIn(FlowPreview::class)
     val foodRecipes: StateFlow<State> = searchText
@@ -48,6 +47,10 @@ class FoodRecipesViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(0),
             initialValue = _foodRecipes.value,
         )
+
+    init {
+        getFoodRecipes()
+    }
 
     fun hasSearchFocus(hasFocus: Boolean) {
         _hasSearchFocus.value = hasFocus
@@ -85,7 +88,7 @@ class FoodRecipesViewModel @Inject constructor(
     }
 
     private fun successGetFoodRecipes(foodRecipes: List<FoodRecipeItemUi>) {
-        _foodRecipes.value = State.Success(foodRecipes)
+      _foodRecipes.value = State.Success(foodRecipes)
     }
 
     private fun errorGetFoodRecipes(throwable: Throwable) {

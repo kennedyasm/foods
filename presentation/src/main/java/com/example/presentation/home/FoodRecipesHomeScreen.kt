@@ -1,18 +1,15 @@
 package com.example.presentation.home
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -42,6 +39,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -79,7 +78,7 @@ fun FoodRecipesHomeScreen(
             HomeScreenView(
                 foodRecipeList = state.to(),
                 searchText = searchText.value,
-                hasSearchFocus= hasSearchFocus,
+                hasSearchFocus = hasSearchFocus,
                 onValueChange = viewModel::onSearchTextChanged,
                 onClearFocus = { focusManager.clearFocus() },
                 isSearching = isSearching.value,
@@ -114,8 +113,6 @@ fun HomeScreenView(
 
     val state = rememberLazyGridState()
 
-
-
     Surface {
 
         Column {
@@ -130,6 +127,9 @@ fun HomeScreenView(
                         .align(Alignment.CenterVertically)
                         .onFocusChanged {
                             onSearchViewHasFocus.invoke(it.hasFocus)
+                        }
+                        .semantics {
+                            contentDescription = "search view"
                         }
                         .weight(.9f),
                     placeholder = { Text(text = "Buscar receta") },
@@ -185,7 +185,7 @@ fun HomeScreenView(
                     }),
                     shape = RoundedCornerShape(40.dp)
                 )
-                if(isSearching) {
+                if (isSearching) {
                     CircularProgressIndicator(
                         modifier = Modifier
                             .padding(end = 8.dp)

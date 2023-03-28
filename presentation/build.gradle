@@ -28,6 +28,8 @@ android {
 
         versionCode properties.getProperty("version.code").toInteger()
         versionName properties.getProperty("version.name")
+
+
     }
 
     compileOptions {
@@ -66,6 +68,10 @@ android {
         kotlinCompilerExtensionVersion '1.4.0'
         kotlinCompilerVersion '1.4.0'
     }
+
+    hilt {
+        enableTransformForLocalTests = true
+    }
 }
 
 dependencies {
@@ -84,7 +90,7 @@ dependencies {
     implementation generalDependencies.playServicesMap
 
     implementation project(':domain')
-    implementation project(':common:design')
+    api project(':common:design')
 
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
@@ -108,6 +114,11 @@ dependencies {
 
 
     implementation 'com.google.maps.android:maps-compose:2.11.2'
+
+
+    androidTestImplementation(androidTestDependencies.androidxJUnitTest)
+    androidTestImplementation androidTestDependencies.androidxTextRunner
+
 /*
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
 

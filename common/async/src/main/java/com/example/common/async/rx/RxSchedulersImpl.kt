@@ -5,7 +5,7 @@ import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-class RxSchedulersImpl @Inject constructor(): RxSchedulers {
+class RxSchedulersImpl constructor(): RxSchedulers {
     override val io: Scheduler
         get() = Schedulers.io()
 
