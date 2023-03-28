@@ -4,7 +4,7 @@ sealed interface State {
     object Loading : State
     data class Success(val result: Any) : State
     data class Error(val throwable: Throwable) : State {
-        val message = "Error: ${throwable.message ?: "general error"}, intenta más tarde."
+        val message = throwable.message ?: "general error"
     }
 
     companion object {

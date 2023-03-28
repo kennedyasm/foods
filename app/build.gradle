@@ -38,11 +38,6 @@ android {
             buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
             buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path") ?: ""
         }
-        debug {
-            buildConfigField "String", "BASE_URL", properties.getProperty("base.url.debug") ?: ""
-            buildConfigField "String", "API_KEY", properties.getProperty("api.key.debug") ?: ""
-            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path.debug") ?: ""
-        }
     }
 
     compileOptions {
@@ -60,38 +55,8 @@ android {
 }
 
 dependencies {
-    implementation baseDependencies.androidxCore
-    implementation baseDependencies.androidxAppCompat
+
     implementation baseDependencies.materialDesign
-    implementation baseDependencies.androidxConstraints
-
-    implementation generalDependencies.retrofit
-    implementation generalDependencies.retrofitGsonConverter
-    implementation generalDependencies.okHttpLoginInterceptor
-    implementation generalDependencies.retrofitAdapterRxJava
-    implementation generalDependencies.reactivexRxAndroid
-    implementation generalDependencies.androidxRoomRxJava3
-    implementation generalDependencies.androidxRoomKtx
-    implementation generalDependencies.glide
-    implementation generalDependencies.playServicesMap
-    implementation generalDependencies.kotlinxCoroutines
-    implementation generalDependencies.androidxNavigationFragmentKtx
-    implementation generalDependencies.androidxNavigationUiKtx
-    implementation generalDependencies.androidxRoomRuntime
-    implementation testDependencies.mockWebServer
-
-    kapt generalDependencies.androidxRoomCompile
-
-    annotationProcessor generalDependencies.glideCompiler
-
-    debugImplementation generalDependencies.androidxFragmentTesting
-    debugImplementation testDependencies.androidxTestMonitor
-
-    testImplementation testDependencies.androidxArchCoreTest
-    testImplementation testDependencies.mockitoCore
-    testImplementation testDependencies.androidxTestCore
-    testImplementation testDependencies.androidxTestMonitor
-    testImplementation testDependencies.kotlinxCoroutinesTest
 
     androidTestImplementation androidTestDependencies.androidxJUnitTest
     androidTestImplementation androidTestDependencies.androidxEspressoTest

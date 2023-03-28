@@ -4,17 +4,21 @@ import com.example.common.async.rx.RxSchedulers
 import com.example.data.local.datasource.FoodRecipesLocalDataSource
 import com.example.data.local.entities.FoodRecipeItemEntity
 import com.example.data.network.datasource.FoodRecipesNetworkDataSource
+import com.example.data.network.dto.FoodRecipeItemDto
 import com.example.data.network.dto.FoodRecipesResponseDto
 import com.example.data.toFoodRecipeDetailsUi
 import com.example.data.toFoodRecipeItemEntityList
 import com.example.data.toFoodRecipeItemUi
 import com.example.data.toFoodRecipeItemUiList
+import com.example.data.toFoodRecipeMapDetailUi
 import com.example.domain.models.FoodRecipeDetailsUi
 import com.example.domain.models.FoodRecipeItemUi
+import com.example.domain.models.FoodRecipeMapDetailUi
 import com.example.domain.repository.FoodRecipesRepository
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -56,6 +60,12 @@ class FoodRecipesRepositoryImpl @Inject constructor(
             .map(FoodRecipesResponseDto::toFoodRecipeItemUiList)
 
     }
+
+    override suspend fun getFoodRecipeMapDetailById(id: Int): FoodRecipeMapDetailUi =
+        withContext(dispatcherIO) {
+
+            localDataSource.getFoodRecipeById(id).toFoodRecipeMapDetailUi()
+        }
 
     private fun insertFoodRecipesInDatabase(
         foodRecipesResponseDto: FoodRecipesResponseDto

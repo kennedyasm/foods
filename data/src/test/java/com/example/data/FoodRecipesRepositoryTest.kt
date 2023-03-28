@@ -101,9 +101,9 @@ class FoodRecipesRepositoryTest {
     }
 
     @Test
-    fun callGetFoodRecipeByIdWhenGetFoodRecipeDetailsByIdIsExecuted() {
+    fun callGetFoodRecipeByIdWhenGetFoodRecipeDetailsByIdIsExecuted() = runTest {
         val foodRecipeItemEntity = provideCaldoDePiedraFoodRecipeItemEntity()
-        given(localDataSource.getFoodRecipeById(2)).thenReturn(Single.just(foodRecipeItemEntity))
+        given(localDataSource.getFoodRecipeById(2)).thenReturn(foodRecipeItemEntity)
 
         foodRecipesRepository.getFoodRecipeDetailsById(2)
 
@@ -111,11 +111,11 @@ class FoodRecipesRepositoryTest {
     }
 
     @Test
-    fun assertDataWhenGetFoodRecipeDetailsByIdIsExecuted() {
+    fun assertDataWhenGetFoodRecipeDetailsByIdIsExecuted() = runTest {
         val foodRecipeItemEntity = provideCaldoDePiedraFoodRecipeItemEntity()
-        given(localDataSource.getFoodRecipeById(2)).thenReturn(Single.just(foodRecipeItemEntity))
+        given(localDataSource.getFoodRecipeById(2)).thenReturn(foodRecipeItemEntity)
 
-        val item = foodRecipesRepository.getFoodRecipeDetailsById(2).testAndGetData()
+        val item = foodRecipesRepository.getFoodRecipeDetailsById(2)
 
         assertFoodRecipeDetailsUi(item)
     }

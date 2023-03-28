@@ -3,7 +3,8 @@ package com.example.presentation.viewmodel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.domain.State
-import com.example.domain.usecases.GetFoodRecipeDetailsByIdUseCase
+import com.example.domain.models.FoodRecipeMapDetailUi
+import com.example.domain.usecases.GetFoodRecipeMapDetailByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -12,15 +13,15 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class FoodRecipeDetailsViewModel @Inject constructor(
+class FoodRecipeDetailMapViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val getFoodRecipeDetailsByIdUseCase: GetFoodRecipeDetailsByIdUseCase
+    private val getFoodRecipeMapDetailByIdUseCase: GetFoodRecipeMapDetailByIdUseCase
 ) : BaseViewModel() {
 
-    val foodRecipeDetails: StateFlow<State> = flow<State> {
+    val mapDetailState: StateFlow<State> = flow {
         savedStateHandle.get<String>("food_recipe_id")?.toIntOrNull()?.let {
-            emit(State.Success(getFoodRecipeDetailsByIdUseCase(it)))
-        }?:emit(State.Error(Throwable()))
+            emit(State.Success(getFoodRecipeMapDetailByIdUseCase(it)))
+        } ?: emit(State.Success(FoodRecipeMapDetailUi.empty()))
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(500),

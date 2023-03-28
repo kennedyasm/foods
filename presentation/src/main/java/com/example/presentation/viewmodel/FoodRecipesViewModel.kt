@@ -1,60 +1,94 @@
 package com.example.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import com.example.domain.models.FoodRecipeItemUi
-import com.example.domain.usecases.GetFoodRecipesByQueryUseCase
-import com.example.domain.usecases.GetFoodRecipesUseCase
 import com.example.domain.State
+import com.example.domain.State.Companion.to
+import com.example.domain.models.FoodRecipeItemUi
+import com.example.domain.models.FoodRecipeItemUi.Companion.isMatchingWithSearchQuery
+import com.example.domain.usecases.GetFoodRecipesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
 class FoodRecipesViewModel @Inject constructor(
     private val getFoodRecipesUseCase: GetFoodRecipesUseCase,
-    private val getFoodRecipesByQueryUseCase: GetFoodRecipesByQueryUseCase,
 ) : BaseViewModel() {
-
-    private val _getFoodRecipesState: MutableStateFlow<State> = MutableStateFlow(State.Loading)
-    val getFoodRecipesState: StateFlow<State>
-        get() = _getFoodRecipesState
 
     init {
         getFoodRecipes()
     }
 
-    fun getFoodRecipes() {
-        loadingGetFoodRecipes()
+    private val _hasSearchFocus: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    private val _foodRecipes: MutableStateFlow<State> = MutableStateFlow(State.Loading)
+
+    private val _searchText: MutableStateFlow<String> = MutableStateFlow("")
+    val searchText: StateFlow<String> = _searchText.asStateFlow()
+
+    private val _isSearching: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isSearching: StateFlow<Boolean> = _isSearching.asStateFlow()
+
+    @OptIn(FlowPreview::class)
+    val foodRecipes: StateFlow<State> = searchText
+        .onEach { _isSearching.update { _hasSearchFocus.value } }
+        .debounce(500L)
+        .combine(_foodRecipes, ::filterQueryTextInState)
+        .onEach { _isSearching.update { false } }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(0),
+            initialValue = _foodRecipes.value,
+        )
+
+    fun hasSearchFocus(hasFocus: Boolean) {
+        _hasSearchFocus.value = hasFocus
+    }
+
+    private fun filterQueryTextInState(queryText: String, foodRecipesState: State): State {
+        return if (queryText.isNotBlank()) {
+            when (foodRecipesState) {
+                is State.Success -> {
+                    State.Success(
+                        foodRecipesState.to<List<FoodRecipeItemUi>>()
+                            .filter { it.isMatchingWithSearchQuery(queryText) })
+                }
+                else -> foodRecipesState
+            }
+        } else {
+            foodRecipesState
+        }
+    }
+
+
+    fun onSearchTextChanged(text: String) {
+        _searchText.value = text
+    }
+
+    fun refreshFoodRecipes() {
+        _foodRecipes.value = State.Loading
+        getFoodRecipes()
+    }
+
+    private fun getFoodRecipes() {
         getFoodRecipesUseCase.invoke()
             .subscribe(::successGetFoodRecipes, ::errorGetFoodRecipes)
             .also(disposables::add)
     }
 
-    fun getFoodRecipesByQuery(query: String) {
-        loadingGetFoodRecipes()
-        viewModelScope.launch {
-            getFoodRecipesByQueryUseCase(query).distinctUntilChanged().collectLatest {
-                _getFoodRecipesState.value = State.Success(it)
-            }
-        }
-    }
-
     private fun successGetFoodRecipes(foodRecipes: List<FoodRecipeItemUi>) {
-        _getFoodRecipesState.value = State.Success(foodRecipes)
-
+        _foodRecipes.value = State.Success(foodRecipes)
     }
 
     private fun errorGetFoodRecipes(throwable: Throwable) {
-        _getFoodRecipesState.value = State.Error(throwable)
-    }
-
-    private fun loadingGetFoodRecipes() {
-        _getFoodRecipesState.value = State.Loading
+        _foodRecipes.value = State.Error(throwable)
     }
 }

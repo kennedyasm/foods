@@ -30,25 +30,12 @@ android {
 
 dependencies {
 
-    implementation baseDependencies.androidxCore
-    implementation baseDependencies.androidxAppCompat
-    implementation baseDependencies.materialDesign
-    implementation baseDependencies.androidxConstraints
 
     implementation generalDependencies.retrofitAdapterRxJava
     implementation generalDependencies.reactivexRxAndroid
 
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
-
-    implementation generalDependencies.dagger
-    implementation generalDependencies.daggerAndroidSupport
-
-    kapt generalDependencies.daggerAndroidProcessor
-    kapt generalDependencies.daggerCompile
-
-    kaptAndroidTest androidTestDependencies.daggerCompiler
-    androidTestAnnotationProcessor androidTestDependencies.daggerCompiler
 
     testImplementation testDependencies.androidxArchCoreTest
     testImplementation testDependencies.mockitoCore
