@@ -1,8 +1,8 @@
 package com.example.data.network
 
-import com.example.core.testing.completeAssertedTest
-import com.example.core.testing.enqueueOkHttpJsonResponse
-import com.example.core.testing.testAndGetData
+import com.example.foods.core.testing.completeAssertedTest
+import com.example.foods.core.testing.enqueueOkHttpJsonResponse
+import com.example.foods.core.testing.testAndGetData
 import com.example.data.network.base.ApiServicesTest
 import com.example.data.network.core.assertGetFoodRecipesResponseDto
 import org.hamcrest.CoreMatchers.equalTo

@@ -1,8 +1,8 @@
 package com.example.data.network
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.core.testing.given
-import com.example.core.testing.testAndGetData
+import com.example.foods.core.testing.given
+import com.example.foods.core.testing.testAndGetData
 import com.example.data.network.core.assertGetFoodRecipesResponseDto
 import com.example.data.network.doubles.provideFoodRecipesResponseDto
 import com.example.data.network.datasource.FoodRecipesNetworkDataSource

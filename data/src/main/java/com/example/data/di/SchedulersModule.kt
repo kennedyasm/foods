@@ -1,7 +1,7 @@
 package com.example.data.di
 
-import com.example.core.async.rx.RxSchedulers
-import com.example.core.async.rx.RxSchedulersImpl
+import com.example.foods.core.async.rx.RxSchedulers
+import com.example.foods.core.async.rx.RxSchedulersImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

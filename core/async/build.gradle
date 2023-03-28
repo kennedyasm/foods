@@ -13,7 +13,7 @@ android {
         properties.load(keystorePropertiesFile.newDataInputStream())
     }
 
-    namespace 'com.example.core.async'
+    namespace 'com.example.foods.core.async'
     compileSdk properties.getProperty("compile.sdk").toInteger()
 
     defaultConfig {

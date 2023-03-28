@@ -1,6 +1,6 @@
 package com.example.data.repository
 
-import com.example.core.async.rx.RxSchedulers
+import com.example.foods.core.async.rx.RxSchedulers
 import com.example.data.local.datasource.FoodRecipesLocalDataSource
 import com.example.data.local.entities.FoodRecipeItemEntity
 import com.example.data.network.datasource.FoodRecipesNetworkDataSource

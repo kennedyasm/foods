@@ -1,13 +1,12 @@
 package com.example.foods
 
-
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.presentation.details.FoodRecipeDetailsScreen
-import com.example.presentation.home.FoodRecipesHomeScreen
-import com.example.presentation.map.FoodRecipeMapDetailsScreen
+import com.example.foods.feature.location.FoodRecipeMapDetailsScreen
+import com.example.foods.features.details.FoodRecipeDetailsScreen
+import com.example.foods.features.home.FoodRecipesHomeScreen
 
 @Composable
 fun FoodRecipesMainApp() {

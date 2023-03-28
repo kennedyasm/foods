@@ -14,7 +14,7 @@ android {
         properties.load(keystorePropertiesFile.newDataInputStream())
     }
 
-    namespace 'com.example.core.testing'
+    namespace 'com.example.foods.core.testing'
     compileSdk properties.getProperty("target.sdk").toInteger()
 
 

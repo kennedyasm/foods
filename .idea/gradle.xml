@@ -15,11 +15,15 @@
             <option value="$PROJECT_DIR$/core/async" />
             <option value="$PROJECT_DIR$/core/design" />
             <option value="$PROJECT_DIR$/core/testing" />
+            <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/local" />
             <option value="$PROJECT_DIR$/data/network" />
             <option value="$PROJECT_DIR$/domain" />
-            <option value="$PROJECT_DIR$/presentation" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/details" />
+            <option value="$PROJECT_DIR$/features/home" />
+            <option value="$PROJECT_DIR$/features/location" />
           </set>
         </option>
       </GradleProjectSettings>

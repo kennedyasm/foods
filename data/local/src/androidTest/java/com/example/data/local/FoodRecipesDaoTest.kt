@@ -3,7 +3,7 @@ package com.example.data.local
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.example.core.testing.testAndGetData
+import com.example.foods.core.testing.testAndGetData
 import com.example.data.local.asserts.assertFoodRecipeItemEntity
 import com.example.data.local.dao.FoodRecipesDao
 import com.example.data.local.doubles.provideFoodRecipeItemEntityList

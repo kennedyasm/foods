@@ -1,7 +1,7 @@
 package com.example.domain
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.core.testing.given
+import com.example.foods.core.testing.given
 import com.example.domain.doubles.provideFoodRecipeItemUiCaldoDePiedra
 import com.example.domain.repository.FoodRecipesRepository
 import com.example.domain.usecases.GetFoodRecipesByQueryUseCase

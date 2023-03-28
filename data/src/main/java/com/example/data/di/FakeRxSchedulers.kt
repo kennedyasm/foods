@@ -1,6 +1,6 @@
 package com.example.data.di
 
-import com.example.core.async.rx.RxSchedulers
+import com.example.foods.core.async.rx.RxSchedulers
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
