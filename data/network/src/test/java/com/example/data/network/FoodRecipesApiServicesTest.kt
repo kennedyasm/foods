@@ -5,6 +5,7 @@ import com.example.foods.core.testing.enqueueOkHttpJsonResponse
 import com.example.foods.core.testing.testAndGetData
 import com.example.data.network.base.ApiServicesTest
 import com.example.data.network.core.assertGetFoodRecipesResponseDto
+import com.example.foods.data.network.api.FoodRecipesApiServices
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test

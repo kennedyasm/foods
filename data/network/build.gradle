@@ -14,18 +14,8 @@ android {
         properties.load(keystorePropertiesFile.newDataInputStream())
     }
 
-    namespace 'com.example.data.network'
+    namespace 'com.example.foods.data.network'
     compileSdk properties.getProperty("target.sdk").toInteger()
-
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
 
     buildTypes {
         release {
@@ -44,19 +34,12 @@ android {
 
 }
 dependencies {
-    implementation generalDependencies.androidxRoomRxJava3
-    implementation generalDependencies.androidxRoomKtx
-
-    implementation generalDependencies.androidxRoomRuntime
-    kapt generalDependencies.androidxRoomCompile
     implementation generalDependencies.retrofitGsonConverter
     implementation generalDependencies.retrofit
-
     implementation generalDependencies.retrofitAdapterRxJava
-    implementation generalDependencies.reactivexRxAndroid
 
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-compiler:2.44"
+    implementation generalDependencies.daggerHilt
+    kapt generalDependencies.daggerHiltCompiler
 
     implementation generalDependencies.okHttpLoginInterceptor
     implementation testDependencies.mockWebServer
@@ -67,9 +50,16 @@ dependencies {
     testImplementation testDependencies.androidxTestMonitor
     testImplementation testDependencies.kotlinxCoroutinesTest
 
+    debugImplementation project(path: ':core:testing')
 
+    // For Robolectric tests.
+    debugImplementation("com.google.dagger:hilt-android-testing:2.44")
+    // ...with Kotlin.
+    kaptTest("com.google.dagger:hilt-android-compiler:2.44")
 
-    testImplementation project(path: ':core:async')
-    testImplementation project(path: ':core:testing')
+    // For instrumented tests.
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")
+    // ...with Kotlin.
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.44")
 
 }

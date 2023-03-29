@@ -24,28 +24,47 @@ ext {
     playServicesMapVersion = '18.1.0'
     kotlinxCoroutinesVersion = '1.6.4'
     androidxFragmentTestingVersion = '1.5.5'
+    daggerHiltVersion = '2.45'
+    daggerHiltNavigationComposeVersion = '1.0.0'
+    androidxComposeUiVersion = '1.4.0'
+    androidxComposeMaterial3Version = '1.1.0-beta01'
+    coilComposeVersion = '2.2.2'
+    androidxLifecycleRuntimeComposeVersion = '2.6.1'
+    googleMapsComposeVersion = '2.11.2'
+
 
     generalDependencies = [
-            retrofit                     : "com.squareup.retrofit2:retrofit:$retrofitVersion",
-            retrofitGsonConverter        : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
-            okHttpLoginInterceptor       : "com.squareup.okhttp3:logging-interceptor:$okHttpLoginInterceptorVersion",
-            retrofitAdapterRxJava        : "com.squareup.retrofit2:adapter-rxjava3:$retrofitAdapterRxJavaVersion",
-            reactivexRxAndroid           : "io.reactivex.rxjava3:rxandroid:$reactivexRxAndroidVersion",
-            androidxRoomRxJava3          : "androidx.room:room-rxjava3:$roomRxJava3Version",
-            androidxRoomKtx              : "androidx.room:room-ktx:$androidxRoomKtxVersion",
-            dagger                       : "com.google.dagger:dagger:$daggerVersion",
-            daggerAndroidSupport         : "com.google.dagger:dagger-android-support:$daggerVersion",
-            daggerAndroidProcessor       : "com.google.dagger:dagger-android-processor:$daggerVersion",
-            daggerCompile                : "com.google.dagger:dagger-compiler:$daggerVersion",
-            glide                        : "com.github.bumptech.glide:glide:$glideVersion",
-            glideCompiler                : "com.github.bumptech.glide:compiler:$glideVersion",
-            androidxNavigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:$androidxNavigationFragmentKtxVersion",
-            androidxNavigationUiKtx      : "androidx.navigation:navigation-ui-ktx:$androidxNavigationFragmentKtxVersion",
-            androidxRoomRuntime          : "androidx.room:room-runtime:$androidxRoomRuntimeVersion",
-            androidxRoomCompile          : "androidx.room:room-compiler:$androidxRoomRuntimeVersion",
-            playServicesMap              : "com.google.android.gms:play-services-maps:$playServicesMapVersion",
-            kotlinxCoroutines            : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutinesVersion",
-            androidxFragmentTesting      : "androidx.fragment:fragment-testing:$androidxFragmentTestingVersion"
+            retrofit                       : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofitGsonConverter          : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            okHttpLoginInterceptor         : "com.squareup.okhttp3:logging-interceptor:$okHttpLoginInterceptorVersion",
+            retrofitAdapterRxJava          : "com.squareup.retrofit2:adapter-rxjava3:$retrofitAdapterRxJavaVersion",
+            reactivexRxAndroid             : "io.reactivex.rxjava3:rxandroid:$reactivexRxAndroidVersion",
+            androidxRoomRxJava3            : "androidx.room:room-rxjava3:$roomRxJava3Version",
+            androidxRoomKtx                : "androidx.room:room-ktx:$androidxRoomKtxVersion",
+            dagger                         : "com.google.dagger:dagger:$daggerVersion",
+            daggerAndroidSupport           : "com.google.dagger:dagger-android-support:$daggerVersion",
+            daggerAndroidProcessor         : "com.google.dagger:dagger-android-processor:$daggerVersion",
+            daggerCompile                  : "com.google.dagger:dagger-compiler:$daggerVersion",
+            glide                          : "com.github.bumptech.glide:glide:$glideVersion",
+            glideCompiler                  : "com.github.bumptech.glide:compiler:$glideVersion",
+            androidxNavigationFragmentKtx  : "androidx.navigation:navigation-fragment-ktx:$androidxNavigationFragmentKtxVersion",
+            androidxNavigationUiKtx        : "androidx.navigation:navigation-ui-ktx:$androidxNavigationFragmentKtxVersion",
+            androidxRoomRuntime            : "androidx.room:room-runtime:$androidxRoomRuntimeVersion",
+            androidxRoomCompile            : "androidx.room:room-compiler:$androidxRoomRuntimeVersion",
+            playServicesMap                : "com.google.android.gms:play-services-maps:$playServicesMapVersion",
+            kotlinxCoroutines              : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutinesVersion",
+            androidxFragmentTesting        : "androidx.fragment:fragment-testing:$androidxFragmentTestingVersion",
+            daggerHilt                     : "com.google.dagger:hilt-android:$daggerHiltVersion",
+            daggerHiltCompiler             : "com.google.dagger:hilt-compiler:$daggerHiltVersion",
+            daggerHiltNavigationCompose    : "androidx.hilt:hilt-navigation-compose:$daggerHiltNavigationComposeVersion",
+            androidxComposeUi              : "androidx.compose.ui:ui:$androidxComposeUiVersion",
+            androidxComposeUiPreview       : "androidx.compose.ui:ui-tooling-preview:$androidxComposeUiVersion",
+            androidxComposeUiTooling       : "androidx.compose.ui:ui-tooling:$androidxComposeUiVersion",
+            androidxComposeUiTestManifest  : "androidx.compose.ui:ui-test-manifest:$androidxComposeUiVersion",
+            androidxComposeMaterial3       : "androidx.compose.material3:material3:$androidxComposeMaterial3Version",
+            coilCompose                    : "io.coil-kt:coil-compose:$coilComposeVersion",
+            androidxLifecycleRuntimeCompose: "androidx.lifecycle:lifecycle-runtime-compose:$androidxLifecycleRuntimeComposeVersion",
+            googleMapsCompose              : "com.google.maps.android:maps-compose:$googleMapsComposeVersion"
     ]
 
     jUnitVersion = '4.13.2'
@@ -83,6 +102,7 @@ ext {
             androidxTestEspresso       : "androidx.test.espresso:espresso-contrib:$androidxTestEspressoVersion",
             androidxTestUiautomator    : "androidx.test.uiautomator:uiautomator:$androidxTestUiautomatorVersion",
             androidxEspressoConcurrent : "androidx.test.espresso.idling:idling-concurrent:$androidxTestEspressoVersion",
-            androidxTestEspressoContrib: "androidx.test.espresso:espresso-contrib:$androidxTestEspressoVersion"
+            androidxTestEspressoContrib: "androidx.test.espresso:espresso-contrib:$androidxTestEspressoVersion",
+            androidxComposeUiTestJunit : "androidx.compose.ui:ui-test-junit4:$androidxComposeUiVersion"
     ]
 }

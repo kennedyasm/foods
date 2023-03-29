@@ -1,6 +1,6 @@
 package com.example.data.asserts
 
-import com.example.domain.models.FoodRecipeItemUi
+import com.example.foods.domain.models.FoodRecipeItemUi
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 

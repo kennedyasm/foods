@@ -1,8 +1,8 @@
 package com.example.data.doubles
 
-import com.example.data.local.entities.FoodRecipeItemEntity
-import com.example.data.network.dto.FoodRecipeItemDto
-import com.example.data.network.dto.FoodRecipesResponseDto
+import com.example.foods.data.local.database.entities.FoodRecipeItemEntity
+import com.example.foods.data.network.dto.FoodRecipeItemDto
+import com.example.foods.data.network.dto.FoodRecipesResponseDto
 
 object FoodRecipeItemEntityDoubles {
     fun provideFoodRecipeItemEntityList() = listOf(
@@ -10,7 +10,7 @@ object FoodRecipeItemEntityDoubles {
         provideCaldoDePiedraFoodRecipeItemEntity()
     )
 
-    fun provideBowThaiFoodRecipeItemEntity() =
+    private fun provideBowThaiFoodRecipeItemEntity() =
         FoodRecipeItemEntity(
             1,
             "BOWL THAI",

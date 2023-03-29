@@ -46,6 +46,7 @@ android {
 dependencies {
     implementation generalDependencies.androidxRoomRxJava3
     implementation generalDependencies.androidxRoomKtx
+    implementation generalDependencies.reactivexRxAndroid
 
     implementation generalDependencies.androidxRoomRuntime
     kapt generalDependencies.androidxRoomCompile
@@ -62,7 +63,6 @@ dependencies {
     debugImplementation testDependencies.kotlinxCoroutinesTest
 
     implementation project(':domain')
-    implementation project(':core:async')
     implementation project(':data:local')
     implementation project(':data:network')
     api project(':core:testing')

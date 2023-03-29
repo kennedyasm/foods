@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Card
 import androidx.compose.material3.Surface
@@ -17,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -29,13 +30,12 @@ import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
 import coil.request.ImageRequest
-import com.example.domain.State
-import com.example.domain.State.Companion.to
-import com.example.domain.models.FoodRecipeDetailsUi
-import com.example.foods.core.design.R
-import com.example.foods.ui.common.ImageIcon
+import com.example.foods.domain.State
+import com.example.foods.domain.State.Companion.to
+import com.example.foods.domain.models.FoodRecipeDetailsUi
 import com.example.foods.ui.common.CircleProgress
 import com.example.foods.ui.common.ErrorScreen
+import com.example.foods.ui.common.ImageIcon
 import com.example.foods.ui.common.VerticalSpace
 
 @Composable
@@ -49,10 +49,9 @@ fun FoodRecipeDetailsScreen(
     when (val state = composableState.value) {
         is State.Success -> FoodRecipeDetailsScreenView(state.to(), navigateToLocation)
         is State.Loading -> CircleProgress()
-        is State.Error -> ErrorScreen(errorMessage = "Información no disponible")
+        is State.Error -> ErrorScreen(stringResource(id = R.string.details_error))
     }
 }
-
 
 @Composable
 fun FoodRecipeDetailsScreenView(item: FoodRecipeDetailsUi, navigateToLocation: (Int) -> Unit) {
@@ -64,10 +63,10 @@ fun FoodRecipeDetailsScreenView(item: FoodRecipeDetailsUi, navigateToLocation: (
                     FoodRecipeMainDetails(item) { navigateToLocation.invoke(item.id) }
                 }
 
-                item { FoodRecipeDetailsTitleDescription("Ingredientes:") }
+                item { FoodRecipeDetailsTitleDescription(stringResource(id = R.string.ingredients_label)) }
                 addIngredients(item.ingredients)
 
-                item { FoodRecipeDetailsTitleDescription("Pasos para preparar:") }
+                item { FoodRecipeDetailsTitleDescription(stringResource(id = R.string.preparation_steps_label)) }
                 addPreparationSteps(item.preparation)
             }
         }
@@ -76,10 +75,7 @@ fun FoodRecipeDetailsScreenView(item: FoodRecipeDetailsUi, navigateToLocation: (
 
 @Composable
 fun FoodRecipeMainDetails(item: FoodRecipeDetailsUi, navigateToLocation: () -> Unit) {
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        modifier = Modifier.padding(top = 12.dp)
-    ) {
+    Card(modifier = Modifier.padding(top = 12.dp)) {
         Column {
 
             LoadFoodRecipeImageDetails(item.imageUrl)
@@ -102,16 +98,15 @@ fun FoodRecipeMainDetails(item: FoodRecipeDetailsUi, navigateToLocation: () -> U
 @Composable
 fun FoodRecipeDetailsOrigin(origin: String, navigateToMap: () -> Unit) {
     Row {
-        Text("Origen: $origin", textAlign = TextAlign.Center)
+        Text(stringResource(id = R.string.origin, origin), textAlign = TextAlign.Center)
         ClickableText(
-            text = AnnotatedString("Ver en el mapa"),
+            text = AnnotatedString(stringResource(id = R.string.open_detail_map)),
             onClick = { navigateToMap.invoke() },
             style = TextStyle(textDecoration = TextDecoration.Underline),
             modifier = Modifier.padding(start = 8.dp),
         )
     }
 }
-
 
 @Composable
 fun LoadFoodRecipeImageDetails(imageUrl: String) {
@@ -120,14 +115,14 @@ fun LoadFoodRecipeImageDetails(imageUrl: String) {
             .data(imageUrl)
             .crossfade(true)
             .build(),
-        contentDescription = "food recipe image",
+        contentDescription = null,
         modifier = Modifier
             .fillMaxWidth()
             .height(180.dp),
         contentScale = ContentScale.Crop
     ) {
         when (painter.state) {
-            is AsyncImagePainter.State.Error -> ImageIcon(R.mipmap.ic_broken_image)
+            is AsyncImagePainter.State.Error -> ImageIcon(com.example.foods.core.design.R.mipmap.ic_broken_image)
             else -> SubcomposeAsyncImageContent()
         }
     }

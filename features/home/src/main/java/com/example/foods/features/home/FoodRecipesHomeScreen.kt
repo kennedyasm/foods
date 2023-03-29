@@ -2,15 +2,14 @@ package com.example.foods.features.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -18,10 +17,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Card
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -32,15 +31,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -52,18 +48,18 @@ import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
 import coil.request.ImageRequest
-import com.example.domain.State
-import com.example.domain.State.Companion.to
-import com.example.domain.models.FoodRecipeItemUi
 import com.example.foods.core.design.R
-import com.example.foods.ui.common.ImageIcon
+import com.example.foods.domain.State
+import com.example.foods.domain.State.Companion.to
+import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.ui.common.CircleProgress
 import com.example.foods.ui.common.ErrorScreen
+import com.example.foods.ui.common.ImageIcon
+import com.example.foods.features.home.R as HomeR
 
 @Composable
 fun FoodRecipesHomeScreen(
-    viewModel: FoodRecipesViewModel = hiltViewModel(),
-    navigateTo: (Int) -> Unit
+    viewModel: FoodRecipesViewModel = hiltViewModel(), navigateToDetails: (Int) -> Unit
 ) {
 
     val foodRecipesState by viewModel.foodRecipes.collectAsStateWithLifecycle()
@@ -74,8 +70,7 @@ fun FoodRecipesHomeScreen(
 
     when (val state = foodRecipesState) {
         is State.Success -> {
-            HomeScreenView(
-                foodRecipeList = state.to(),
+            HomeScreenView(foodRecipeList = state.to(),
                 searchText = searchText.value,
                 hasSearchFocus = hasSearchFocus,
                 onValueChange = viewModel::onSearchTextChanged,
@@ -84,18 +79,17 @@ fun FoodRecipesHomeScreen(
                 onSearchViewHasFocus = {
                     hasSearchFocus = it
                     viewModel.hasSearchFocus(it)
-                }
-            ) {
-                navigateTo.invoke(it)
-            }
+                }) { navigateToDetails.invoke(it) }
         }
         is State.Loading -> CircleProgress()
-        is State.Error -> ErrorScreen(state.message) {
-            viewModel.refreshFoodRecipes()
+        is State.Error -> {
+            ErrorScreen(
+                stringResource(id = HomeR.string.error, state.message)
+            ) {
+                viewModel.refreshFoodRecipes()
+            }
         }
     }
-
-
 }
 
 @Composable
@@ -113,103 +107,24 @@ fun HomeScreenView(
     val state = rememberLazyGridState()
 
     Surface {
-
         Column {
-
-            Row(modifier = Modifier.height(IntrinsicSize.Min)) {
-
-                OutlinedTextField(
-                    value = searchText, onValueChange = onValueChange,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                        .align(Alignment.CenterVertically)
-                        .onFocusChanged {
-                            onSearchViewHasFocus.invoke(it.hasFocus)
-                        }
-                        .semantics {
-                            contentDescription = "search view"
-                        }
-                        .weight(.9f),
-                    placeholder = { Text(text = "Buscar receta") },
-                    leadingIcon = {
-                        if (hasSearchFocus) {
-                            IconButton(onClick = {
-                                onValueChange.invoke("")
-                                onClearFocus.invoke()
-                            }) {
-                                Icon(
-                                    painter = painterResource(id = R.mipmap.ic_back),
-                                    contentDescription = null,
-                                    modifier = Modifier.size(16.dp)
-                                )
-                            }
-                        } else {
-                            Icon(
-                                painter = painterResource(id = R.mipmap.ic_search),
-                                contentDescription = null,
-                                modifier = Modifier.size(16.dp)
-                            )
-                        }
-
-                    },
-                    trailingIcon = {
-
-                        if (searchText.isNotBlank()) {
-                            IconButton(
-                                onClick = {
-                                    onValueChange.invoke("")
-                                    onClearFocus.invoke()
-
-                                },
-                                modifier = Modifier.size(16.dp),
-                            ) {
-                                Icon(
-                                    painter = painterResource(id = R.mipmap.ic_close),
-                                    contentDescription = null,
-                                )
-                            }
-                        }
-
-                    },
-                    keyboardOptions = KeyboardOptions(
-                        capitalization = KeyboardCapitalization.None,
-                        autoCorrect = true,
-                        keyboardType = KeyboardType.Text,
-                        imeAction = ImeAction.Search
-                    ),
-                    keyboardActions = KeyboardActions(onSearch = {
-                        onValueChange.invoke(searchText)
-                        onClearFocus.invoke()
-                    }),
-                    shape = RoundedCornerShape(40.dp)
+            Column {
+                SearchText(
+                    searchText,
+                    onValueChange,
+                    onSearchViewHasFocus,
+                    hasSearchFocus,
+                    onClearFocus
                 )
                 if (isSearching) {
-                    CircularProgressIndicator(
+                    LinearProgressIndicator(
                         modifier = Modifier
-                            .padding(end = 8.dp)
-                            .align(Alignment.CenterVertically)
+                            .padding(bottom = 4.dp)
+                            .align(Alignment.CenterHorizontally)
                     )
                 }
-
-
             }
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                contentPadding = PaddingValues(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                verticalArrangement = Arrangement.spacedBy(24.dp),
-                modifier = Modifier
-                    .padding(horizontal = 8.dp)
-                    .fillMaxSize()
-                    .testTag("home:recipes"),
-                state = state,
-            ) {
-                items(foodRecipeList) {
-                    FoodRecipeItemCard(it, onFoodRecipeItemClick)
-                }
-            }
-
+            FoodRecipesList(foodRecipeList, state, onFoodRecipeItemClick)
         }
 
     }
@@ -219,10 +134,7 @@ fun HomeScreenView(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FoodRecipeItemCard(item: FoodRecipeItemUi, onFoodRecipeItemClick: (Int) -> Unit) {
-    Card(
-        shape = RoundedCornerShape(12.dp),
-        onClick = { onFoodRecipeItemClick.invoke(item.id) }
-    ) {
+    Card(onClick = { onFoodRecipeItemClick.invoke(item.id) }) {
         Column {
             LoadFoodRecipeImage(item.imageUrl)
             FoodRecipeTitleText(item.name)
@@ -233,15 +145,11 @@ fun FoodRecipeItemCard(item: FoodRecipeItemUi, onFoodRecipeItemClick: (Int) -> U
 @Composable
 fun LoadFoodRecipeImage(imageUrl: String) {
     SubcomposeAsyncImage(
-        model = ImageRequest.Builder(LocalContext.current)
-            .data(imageUrl)
-            .crossfade(true)
-            .build(),
-        contentDescription = "food recipe image",
+        model = ImageRequest.Builder(LocalContext.current).data(imageUrl).crossfade(true).build(),
+        contentDescription = null,
         modifier = Modifier
             .fillMaxWidth()
-            .height(200.dp)
-            .clip(RoundedCornerShape(8.dp)),
+            .height(200.dp),
         contentScale = ContentScale.Crop
     ) {
         when (painter.state) {
@@ -261,3 +169,96 @@ fun FoodRecipeTitleText(title: String) {
             .fillMaxWidth(),
     )
 }
+
+@Composable
+fun SearchIcon(iconResourceId: Int) {
+    Icon(
+        painter = painterResource(id = iconResourceId),
+        contentDescription = null,
+        modifier = Modifier.size(16.dp)
+    )
+}
+
+@Composable
+fun LeadingSearchIcon(hasSearchFocus: Boolean, onClick: () -> Unit) {
+    if (hasSearchFocus) {
+        IconButton(onClick = onClick) { SearchIcon(R.mipmap.ic_back) }
+    } else {
+        SearchIcon(R.mipmap.ic_search)
+    }
+}
+
+@Composable
+fun TrailingSearchIcon(searchText: String, onClick: () -> Unit) {
+    if (searchText.isNotBlank()) {
+        IconButton(onClick = onClick) {
+            SearchIcon(R.mipmap.ic_close)
+        }
+    }
+}
+
+@Composable
+fun SearchText(
+    searchText: String,
+    onValueChange: (String) -> Unit,
+    onSearchViewHasFocus: (Boolean) -> Unit,
+    hasSearchFocus: Boolean,
+    onClearFocus: () -> Unit
+) {
+    OutlinedTextField(
+        value = searchText,
+        onValueChange = onValueChange,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(12.dp)
+            .onFocusChanged { onSearchViewHasFocus.invoke(it.hasFocus) },
+        placeholder = { Text(text = stringResource(id = com.example.foods.features.home.R.string.search_hint_label)) },
+        leadingIcon = {
+            LeadingSearchIcon(hasSearchFocus) {
+                onClearFocus.invoke()
+                onValueChange.invoke("")
+            }
+        },
+        trailingIcon = {
+            TrailingSearchIcon(searchText) {
+                onClearFocus.invoke()
+                onValueChange.invoke("")
+            }
+        },
+        keyboardOptions = searchKeyBoardOptions,
+        keyboardActions = KeyboardActions(onSearch = {
+            onClearFocus.invoke()
+            onValueChange.invoke(searchText)
+        }),
+        shape = RoundedCornerShape(16.dp)
+    )
+}
+
+@Composable
+fun FoodRecipesList(
+    foodRecipeList: List<FoodRecipeItemUi>,
+    state: LazyGridState,
+    onFoodRecipeItemClick: (Int) -> Unit
+) {
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        contentPadding = PaddingValues(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(24.dp),
+        modifier = Modifier
+            .padding(horizontal = 8.dp)
+            .fillMaxSize(),
+        state = state,
+    ) {
+        items(foodRecipeList) {
+            FoodRecipeItemCard(it, onFoodRecipeItemClick)
+        }
+    }
+}
+
+private val searchKeyBoardOptions = KeyboardOptions(
+    capitalization = KeyboardCapitalization.None,
+    autoCorrect = true,
+    keyboardType = KeyboardType.Text,
+    imeAction = ImeAction.Search
+)

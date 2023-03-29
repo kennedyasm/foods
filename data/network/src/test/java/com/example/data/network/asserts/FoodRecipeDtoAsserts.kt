@@ -1,6 +1,6 @@
 package com.example.data.network.core
 
-import com.example.data.network.dto.FoodRecipesResponseDto
+import com.example.foods.data.network.dto.FoodRecipesResponseDto
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 

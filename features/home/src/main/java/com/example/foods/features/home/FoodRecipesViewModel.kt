@@ -2,11 +2,11 @@ package com.example.foods.features.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.State
-import com.example.domain.State.Companion.to
-import com.example.domain.models.FoodRecipeItemUi
-import com.example.domain.models.FoodRecipeItemUi.Companion.isMatchingWithSearchQuery
-import com.example.domain.usecases.GetFoodRecipesUseCase
+import com.example.foods.domain.State
+import com.example.foods.domain.State.Companion.to
+import com.example.foods.domain.models.FoodRecipeItemUi
+import com.example.foods.domain.models.FoodRecipeItemUi.Companion.isMatchingWithSearchQuery
+import com.example.foods.domain.usecases.GetFoodRecipesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.coroutines.FlowPreview
@@ -37,7 +37,6 @@ class FoodRecipesViewModel @Inject constructor(
     private val _isSearching: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val isSearching: StateFlow<Boolean> = _isSearching.asStateFlow()
 
-
     @OptIn(FlowPreview::class)
     val foodRecipes: StateFlow<State> = searchText
         .onEach { _isSearching.update { _hasSearchFocus.value } }
@@ -54,8 +53,18 @@ class FoodRecipesViewModel @Inject constructor(
         getFoodRecipes()
     }
 
-    fun hasSearchFocus(hasFocus: Boolean) {
-        _hasSearchFocus.value = hasFocus
+    private fun getFoodRecipes() {
+        getFoodRecipesUseCase.invoke()
+            .subscribe(::successGetFoodRecipes, ::errorGetFoodRecipes)
+            .also(disposables::add)
+    }
+
+    private fun successGetFoodRecipes(foodRecipes: List<FoodRecipeItemUi>) {
+        _foodRecipes.value = State.Success(foodRecipes)
+    }
+
+    private fun errorGetFoodRecipes(throwable: Throwable) {
+        _foodRecipes.value = State.Error(throwable)
     }
 
     private fun filterQueryTextInState(queryText: String, foodRecipesState: State): State {
@@ -73,6 +82,10 @@ class FoodRecipesViewModel @Inject constructor(
         }
     }
 
+    fun hasSearchFocus(hasFocus: Boolean) {
+        _hasSearchFocus.value = hasFocus
+    }
+
     fun onSearchTextChanged(text: String) {
         _searchText.value = text
     }
@@ -80,20 +93,6 @@ class FoodRecipesViewModel @Inject constructor(
     fun refreshFoodRecipes() {
         _foodRecipes.value = State.Loading
         getFoodRecipes()
-    }
-
-    private fun getFoodRecipes() {
-        getFoodRecipesUseCase.invoke()
-            .subscribe(::successGetFoodRecipes, ::errorGetFoodRecipes)
-            .also(disposables::add)
-    }
-
-    private fun successGetFoodRecipes(foodRecipes: List<FoodRecipeItemUi>) {
-      _foodRecipes.value = State.Success(foodRecipes)
-    }
-
-    private fun errorGetFoodRecipes(throwable: Throwable) {
-        _foodRecipes.value = State.Error(throwable)
     }
 
     override fun onCleared() {

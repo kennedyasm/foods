@@ -1,7 +1,7 @@
 package com.example.data.network.doubles
 
-import com.example.data.network.dto.FoodRecipeItemDto
-import com.example.data.network.dto.FoodRecipesResponseDto
+import com.example.foods.data.network.dto.FoodRecipeItemDto
+import com.example.foods.data.network.dto.FoodRecipesResponseDto
 
 fun provideFoodRecipesResponseDto() =
     FoodRecipesResponseDto(

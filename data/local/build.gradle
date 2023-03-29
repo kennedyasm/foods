@@ -14,42 +14,20 @@ android {
         properties.load(keystorePropertiesFile.newDataInputStream())
     }
 
-    namespace 'com.example.data.local'
+    namespace 'com.example.foods.data.local'
     compileSdk properties.getProperty("target.sdk").toInteger()
 
     defaultConfig {
         minSdk properties.getProperty("min.sdk").toInteger()
         targetSdk properties.getProperty("target.sdk").toInteger()
 
-        versionCode properties.getProperty("version.code").toInteger()
-        versionName properties.getProperty("version.name")
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-    }
-
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
     }
 
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
-            buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
-            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path") ?: ""
-        }
-        debug {
-            buildConfigField "String", "BASE_URL", properties.getProperty("base.url.debug") ?: ""
-            buildConfigField "String", "API_KEY", properties.getProperty("api.key.debug") ?: ""
-            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path.debug") ?: ""
         }
     }
 }
@@ -59,34 +37,35 @@ dependencies {
 
     implementation generalDependencies.androidxRoomRuntime
     kapt generalDependencies.androidxRoomCompile
+
+    implementation generalDependencies.daggerHilt
+    kapt generalDependencies.daggerHiltCompiler
+
     implementation generalDependencies.retrofitGsonConverter
-
-    implementation generalDependencies.retrofitAdapterRxJava
-    implementation generalDependencies.reactivexRxAndroid
-
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-compiler:2.44"
-
-    implementation generalDependencies.okHttpLoginInterceptor
-
 
     testImplementation testDependencies.androidxArchCoreTest
     testImplementation testDependencies.mockitoCore
     testImplementation testDependencies.androidxTestCore
-    testImplementation testDependencies.androidxTestMonitor
     testImplementation testDependencies.kotlinxCoroutinesTest
 
-
-
-    implementation project(path: ':core:async')
-    testImplementation project(path: ':core:testing')
-    androidTestImplementation project(path: ':core:testing')
-
     androidTestImplementation androidTestDependencies.androidxJUnitTest
-    androidTestImplementation androidTestDependencies.androidxEspressoTest
     androidTestImplementation androidTestDependencies.androidxArchCoreTest
     androidTestImplementation testDependencies.mockitoCore
     androidTestImplementation androidTestDependencies.androidxTextRunner
     androidTestImplementation androidTestDependencies.androidxTestRules
     androidTestImplementation testDependencies.kotlinxCoroutinesTest
+
+    testImplementation project(path: ':core:testing')
+    androidTestImplementation project(path: ':core:testing')
+
+    // For Robolectric tests.
+    //debugImplementation("com.google.dagger:hilt-android-testing:2.45")
+    // ...with Kotlin.
+   // kaptTest("com.google.dagger:hilt-android-compiler:2.45")
+
+    // For instrumented tests.
+    //androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")
+    // ...with Kotlin.
+    //kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.45")
+
 }

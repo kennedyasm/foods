@@ -3,9 +3,8 @@ package com.example.foods.feature.location
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.State
-import com.example.domain.models.FoodRecipeMapDetailUi
-import com.example.domain.usecases.GetFoodRecipeMapDetailByIdUseCase
+import com.example.foods.domain.State
+import com.example.foods.domain.usecases.GetFoodRecipeMapDetailByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -20,13 +19,16 @@ class FoodRecipeDetailMapViewModel @Inject constructor(
 ) : ViewModel() {
 
     val mapDetailState: StateFlow<State> = flow {
-        savedStateHandle.get<String>("food_recipe_id")?.toIntOrNull()?.let {
+        savedStateHandle.get<String>(RECIPE_ID)?.toIntOrNull()?.let {
             emit(State.Success(getFoodRecipeMapDetailByIdUseCase(it)))
-        } ?: emit(State.Success(FoodRecipeMapDetailUi.empty()))
+        } ?: emit(State.Error(Throwable()))
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(0),
         initialValue = State.Loading,
     )
 
+    companion object {
+        private const val RECIPE_ID = "food_recipe_id"
+    }
 }

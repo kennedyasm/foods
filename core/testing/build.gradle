@@ -66,7 +66,4 @@ dependencies {
     implementation testDependencies.kotlinxCoroutinesTest
 
     implementation testDependencies.mockWebServer
-
-    implementation project(path: ':core:async')
-
 }

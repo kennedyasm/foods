@@ -14,28 +14,16 @@ android {
         properties.load(keystorePropertiesFile.newDataInputStream())
     }
 
-    namespace 'com.example.domain'
+    namespace 'com.example.foods.domain'
     compileSdk properties.getProperty("target.sdk").toInteger()
-
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
 }
 
 dependencies {
 
-
-    implementation generalDependencies.retrofitAdapterRxJava
     implementation generalDependencies.reactivexRxAndroid
 
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-compiler:2.44"
+    implementation generalDependencies.daggerHilt
+    kapt generalDependencies.daggerHiltCompiler
 
     testImplementation testDependencies.androidxArchCoreTest
     testImplementation testDependencies.mockitoCore

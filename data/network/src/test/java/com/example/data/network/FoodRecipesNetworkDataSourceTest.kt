@@ -5,8 +5,9 @@ import com.example.foods.core.testing.given
 import com.example.foods.core.testing.testAndGetData
 import com.example.data.network.core.assertGetFoodRecipesResponseDto
 import com.example.data.network.doubles.provideFoodRecipesResponseDto
-import com.example.data.network.datasource.FoodRecipesNetworkDataSource
-import com.example.data.network.datasource.FoodRecipesNetworkDataSourceImpl
+import com.example.foods.data.network.api.FoodRecipesApiServices
+import com.example.foods.data.network.datasource.FoodRecipesNetworkDataSource
+import com.example.foods.data.network.datasource.FoodRecipesNetworkDataSourceImpl
 import io.reactivex.rxjava3.core.Single
 import org.junit.Before
 import org.junit.Rule

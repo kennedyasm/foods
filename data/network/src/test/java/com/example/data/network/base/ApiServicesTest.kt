@@ -2,9 +2,9 @@ package com.example.data.network.base
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.data.network.BuildConfig
-import com.example.data.network.auth.AuthInterceptor
-import com.example.data.network.retrofit.RetrofitHelper
-import com.example.data.network.retrofit.RetrofitHelperImpl
+import com.example.foods.data.network.auth.AuthInterceptor
+import com.example.foods.data.network.retrofit.RetrofitHelper
+import com.example.foods.data.network.retrofit.RetrofitHelperImpl
 import okhttp3.Interceptor
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After

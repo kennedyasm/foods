@@ -1,19 +1,20 @@
 package com.example.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.foods.core.testing.RxSchedulersImplTest
-import com.example.foods.core.testing.given
-import com.example.foods.core.testing.testAndGetData
 import com.example.data.asserts.assertFoodRecipeDetailsUi
 import com.example.data.asserts.assertFoodRecipeItemUi
 import com.example.data.asserts.assertFoodRecipeItemUiList
 import com.example.data.doubles.FoodRecipeItemEntityDoubles.provideCaldoDePiedraFoodRecipeItemEntity
 import com.example.data.doubles.FoodRecipeItemEntityDoubles.provideFoodRecipeItemEntityList
 import com.example.data.doubles.FoodRecipesDtoDoubles.provideFoodRecipesResponseDto
-import com.example.data.local.datasource.FoodRecipesLocalDataSource
-import com.example.data.network.datasource.FoodRecipesNetworkDataSource
-import com.example.data.repository.FoodRecipesRepositoryImpl
-import com.example.domain.repository.FoodRecipesRepository
+import com.example.foods.core.testing.given
+import com.example.foods.core.testing.testAndGetData
+import com.example.foods.data.local.datasource.FoodRecipesLocalDataSource
+import com.example.foods.data.network.datasource.FoodRecipesNetworkDataSource
+import com.example.foods.data.repository.FoodRecipesRepositoryImpl
+import com.example.foods.data.test.FakeRxSchedulers
+import com.example.foods.data.toFoodRecipeItemEntityList
+import com.example.foods.domain.repository.FoodRecipesRepository
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -44,7 +45,7 @@ class FoodRecipesRepositoryTest {
     @Mock
     lateinit var networkDataSource: FoodRecipesNetworkDataSource
 
-    private val schedulers = RxSchedulersImplTest()
+    private val schedulers = FakeRxSchedulers()
     private val dispatcher = UnconfinedTestDispatcher()
     private lateinit var foodRecipesRepository: FoodRecipesRepository
 
