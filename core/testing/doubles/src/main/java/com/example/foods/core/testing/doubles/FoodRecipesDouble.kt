@@ -1,6 +1,8 @@
 package com.example.foods.core.testing.doubles
 
+import com.example.foods.domain.models.FoodRecipeDetailsUi
 import com.example.foods.domain.models.FoodRecipeItemUi
+import com.example.foods.domain.models.FoodRecipeLocationMapUi
 
 fun provideFoodRecipeItemUiList() =
     listOf(provideFoodRecipeItemUiBowlThail(), provideFoodRecipeItemUiCaldoDePiedra())
@@ -19,6 +21,25 @@ fun provideFoodRecipeItemUiCaldoDePiedra() =
         "CALDO DE PIEDRA",
         "https://www.cocinavital.mx/wp-content/uploads/2017/09/caldo-de-piedra.jpg",
         caldoDePiedraIngredients
+    )
+
+fun provideFoodRecipeDetailsUi() =
+    FoodRecipeDetailsUi(
+        2,
+        "CALDO DE PIEDRA",
+        "https://www.cocinavital.mx/wp-content/uploads/2017/09/caldo-de-piedra.jpg",
+        "Prueba esta receta de caldo de piedra, ya que se trata de un platillo elaborado por la comunidad de San Felipe Usila, en Oaxaca. Por si fuera poco, este caldo data de la época prehispánica y se prepara en una jícara, en donde se mezcla el pescado, el camarón, las verduras, el caldo y, por último, una piedra al rojo vivo. En esta ocasión, en kiwilimón prepararemos un caldo de piedra en molcajete, ¡atrévete a probarlo!",
+        "Oaxaca",
+        caldoDePiedraIngredients,
+        caldoDePiedraPreparation
+    )
+
+fun provideFoodRecipeLocationMapUi() =
+    FoodRecipeLocationMapUi(
+        2,
+        "CALDO DE PIEDRA",
+        16.762218717945395,
+        -96.9274728874135
     )
 
 val bowlThaiIngredients = listOf(
@@ -61,4 +82,10 @@ val caldoDePiedraIngredients = listOf(
     "al gusto de sal",
     "al gusto de pimienta",
     "al gusto de limón, para acompañar"
+)
+
+val caldoDePiedraPreparation = listOf(
+    "1.- Calienta el aceite vegetal en una olla a fuego medio, agrega las cabezas de camarón, la zanahoria y la cebolla. Cocina por 5 minutos o hasta que cambien de color. Posteriormente, vierte el agua, el epazote, el laurel, el tomillo y el cilantro. Cocina a fuego medio por 30 minutos. Retira del fuego, cuela, reserva y mantén el caldo caliente.",
+    "2.- Calienta el molcajete en una estufa u horno, pero recuerda que tiene que estar muy caliente para que pueda cocerse. Cuando esté bien caliente, retira con guantes y coloca sobre una tabla de madera. Agrega inmediatamente el pescado y el camarón. Mezcla con una pala de madera y cocina por 5 minutos. Vierte el caldo de camarón hasta cubrir y añade el ajo, el jitomate, el chile de árbol, el epazote y sazona con sal, pimienta. Cocina el caldo de piedra por 5 minutos más.",
+    "3.- Sirve el caldo de piedra en el mismo molcajete y acompaña con limón."
 )

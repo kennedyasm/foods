@@ -53,6 +53,13 @@ dependencies {
     debugImplementation generalDependencies.androidxComposeUiTooling
     debugImplementation generalDependencies.androidxComposeUiTestManifest
 
+    testImplementation testDependencies.androidxArchCoreTest
+    testImplementation testDependencies.mockitoCore
+    testImplementation testDependencies.androidxTestCore
+    testImplementation testDependencies.kotlinxCoroutinesTest
+
     implementation project(':domain')
     implementation project(':core:ui')
+    testImplementation project(':core:testing')
+    testImplementation project(':core:testing:doubles')
 }

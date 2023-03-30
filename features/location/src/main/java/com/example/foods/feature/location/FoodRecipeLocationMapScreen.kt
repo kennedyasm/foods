@@ -26,9 +26,9 @@ import com.google.maps.android.compose.rememberCameraPositionState
 private const val CAMERA_ZOOM = 7f
 
 @Composable
-fun FoodRecipeLocationMapScreen(viewModel: FoodRecipeDetailMapViewModel = hiltViewModel()) {
-    val composeState = viewModel.mapDetailState.collectAsStateWithLifecycle()
-    when (val state = composeState.value) {
+fun FoodRecipeLocationMapScreen(viewModel: FoodRecipeLocationMapViewModel = hiltViewModel()) {
+    val locationMapState = viewModel.locationMap.collectAsStateWithLifecycle()
+    when (val state = locationMapState.value) {
         is State.Success -> FoodRecipeLocationMapScreenView(state.to())
         is State.Loading -> CircleProgress()
         is State.Error -> ErrorScreen(errorMessage = stringResource(id = R.string.no_available_map))

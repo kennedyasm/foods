@@ -13,15 +13,15 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class FoodRecipeDetailMapViewModel @Inject constructor(
+class FoodRecipeLocationMapViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val getFoodRecipeLocationMapByIdUseCase: GetFoodRecipeLocationMapByIdUseCase
 ) : ViewModel() {
 
-    val mapDetailState: StateFlow<State> = flow {
+    val locationMap: StateFlow<State> = flow {
         savedStateHandle.get<String>(RECIPE_ID)?.toIntOrNull()?.let {
             emit(State.Success(getFoodRecipeLocationMapByIdUseCase(it)))
-        } ?: emit(State.Error(Throwable()))
+        } ?: emit(State.Error(Throwable("no location map information")))
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(0),

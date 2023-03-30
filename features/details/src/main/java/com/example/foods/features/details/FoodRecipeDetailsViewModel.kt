@@ -21,7 +21,7 @@ class FoodRecipeDetailsViewModel @Inject constructor(
     val foodRecipeDetails: StateFlow<State> = flow {
         savedStateHandle.get<String>(RECIPE_ID)?.toIntOrNull()?.let {
             emit(State.Success(getFoodRecipeDetailsByIdUseCase(it)))
-        } ?: emit(State.Error(Throwable()))
+        } ?: emit(State.Error(Throwable("no details information")))
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(0),
