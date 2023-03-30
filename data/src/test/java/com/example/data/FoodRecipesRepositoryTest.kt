@@ -9,7 +9,7 @@ import com.example.data.doubles.FoodRecipeItemEntityDoubles.provideFoodRecipeIte
 import com.example.data.doubles.FoodRecipesDtoDoubles.provideFoodRecipesResponseDto
 import com.example.foods.core.testing.given
 import com.example.foods.core.testing.testAndGetData
-import com.example.foods.data.local.datasource.FoodRecipesLocalDataSource
+import com.example.foods.data.source.local.datasource.FoodRecipesLocalDataSource
 import com.example.foods.data.network.datasource.FoodRecipesNetworkDataSource
 import com.example.foods.data.repository.FoodRecipesRepositoryImpl
 import com.example.foods.data.test.FakeRxSchedulers

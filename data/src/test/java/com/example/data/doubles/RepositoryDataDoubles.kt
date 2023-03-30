@@ -1,6 +1,6 @@
 package com.example.data.doubles
 
-import com.example.foods.data.local.database.entities.FoodRecipeItemEntity
+import com.example.foods.data.source.local.database.entities.FoodRecipeItemEntity
 import com.example.foods.data.network.dto.FoodRecipeItemDto
 import com.example.foods.data.network.dto.FoodRecipesResponseDto
 

@@ -7,8 +7,8 @@ import com.example.foods.data.toFoodRecipeItemEntityList
 import com.example.foods.data.toFoodRecipeItemUi
 import com.example.foods.data.toFoodRecipeItemUiList
 import com.example.foods.data.toFoodRecipeMapDetailUi
-import com.example.foods.data.local.datasource.FoodRecipesLocalDataSource
-import com.example.foods.data.local.database.entities.FoodRecipeItemEntity
+import com.example.foods.data.source.local.datasource.FoodRecipesLocalDataSource
+import com.example.foods.data.source.local.database.entities.FoodRecipeItemEntity
 import com.example.foods.data.scheduler.RxSchedulers
 import com.example.foods.domain.models.FoodRecipeDetailsUi
 import com.example.foods.domain.models.FoodRecipeItemUi
