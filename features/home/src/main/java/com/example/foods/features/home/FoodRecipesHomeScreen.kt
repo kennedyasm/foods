@@ -38,8 +38,6 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -51,14 +49,13 @@ import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
 import coil.request.ImageRequest
-import com.example.foods.core.design.R
 import com.example.foods.domain.State
 import com.example.foods.domain.State.Companion.to
 import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.ui.common.CircleProgress
 import com.example.foods.ui.common.ErrorScreen
 import com.example.foods.ui.common.ImageIcon
-import com.example.foods.features.home.R as HomeR
+import com.example.foods.core.ui.R as UiR
 
 @Composable
 fun FoodRecipesHomeScreen(
@@ -87,7 +84,7 @@ fun FoodRecipesHomeScreen(
         is State.Loading -> CircleProgress()
         is State.Error -> {
             ErrorScreen(
-                stringResource(id = HomeR.string.error, state.message)
+                stringResource(id = R.string.error, state.message)
             ) {
                 viewModel.refreshFoodRecipes()
             }
@@ -129,9 +126,7 @@ fun HomeScreenView(
             }
             FoodRecipesList(foodRecipeList, state, onFoodRecipeItemClick)
         }
-
     }
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -156,7 +151,7 @@ fun LoadFoodRecipeImage(imageUrl: String) {
         contentScale = ContentScale.Crop
     ) {
         when (painter.state) {
-            is AsyncImagePainter.State.Error -> ImageIcon(R.mipmap.ic_broken_image)
+            is AsyncImagePainter.State.Error -> ImageIcon(UiR.mipmap.ic_broken_image)
             else -> SubcomposeAsyncImageContent()
         }
     }
@@ -183,14 +178,14 @@ fun SearchIcon(iconResourceId: Int, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun LeadingSearchIcon(hasSearchFocus: Boolean,onClick: () -> Unit) {
+fun LeadingSearchIcon(hasSearchFocus: Boolean, onClick: () -> Unit) {
 
     if (hasSearchFocus) {
         IconButton(onClick = onClick, modifier = Modifier.testTag("search back button")) {
-            SearchIcon(R.mipmap.ic_back)
+            SearchIcon(UiR.mipmap.ic_back)
         }
     } else {
-        SearchIcon(R.mipmap.ic_search, modifier = Modifier.testTag("search icon"))
+        SearchIcon(UiR.mipmap.ic_search, modifier = Modifier.testTag("search icon"))
     }
 }
 
@@ -198,7 +193,7 @@ fun LeadingSearchIcon(hasSearchFocus: Boolean,onClick: () -> Unit) {
 fun TrailingSearchIcon(searchText: String, onClick: () -> Unit) {
     if (searchText.isNotBlank()) {
         IconButton(onClick = onClick, modifier = Modifier.testTag("clean search text button")) {
-            SearchIcon(R.mipmap.ic_close)
+            SearchIcon(UiR.mipmap.ic_close)
         }
     }
 }
@@ -218,9 +213,8 @@ fun SearchText(
             .fillMaxWidth()
             .padding(12.dp)
             .onFocusChanged { onSearchViewHasFocus.invoke(it.hasFocus) }
-            .semantics { contentDescription = "food recipes search" }
             .testTag("food recipes search"),
-        placeholder = { Text(text = stringResource(id = com.example.foods.features.home.R.string.search_hint_label)) },
+        placeholder = { Text(text = stringResource(id = R.string.search_hint_label)) },
         leadingIcon = {
             LeadingSearchIcon(hasSearchFocus) {
                 onClearFocus.invoke()

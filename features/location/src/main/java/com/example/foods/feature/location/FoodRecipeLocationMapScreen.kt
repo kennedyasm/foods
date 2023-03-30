@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -24,7 +23,7 @@ import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 
-private const val CAMERA_ZOOM = 8f
+private const val CAMERA_ZOOM = 7f
 
 @Composable
 fun FoodRecipeLocationMapScreen(viewModel: FoodRecipeDetailMapViewModel = hiltViewModel()) {
@@ -44,7 +43,9 @@ fun FoodRecipeLocationMapScreenView(mapDetailUi: FoodRecipeLocationMapUi) {
     }
     Card(modifier = Modifier.padding(16.dp)) {
         GoogleMap(
-            modifier = Modifier.fillMaxSize().testTag("food recipe location map"),
+            modifier = Modifier
+                .fillMaxSize()
+                .testTag("food recipe location map"),
             cameraPositionState = cameraPositionState,
         ) {
             Marker(

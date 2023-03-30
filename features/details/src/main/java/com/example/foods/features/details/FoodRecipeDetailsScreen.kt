@@ -37,6 +37,7 @@ import com.example.foods.domain.models.FoodRecipeDetailsUi
 import com.example.foods.ui.common.CircleProgress
 import com.example.foods.ui.common.ErrorScreen
 import com.example.foods.ui.common.ImageIcon
+import com.example.foods.core.ui.R as UiR
 
 @Composable
 fun FoodRecipeDetailsScreen(
@@ -127,7 +128,7 @@ fun LoadFoodRecipeImageDetails(imageUrl: String) {
         contentScale = ContentScale.Crop
     ) {
         when (painter.state) {
-            is AsyncImagePainter.State.Error -> ImageIcon(com.example.foods.core.design.R.mipmap.ic_broken_image)
+            is AsyncImagePainter.State.Error -> ImageIcon(UiR.mipmap.ic_broken_image)
             else -> SubcomposeAsyncImageContent()
         }
     }

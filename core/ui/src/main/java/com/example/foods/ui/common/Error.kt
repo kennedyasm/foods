@@ -18,8 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.foods.core.design.R
-import com.example.foods.core.ui.R as UiR
+import com.example.foods.core.ui.R
 
 @Composable
 fun ErrorScreen(
@@ -54,7 +53,7 @@ fun ErrorScreen(
                     .align(Alignment.CenterHorizontally)
                     .testTag("error retry button")
             ) {
-                Text(text = stringResource(id = UiR.string.retry_label))
+                Text(text = stringResource(id = R.string.retry_label))
             }
         }
     }
