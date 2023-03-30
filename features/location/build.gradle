@@ -37,9 +37,6 @@ android {
 dependencies {
     implementation generalDependencies.androidxRoomRxJava3
 
-    implementation project(':domain')
-    implementation project(':core:ui')
-
     implementation generalDependencies.daggerHilt
     implementation generalDependencies.daggerHiltNavigationCompose
     kapt generalDependencies.daggerHiltCompiler
@@ -55,4 +52,7 @@ dependencies {
 
     debugImplementation generalDependencies.androidxComposeUiTooling
     debugImplementation generalDependencies.androidxComposeUiTestManifest
+
+    implementation project(':domain')
+    implementation project(':core:ui')
 }

@@ -14,7 +14,7 @@ android {
         properties.load(keystorePropertiesFile.newDataInputStream())
     }
 
-    namespace 'com.example.data'
+    namespace 'com.example.foods.data'
     compileSdk properties.getProperty("target.sdk").toInteger()
 
     buildTypes {
@@ -29,17 +29,17 @@ dependencies {
     implementation generalDependencies.androidxRoomRxJava3
     implementation generalDependencies.reactivexRxAndroid
 
-
     implementation generalDependencies.daggerHilt
     kapt generalDependencies.daggerHiltCompiler
+
+    debugImplementation generalDependencies.daggerHiltTesting
+    kaptTest generalDependencies.daggerHiltCompiler
+
+    debugImplementation testDependencies.kotlinxCoroutinesTest
 
     testImplementation testDependencies.androidxArchCoreTest
     testImplementation testDependencies.mockitoCore
     testImplementation testDependencies.androidxTestCore
-    debugImplementation testDependencies.kotlinxCoroutinesTest
-
-    debugImplementation generalDependencies.daggerHiltTesting
-    kaptTest generalDependencies.daggerHiltCompiler
 
     implementation project(':domain')
     implementation project(':data:source:local')

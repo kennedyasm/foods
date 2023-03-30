@@ -28,31 +28,15 @@ android {
         versionName properties.getProperty("version.name")
 
         testInstrumentationRunner "com.example.foods.FoodRecipesTestRunner"
-
     }
 
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
-            buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
-            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path") ?: ""
         }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    hilt {
-        enableTransformForLocalTests = true
-    }
     buildFeatures {
         compose = true
     }
@@ -64,52 +48,27 @@ android {
 }
 
 dependencies {
-
     implementation baseDependencies.materialDesign
+    implementation generalDependencies.daggerHilt
+    implementation generalDependencies.daggerHiltNavigationCompose
+    implementation generalDependencies.navigationCompose
+
+    implementation testDependencies.androidxTestMonitor
+    kapt generalDependencies.daggerHiltCompiler
 
     androidTestImplementation androidTestDependencies.androidxJUnitTest
-    androidTestImplementation androidTestDependencies.androidxEspressoTest
-    androidTestImplementation androidTestDependencies.androidxArchCoreTest
-    androidTestImplementation testDependencies.mockitoCore
     androidTestImplementation androidTestDependencies.androidxTextRunner
-    androidTestImplementation androidTestDependencies.androidxTestRules
-    androidTestImplementation androidTestDependencies.androidxTestEspresso
     androidTestImplementation androidTestDependencies.androidxTestUiautomator
-    androidTestImplementation androidTestDependencies.androidxEspressoConcurrent
-    androidTestImplementation androidTestDependencies.androidxTestEspressoContrib
-    androidTestImplementation testDependencies.kotlinxCoroutinesTest
+    androidTestImplementation androidTestDependencies.androidxComposeUiTestJunit
+    androidTestImplementation testDependencies.mockWebServer
 
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-compiler:2.44"
+    androidTestImplementation generalDependencies.daggerHiltTesting
+    kaptAndroidTest generalDependencies.daggerHiltAndroidCompiler
+
+    implementation project(':data')
     implementation project(':features:home')
     implementation project(':features:details')
     implementation project(':features:location')
     implementation project(':core:design')
     implementation project(':core:testing')
-
-    implementation project(':data')
-
-    // For Robolectric tests.
-    testImplementation("com.google.dagger:hilt-android-testing:2.44")
-    // ...with Kotlin.
-    kaptTest("com.google.dagger:hilt-android-compiler:2.44")
-
-    // For instrumented tests.
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")
-    // ...with Kotlin.
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.44")
-
-
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-    implementation "androidx.navigation:navigation-compose:2.5.3"
-
-    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.4.0")
-    debugImplementation ("androidx.compose.ui:ui-tooling:1.4.0")
-    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.4.0")
-    implementation ("androidx.compose.ui:ui:1.4.0")
-    implementation ("androidx.compose.ui:ui-tooling-preview:1.4.0")
-    implementation ("androidx.compose.material3:material3:1.1.0-beta01")
-    implementation testDependencies.mockWebServer
-
-    implementation testDependencies.androidxTestMonitor
 }

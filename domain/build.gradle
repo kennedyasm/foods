@@ -6,7 +6,6 @@ plugins {
 }
 
 android {
-
     Properties properties = new Properties()
 
     def keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -19,7 +18,6 @@ android {
 }
 
 dependencies {
-
     implementation generalDependencies.reactivexRxAndroid
 
     implementation generalDependencies.daggerHilt
