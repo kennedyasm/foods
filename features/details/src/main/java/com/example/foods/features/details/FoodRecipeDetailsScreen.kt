@@ -50,7 +50,7 @@ fun FoodRecipeDetailsScreen(
     when (val state = composableState.value) {
         is State.Success -> FoodRecipeDetailsScreenView(state.to(), navigateToLocation)
         is State.Loading -> CircleProgress()
-        is State.Error -> ErrorScreen(stringResource(id = R.string.details_error))
+        is State.Error -> ErrorScreen(state.message)
     }
 }
 

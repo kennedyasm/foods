@@ -6,14 +6,12 @@ import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.foods.domain.State
 import com.example.foods.domain.State.Companion.to
 import com.example.foods.domain.models.FoodRecipeLocationMapUi
-import com.example.foods.features.location.R
 import com.example.foods.ui.common.CircleProgress
 import com.example.foods.ui.common.ErrorScreen
 import com.google.android.gms.maps.model.CameraPosition
@@ -31,7 +29,7 @@ fun FoodRecipeLocationMapScreen(viewModel: FoodRecipeLocationMapViewModel = hilt
     when (val state = locationMapState.value) {
         is State.Success -> FoodRecipeLocationMapScreenView(state.to())
         is State.Loading -> CircleProgress()
-        is State.Error -> ErrorScreen(errorMessage = stringResource(id = R.string.no_available_map))
+        is State.Error -> ErrorScreen(state.message)
     }
 }
 

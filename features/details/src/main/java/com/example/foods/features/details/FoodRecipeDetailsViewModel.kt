@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.foods.domain.State
+import com.example.foods.domain.error.FoodRecipesError
 import com.example.foods.domain.usecases.GetFoodRecipeDetailsByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -21,7 +22,7 @@ class FoodRecipeDetailsViewModel @Inject constructor(
     val foodRecipeDetails: StateFlow<State> = flow {
         savedStateHandle.get<String>(RECIPE_ID)?.toIntOrNull()?.let {
             emit(State.Success(getFoodRecipeDetailsByIdUseCase(it)))
-        } ?: emit(State.Error(Throwable("no details information")))
+        } ?: emit(State.Error(FoodRecipesError.NoFoodRecipeFounded()))
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(0),
