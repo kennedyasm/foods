@@ -85,6 +85,7 @@ dependencies {
     implementation project(':features:details')
     implementation project(':features:location')
     implementation project(':core:design')
+    implementation project(':core:testing')
 
     implementation project(':data')
 
@@ -109,4 +110,6 @@ dependencies {
     implementation ("androidx.compose.ui:ui-tooling-preview:1.4.0")
     implementation ("androidx.compose.material3:material3:1.1.0-beta01")
     implementation testDependencies.mockWebServer
+
+    implementation testDependencies.androidxTestMonitor
 }

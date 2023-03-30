@@ -30,7 +30,6 @@ dependencies {
     implementation generalDependencies.daggerHilt
     kapt generalDependencies.daggerHiltCompiler
     implementation testDependencies.mockitoCore
-    implementation testDependencies.androidxTestMonitor
     implementation testDependencies.kotlinxCoroutinesTest
     implementation testDependencies.mockWebServer
 }

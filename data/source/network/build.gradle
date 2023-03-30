@@ -47,7 +47,6 @@ dependencies {
     testImplementation testDependencies.androidxArchCoreTest
     testImplementation testDependencies.mockitoCore
     testImplementation testDependencies.androidxTestCore
-    testImplementation testDependencies.androidxTestMonitor
     testImplementation testDependencies.kotlinxCoroutinesTest
 
     debugImplementation generalDependencies.daggerHiltTesting

@@ -1,7 +1,7 @@
 package com.example.data.source.network.base
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.foods.data.network.BuildConfig
+import com.example.foods.data.source.network.BuildConfig
 import com.example.foods.data.source.network.auth.AuthInterceptor
 import com.example.foods.data.source.network.retrofit.RetrofitHelper
 import com.example.foods.data.source.network.retrofit.RetrofitHelperImpl

@@ -34,6 +34,7 @@ android {
 dependencies {
     implementation generalDependencies.androidxRoomRxJava3
     implementation generalDependencies.androidxRoomKtx
+    implementation generalDependencies.retrofitGsonConverter
 
     implementation generalDependencies.androidxRoomRuntime
     kapt generalDependencies.androidxRoomCompile
