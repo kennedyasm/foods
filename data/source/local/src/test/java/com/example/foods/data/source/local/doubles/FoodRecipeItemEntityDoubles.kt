@@ -1,4 +1,4 @@
-package com.example.foods.data.local.doubles
+package com.example.foods.data.source.local.doubles
 
 import com.example.foods.data.source.local.database.entities.FoodRecipeItemEntity
 

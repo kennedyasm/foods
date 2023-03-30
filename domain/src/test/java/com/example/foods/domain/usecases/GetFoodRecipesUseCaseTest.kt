@@ -1,12 +1,11 @@
 package com.example.foods.domain.usecases
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.foods.domain.asserts.assertFoodRecipeItemUiList
 import com.example.foods.core.testing.given
 import com.example.foods.core.testing.testAndGetData
+import com.example.foods.domain.asserts.assertFoodRecipeItemUiList
 import com.example.foods.domain.doubles.provideFoodRecipeItemUiList
 import com.example.foods.domain.repository.FoodRecipesRepository
-import com.example.foods.domain.usecases.GetFoodRecipesUseCase
 import io.reactivex.rxjava3.core.Single
 import org.junit.Before
 import org.junit.Rule

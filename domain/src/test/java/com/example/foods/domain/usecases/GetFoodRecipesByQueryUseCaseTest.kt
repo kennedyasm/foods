@@ -1,8 +1,8 @@
 package com.example.foods.domain.usecases
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.foods.domain.asserts.assertFoodRecipeItemUi
 import com.example.foods.core.testing.given
+import com.example.foods.domain.asserts.assertFoodRecipeItemUi
 import com.example.foods.domain.doubles.provideFoodRecipeItemUiCaldoDePiedra
 import com.example.foods.domain.repository.FoodRecipesRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi

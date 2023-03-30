@@ -1,11 +1,10 @@
 package com.example.foods.domain.usecases
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.example.foods.core.testing.given
 import com.example.foods.domain.asserts.assertFoodRecipeDetailsUi
 import com.example.foods.domain.doubles.provideFoodRecipeDetails
 import com.example.foods.domain.repository.FoodRecipesRepository
-import com.example.foods.domain.usecases.GetFoodRecipeDetailsByIdUseCase
-import com.example.foods.core.testing.given
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

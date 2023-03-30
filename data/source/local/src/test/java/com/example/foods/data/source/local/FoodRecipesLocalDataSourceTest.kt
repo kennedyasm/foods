@@ -7,8 +7,8 @@ import com.example.foods.data.source.local.asserts.assertFoodRecipeItemEntityLis
 import com.example.foods.data.source.local.database.dao.FoodRecipesDao
 import com.example.foods.data.source.local.datasource.FoodRecipesLocalDataSource
 import com.example.foods.data.source.local.datasource.FoodRecipesLocalDataSourceImpl
-import com.example.foods.data.local.doubles.provideCaldoDePiedraFoodRecipeItemEntity
-import com.example.foods.data.local.doubles.provideFoodRecipeItemEntityList
+import com.example.foods.data.source.local.doubles.provideCaldoDePiedraFoodRecipeItemEntity
+import com.example.foods.data.source.local.doubles.provideFoodRecipeItemEntityList
 import io.reactivex.rxjava3.core.Completable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
