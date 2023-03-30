@@ -1,7 +1,7 @@
 package com.example.foods.data.repository
 
-import com.example.foods.data.network.datasource.FoodRecipesNetworkDataSource
-import com.example.foods.data.network.dto.FoodRecipesResponseDto
+import com.example.foods.data.source.network.datasource.FoodRecipesNetworkDataSource
+import com.example.foods.data.source.network.dto.FoodRecipesResponseDto
 import com.example.foods.data.toFoodRecipeDetailsUi
 import com.example.foods.data.toFoodRecipeItemEntityList
 import com.example.foods.data.toFoodRecipeItemUi

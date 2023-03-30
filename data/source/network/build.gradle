@@ -14,7 +14,7 @@ android {
         properties.load(keystorePropertiesFile.newDataInputStream())
     }
 
-    namespace 'com.example.foods.data.network'
+    namespace 'com.example.foods.data.source.network'
     compileSdk properties.getProperty("target.sdk").toInteger()
 
     buildTypes {

@@ -1,10 +1,10 @@
-package com.example.foods.data.network.di
+package com.example.foods.data.source.network.di
 
 import com.example.foods.core.testing.MySharedMockWebServer
-import com.example.foods.data.network.BuildConfig
-import com.example.foods.data.network.auth.AuthInterceptor
-import com.example.foods.data.network.retrofit.RetrofitHelper
-import com.example.foods.data.network.retrofit.RetrofitHelperImpl
+import com.example.foods.data.source.network.BuildConfig
+import com.example.foods.data.source.network.auth.AuthInterceptor
+import com.example.foods.data.source.network.retrofit.RetrofitHelper
+import com.example.foods.data.source.network.retrofit.RetrofitHelperImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
