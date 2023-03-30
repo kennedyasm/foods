@@ -1,6 +1,7 @@
 package com.example.foods.data.source.local
 
 import android.content.Context
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.example.foods.data.source.local.asserts.assertFoodRecipeItemEntity
@@ -13,11 +14,14 @@ import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class FoodRecipesDaoTest {
 
+    @get:Rule
+    val rule = InstantTaskExecutorRule()
     private lateinit var foodRecipesDao: FoodRecipesDao
     private lateinit var database: FoodRecipesRoomDatabase
 

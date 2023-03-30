@@ -55,7 +55,7 @@ dependencies {
     testImplementation testDependencies.androidxArchCoreTest
     testImplementation testDependencies.mockitoCore
     testImplementation testDependencies.androidxTestCore
-    testImplementation testDependencies.kotlinxCoroutinesTest
+    debugImplementation testDependencies.kotlinxCoroutinesTest
 
     implementation project(':domain')
     implementation project(':core:ui')
