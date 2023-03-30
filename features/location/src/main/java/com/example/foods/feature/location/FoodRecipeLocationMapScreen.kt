@@ -5,13 +5,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.foods.domain.State
 import com.example.foods.domain.State.Companion.to
-import com.example.foods.domain.models.FoodRecipeMapDetailUi
+import com.example.foods.domain.models.FoodRecipeLocationMapUi
 import com.example.foods.features.location.R
 import com.example.foods.ui.common.CircleProgress
 import com.example.foods.ui.common.ErrorScreen
@@ -25,29 +27,29 @@ import com.google.maps.android.compose.rememberCameraPositionState
 private const val CAMERA_ZOOM = 8f
 
 @Composable
-fun FoodRecipeMapDetailsScreen(viewModel: FoodRecipeDetailMapViewModel = hiltViewModel()) {
+fun FoodRecipeLocationMapScreen(viewModel: FoodRecipeDetailMapViewModel = hiltViewModel()) {
     val composeState = viewModel.mapDetailState.collectAsStateWithLifecycle()
     when (val state = composeState.value) {
-        is State.Success -> FoodRecipeMapDetailsScreenView(state.to())
+        is State.Success -> FoodRecipeLocationMapScreenView(state.to())
         is State.Loading -> CircleProgress()
         is State.Error -> ErrorScreen(errorMessage = stringResource(id = R.string.no_available_map))
     }
 }
 
 @Composable
-fun FoodRecipeMapDetailsScreenView(mapDetailUi: FoodRecipeMapDetailUi) {
+fun FoodRecipeLocationMapScreenView(mapDetailUi: FoodRecipeLocationMapUi) {
     val locationLatLong = LatLng(mapDetailUi.latitude, mapDetailUi.longitude)
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(locationLatLong, CAMERA_ZOOM)
     }
     Card(modifier = Modifier.padding(16.dp)) {
         GoogleMap(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().testTag("food recipe location map"),
             cameraPositionState = cameraPositionState,
         ) {
             Marker(
                 state = MarkerState(position = locationLatLong),
-                title = mapDetailUi.name,
+                title = mapDetailUi.name
             )
         }
     }

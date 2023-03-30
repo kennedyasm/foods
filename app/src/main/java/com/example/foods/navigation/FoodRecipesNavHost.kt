@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.foods.feature.location.FoodRecipeMapDetailsScreen
+import com.example.foods.feature.location.FoodRecipeLocationMapScreen
 import com.example.foods.features.details.FoodRecipeDetailsScreen
 import com.example.foods.features.home.FoodRecipesHomeScreen
 import com.example.foods.navigation.NavParamNames.FOOD_RECIPE_ID
@@ -31,7 +31,7 @@ fun FoodRecipesNavHost() {
         }
 
         composable(route = "${Screen.DetailsMap.route}/$FOOD_RECIPE_ID") {
-            FoodRecipeMapDetailsScreen()
+            FoodRecipeLocationMapScreen()
         }
     }
 }

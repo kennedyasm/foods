@@ -11,3 +11,10 @@ fun MockWebServer.enqueueOkHttpJsonResponse(jsonName: String) {
         .setBody(body)
     this.enqueue(mockResponse)
 }
+
+fun MockWebServer.enqueueForbiddenResponse() {
+    val mockResponse = MockResponse()
+        .setResponseCode(HttpURLConnection.HTTP_FORBIDDEN)
+        .setBody("forbidden")
+    this.enqueue(mockResponse)
+}

@@ -5,7 +5,7 @@ import com.example.foods.data.network.dto.FoodRecipeItemDto
 import com.example.foods.data.network.dto.FoodRecipesResponseDto
 import com.example.foods.domain.models.FoodRecipeDetailsUi
 import com.example.foods.domain.models.FoodRecipeItemUi
-import com.example.foods.domain.models.FoodRecipeMapDetailUi
+import com.example.foods.domain.models.FoodRecipeLocationMapUi
 
 fun FoodRecipesResponseDto.toFoodRecipeItemUiList() =
     foodRecipes.map(FoodRecipeItemDto::toFoodRecipeItemUi)
@@ -42,5 +42,5 @@ fun FoodRecipeItemEntity.toFoodRecipeDetailsUi(): FoodRecipeDetailsUi =
 fun FoodRecipeItemEntity.toFoodRecipeItemUi(): FoodRecipeItemUi =
     FoodRecipeItemUi(id, name, imageUrl, ingredients)
 
-fun FoodRecipeItemEntity.toFoodRecipeMapDetailUi(): FoodRecipeMapDetailUi =
-    FoodRecipeMapDetailUi(id, name, latitude, longitude)
+fun FoodRecipeItemEntity.toFoodRecipeMapDetailUi(): FoodRecipeLocationMapUi =
+    FoodRecipeLocationMapUi(id, name, latitude, longitude)

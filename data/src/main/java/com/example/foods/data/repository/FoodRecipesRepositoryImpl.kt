@@ -12,7 +12,7 @@ import com.example.foods.data.local.database.entities.FoodRecipeItemEntity
 import com.example.foods.data.scheduler.RxSchedulers
 import com.example.foods.domain.models.FoodRecipeDetailsUi
 import com.example.foods.domain.models.FoodRecipeItemUi
-import com.example.foods.domain.models.FoodRecipeMapDetailUi
+import com.example.foods.domain.models.FoodRecipeLocationMapUi
 import com.example.foods.domain.repository.FoodRecipesRepository
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
@@ -59,7 +59,7 @@ class FoodRecipesRepositoryImpl @Inject constructor(
 
     }
 
-    override suspend fun getFoodRecipeMapDetailById(id: Int): FoodRecipeMapDetailUi =
+    override suspend fun getFoodRecipeMapDetailById(id: Int): FoodRecipeLocationMapUi =
         withContext(dispatcherIO) {
 
             localDataSource.getFoodRecipeById(id).toFoodRecipeMapDetailUi()

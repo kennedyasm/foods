@@ -35,8 +35,11 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -171,27 +174,30 @@ fun FoodRecipeTitleText(title: String) {
 }
 
 @Composable
-fun SearchIcon(iconResourceId: Int) {
+fun SearchIcon(iconResourceId: Int, modifier: Modifier = Modifier) {
     Icon(
         painter = painterResource(id = iconResourceId),
         contentDescription = null,
-        modifier = Modifier.size(16.dp)
+        modifier = modifier.size(16.dp)
     )
 }
 
 @Composable
-fun LeadingSearchIcon(hasSearchFocus: Boolean, onClick: () -> Unit) {
+fun LeadingSearchIcon(hasSearchFocus: Boolean,onClick: () -> Unit) {
+
     if (hasSearchFocus) {
-        IconButton(onClick = onClick) { SearchIcon(R.mipmap.ic_back) }
+        IconButton(onClick = onClick, modifier = Modifier.testTag("search back button")) {
+            SearchIcon(R.mipmap.ic_back)
+        }
     } else {
-        SearchIcon(R.mipmap.ic_search)
+        SearchIcon(R.mipmap.ic_search, modifier = Modifier.testTag("search icon"))
     }
 }
 
 @Composable
 fun TrailingSearchIcon(searchText: String, onClick: () -> Unit) {
     if (searchText.isNotBlank()) {
-        IconButton(onClick = onClick) {
+        IconButton(onClick = onClick, modifier = Modifier.testTag("clean search text button")) {
             SearchIcon(R.mipmap.ic_close)
         }
     }
@@ -211,12 +217,13 @@ fun SearchText(
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp)
-            .onFocusChanged { onSearchViewHasFocus.invoke(it.hasFocus) },
+            .onFocusChanged { onSearchViewHasFocus.invoke(it.hasFocus) }
+            .semantics { contentDescription = "food recipes search" }
+            .testTag("food recipes search"),
         placeholder = { Text(text = stringResource(id = com.example.foods.features.home.R.string.search_hint_label)) },
         leadingIcon = {
             LeadingSearchIcon(hasSearchFocus) {
                 onClearFocus.invoke()
-                onValueChange.invoke("")
             }
         },
         trailingIcon = {

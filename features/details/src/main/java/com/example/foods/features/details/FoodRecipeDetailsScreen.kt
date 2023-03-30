@@ -2,6 +2,7 @@ package com.example.foods.features.details
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -16,7 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
@@ -36,7 +37,6 @@ import com.example.foods.domain.models.FoodRecipeDetailsUi
 import com.example.foods.ui.common.CircleProgress
 import com.example.foods.ui.common.ErrorScreen
 import com.example.foods.ui.common.ImageIcon
-import com.example.foods.ui.common.VerticalSpace
 
 @Composable
 fun FoodRecipeDetailsScreen(
@@ -57,7 +57,7 @@ fun FoodRecipeDetailsScreen(
 fun FoodRecipeDetailsScreenView(item: FoodRecipeDetailsUi, navigateToLocation: (Int) -> Unit) {
     Surface {
         Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-            LazyColumn {
+            LazyColumn(modifier = Modifier.testTag("food description container")) {
 
                 item {
                     FoodRecipeMainDetails(item) { navigateToLocation.invoke(item.id) }
@@ -66,7 +66,12 @@ fun FoodRecipeDetailsScreenView(item: FoodRecipeDetailsUi, navigateToLocation: (
                 item { FoodRecipeDetailsTitleDescription(stringResource(id = R.string.ingredients_label)) }
                 addIngredients(item.ingredients)
 
-                item { FoodRecipeDetailsTitleDescription(stringResource(id = R.string.preparation_steps_label)) }
+                item {
+                    FoodRecipeDetailsTitleDescription(
+                        stringResource(id = R.string.preparation_steps_label),
+                        modifier = Modifier.testTag("steps to cook")
+                    )
+                }
                 addPreparationSteps(item.preparation)
             }
         }
@@ -82,13 +87,13 @@ fun FoodRecipeMainDetails(item: FoodRecipeDetailsUi, navigateToLocation: () -> U
 
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(item.title)
-                VerticalSpace(16.dp)
+                Spacer(modifier = Modifier.height(16.dp))
 
                 FoodRecipeDetailsOrigin(item.origin, navigateToLocation)
-                VerticalSpace(12.dp)
+                Spacer(modifier = Modifier.height(12.dp))
 
                 Text(item.description)
-                VerticalSpace(12.dp)
+                Spacer(modifier = Modifier.height(12.dp))
             }
 
         }
@@ -129,10 +134,10 @@ fun LoadFoodRecipeImageDetails(imageUrl: String) {
 }
 
 @Composable
-fun FoodRecipeDetailsTitleDescription(text: String) {
+fun FoodRecipeDetailsTitleDescription(text: String, modifier: Modifier = Modifier) {
     Text(
         text = text,
-        modifier = Modifier.padding(8.dp),
+        modifier = modifier.padding(8.dp),
         fontWeight = FontWeight.Bold
     )
 }
@@ -154,4 +159,3 @@ fun FoodRecipeItemDetailText(text: String) {
             .padding(horizontal = 16.dp, vertical = 4.dp),
     )
 }
-
