@@ -17,16 +17,6 @@ android {
     namespace 'com.example.foods.core.testing'
     compileSdk properties.getProperty("target.sdk").toInteger()
 
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
     buildTypes {
         release {
             minifyEnabled true
@@ -37,25 +27,10 @@ android {
 }
 dependencies {
     implementation generalDependencies.androidxRoomRxJava3
-    implementation generalDependencies.androidxRoomKtx
-
-    implementation generalDependencies.androidxRoomRuntime
-    kapt generalDependencies.androidxRoomCompile
-    implementation generalDependencies.retrofitGsonConverter
-
-    implementation generalDependencies.retrofitAdapterRxJava
-    implementation generalDependencies.reactivexRxAndroid
-
-    implementation "com.google.dagger:hilt-android:2.45"
-    kapt "com.google.dagger:hilt-compiler:2.45"
-
-    implementation generalDependencies.okHttpLoginInterceptor
-
-    implementation testDependencies.androidxArchCoreTest
+    implementation generalDependencies.daggerHilt
+    kapt generalDependencies.daggerHiltCompiler
     implementation testDependencies.mockitoCore
-    implementation testDependencies.androidxTestCore
     implementation testDependencies.androidxTestMonitor
     implementation testDependencies.kotlinxCoroutinesTest
-
     implementation testDependencies.mockWebServer
 }
