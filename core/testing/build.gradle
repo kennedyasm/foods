@@ -31,14 +31,6 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
-            buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
-            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path") ?: ""
-        }
-        debug {
-            buildConfigField "String", "BASE_URL", properties.getProperty("base.url.debug") ?: ""
-            buildConfigField "String", "API_KEY", properties.getProperty("api.key.debug") ?: ""
-            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path.debug") ?: ""
         }
     }
 
@@ -54,8 +46,8 @@ dependencies {
     implementation generalDependencies.retrofitAdapterRxJava
     implementation generalDependencies.reactivexRxAndroid
 
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-compiler:2.44"
+    implementation "com.google.dagger:hilt-android:2.45"
+    kapt "com.google.dagger:hilt-compiler:2.45"
 
     implementation generalDependencies.okHttpLoginInterceptor
 

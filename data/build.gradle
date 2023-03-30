@@ -31,51 +31,33 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
-            buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
-            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path") ?: ""
-        }
-        debug {
-            buildConfigField "String", "BASE_URL", properties.getProperty("base.url.debug") ?: ""
-            buildConfigField "String", "API_KEY", properties.getProperty("api.key.debug") ?: ""
-            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path.debug") ?: ""
         }
     }
 }
 
 dependencies {
     implementation generalDependencies.androidxRoomRxJava3
-    implementation generalDependencies.androidxRoomKtx
     implementation generalDependencies.reactivexRxAndroid
 
-    implementation generalDependencies.androidxRoomRuntime
-    kapt generalDependencies.androidxRoomCompile
 
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-compiler:2.44"
-
-    implementation generalDependencies.okHttpLoginInterceptor
+    implementation generalDependencies.daggerHilt
+    kapt generalDependencies.daggerHiltCompiler
 
     testImplementation testDependencies.androidxArchCoreTest
     testImplementation testDependencies.mockitoCore
     testImplementation testDependencies.androidxTestCore
-    //testImplementation testDependencies.kotlinxCoroutinesTest
     debugImplementation testDependencies.kotlinxCoroutinesTest
+
+    debugImplementation generalDependencies.daggerHiltTesting
+    kaptTest generalDependencies.daggerHiltCompiler
 
     implementation project(':domain')
     implementation project(':data:source:local')
     implementation project(':data:source:network')
     api project(':core:testing')
 
-    // For Robolectric tests.
-    debugImplementation("com.google.dagger:hilt-android-testing:2.44")
-    // ...with Kotlin.
-    kaptTest("com.google.dagger:hilt-android-compiler:2.44")
-
     // For instrumented tests.
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.45")
     // ...with Kotlin.
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.44")
-
-    implementation testDependencies.mockWebServer
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.45")
 }

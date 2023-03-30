@@ -64,7 +64,8 @@ ext {
             androidxComposeMaterial3       : "androidx.compose.material3:material3:$androidxComposeMaterial3Version",
             coilCompose                    : "io.coil-kt:coil-compose:$coilComposeVersion",
             androidxLifecycleRuntimeCompose: "androidx.lifecycle:lifecycle-runtime-compose:$androidxLifecycleRuntimeComposeVersion",
-            googleMapsCompose              : "com.google.maps.android:maps-compose:$googleMapsComposeVersion"
+            googleMapsCompose              : "com.google.maps.android:maps-compose:$googleMapsComposeVersion",
+            daggerHiltTesting              : "com.google.dagger:hilt-android-testing:$daggerHiltVersion"
     ]
 
     jUnitVersion = '4.13.2'
