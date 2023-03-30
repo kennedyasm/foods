@@ -41,8 +41,6 @@ dependencies {
     implementation generalDependencies.daggerHilt
     kapt generalDependencies.daggerHiltCompiler
 
-    implementation generalDependencies.retrofitGsonConverter
-
     testImplementation testDependencies.androidxArchCoreTest
     testImplementation testDependencies.mockitoCore
     testImplementation testDependencies.androidxTestCore
@@ -57,15 +55,4 @@ dependencies {
 
     testImplementation project(path: ':core:testing')
     androidTestImplementation project(path: ':core:testing')
-
-    // For Robolectric tests.
-    //debugImplementation("com.google.dagger:hilt-android-testing:2.45")
-    // ...with Kotlin.
-   // kaptTest("com.google.dagger:hilt-android-compiler:2.45")
-
-    // For instrumented tests.
-    //androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")
-    // ...with Kotlin.
-    //kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.45")
-
 }

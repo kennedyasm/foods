@@ -50,16 +50,8 @@ dependencies {
     testImplementation testDependencies.androidxTestMonitor
     testImplementation testDependencies.kotlinxCoroutinesTest
 
+    debugImplementation generalDependencies.daggerHiltTesting
+    kaptTest generalDependencies.daggerHiltAndroidCompiler
+
     debugImplementation project(path: ':core:testing')
-
-    // For Robolectric tests.
-    debugImplementation("com.google.dagger:hilt-android-testing:2.44")
-    // ...with Kotlin.
-    kaptTest("com.google.dagger:hilt-android-compiler:2.44")
-
-    // For instrumented tests.
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")
-    // ...with Kotlin.
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.44")
-
 }

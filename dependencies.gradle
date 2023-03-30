@@ -56,6 +56,7 @@ ext {
             androidxFragmentTesting        : "androidx.fragment:fragment-testing:$androidxFragmentTestingVersion",
             daggerHilt                     : "com.google.dagger:hilt-android:$daggerHiltVersion",
             daggerHiltCompiler             : "com.google.dagger:hilt-compiler:$daggerHiltVersion",
+            daggerHiltAndroidCompiler      : "com.google.dagger:hilt-android-compiler:$daggerHiltVersion",
             daggerHiltNavigationCompose    : "androidx.hilt:hilt-navigation-compose:$daggerHiltNavigationComposeVersion",
             androidxComposeUi              : "androidx.compose.ui:ui:$androidxComposeUiVersion",
             androidxComposeUiPreview       : "androidx.compose.ui:ui-tooling-preview:$androidxComposeUiVersion",
