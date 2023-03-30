@@ -1,0 +1,20 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    Properties properties = new Properties()
+
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    if (keystorePropertiesFile.exists()) {
+        properties.load(keystorePropertiesFile.newDataInputStream())
+    }
+
+    namespace 'com.example.foods.core.testing.doubles'
+    compileSdk properties.getProperty("target.sdk").toInteger()
+}
+
+dependencies {
+    implementation project(':domain')
+}

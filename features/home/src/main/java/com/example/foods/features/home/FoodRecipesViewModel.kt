@@ -42,7 +42,7 @@ class FoodRecipesViewModel @Inject constructor(
         .onEach { _isSearching.update { _hasSearchFocus.value } }
         .debounce(500L)
         .combine(_foodRecipes, ::filterQueryTextInState)
-        .onEach { _isSearching.update { false } }
+        .onEach { _isSearching.value = false }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(0),
