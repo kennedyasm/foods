@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.foods.domain.State
-import com.example.foods.domain.usecases.GetFoodRecipeMapDetailByIdUseCase
+import com.example.foods.domain.usecases.GetFoodRecipeLocationMapByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -15,12 +15,12 @@ import javax.inject.Inject
 @HiltViewModel
 class FoodRecipeDetailMapViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val getFoodRecipeMapDetailByIdUseCase: GetFoodRecipeMapDetailByIdUseCase
+    private val getFoodRecipeLocationMapByIdUseCase: GetFoodRecipeLocationMapByIdUseCase
 ) : ViewModel() {
 
     val mapDetailState: StateFlow<State> = flow {
         savedStateHandle.get<String>(RECIPE_ID)?.toIntOrNull()?.let {
-            emit(State.Success(getFoodRecipeMapDetailByIdUseCase(it)))
+            emit(State.Success(getFoodRecipeLocationMapByIdUseCase(it)))
         } ?: emit(State.Error(Throwable()))
     }.stateIn(
         scope = viewModelScope,

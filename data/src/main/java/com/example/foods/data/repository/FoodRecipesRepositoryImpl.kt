@@ -37,9 +37,7 @@ class FoodRecipesRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getFoodRecipeDetailsById(id: Int): FoodRecipeDetailsUi = withContext(dispatcherIO){
-
         localDataSource.getFoodRecipeById(id).toFoodRecipeDetailsUi()
-
     }
 
     override fun getFoodRecipesByQuery(query: String): Flow<List<FoodRecipeItemUi>> = flow {
@@ -59,9 +57,8 @@ class FoodRecipesRepositoryImpl @Inject constructor(
 
     }
 
-    override suspend fun getFoodRecipeMapDetailById(id: Int): FoodRecipeLocationMapUi =
+    override suspend fun getFoodRecipeLocationMapById(id: Int): FoodRecipeLocationMapUi =
         withContext(dispatcherIO) {
-
             localDataSource.getFoodRecipeById(id).toFoodRecipeMapDetailUi()
         }
 

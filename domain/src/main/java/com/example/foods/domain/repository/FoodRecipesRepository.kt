@@ -12,5 +12,5 @@ interface FoodRecipesRepository {
     suspend fun getFoodRecipeDetailsById(id: Int): FoodRecipeDetailsUi
     fun getFoodRecipesByQuery(query: String): Flow<List<FoodRecipeItemUi>>
     fun deleteFoodRecipes(): Completable
-    suspend fun getFoodRecipeMapDetailById(id: Int): FoodRecipeLocationMapUi
+    suspend fun getFoodRecipeLocationMapById(id: Int): FoodRecipeLocationMapUi
 }

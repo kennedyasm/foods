@@ -9,6 +9,7 @@ import com.example.foods.data.doubles.FoodRecipeItemEntityDoubles.provideFoodRec
 import com.example.foods.data.doubles.FoodRecipesDtoDoubles.provideFoodRecipesResponseDto
 import com.example.foods.core.testing.given
 import com.example.foods.core.testing.testAndGetData
+import com.example.foods.data.asserts.assertFoodRecipeLocationMapUi
 import com.example.foods.data.source.local.datasource.FoodRecipesLocalDataSource
 import com.example.foods.data.source.network.datasource.FoodRecipesNetworkDataSource
 import com.example.foods.data.repository.FoodRecipesRepositoryImpl
@@ -163,5 +164,25 @@ class FoodRecipesRepositoryTest {
         foodRecipesRepository.deleteFoodRecipes()
 
         verify(localDataSource, atMost(1)).deleteFoodRecipes()
+    }
+
+    @Test
+    fun callGetFoodRecipeByIdWhenGetFoodRecipeLocationMapByIdIsExecuted() = runTest {
+        val foodRecipeItemEntity = provideCaldoDePiedraFoodRecipeItemEntity()
+        given(localDataSource.getFoodRecipeById(2)).thenReturn(foodRecipeItemEntity)
+
+        foodRecipesRepository.getFoodRecipeLocationMapById(2)
+
+        verify(localDataSource, atMost(1)).getFoodRecipeById(2)
+    }
+
+    @Test
+    fun assertDataWhenGetFoodRecipeLocationMapByIdIsExecuted() = runTest {
+        val foodRecipeItemEntity = provideCaldoDePiedraFoodRecipeItemEntity()
+        given(localDataSource.getFoodRecipeById(2)).thenReturn(foodRecipeItemEntity)
+
+        val item = foodRecipesRepository.getFoodRecipeLocationMapById(2)
+
+        assertFoodRecipeLocationMapUi(item)
     }
 }

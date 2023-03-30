@@ -15,6 +15,7 @@ import com.example.foods.features.locationScreenTest
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -59,6 +60,11 @@ class FoodRecipesUiTest {
         waitUntilAtLeastOneExists(hasTestTag("food description container"), UNTIL_TIME_TO_EXIST)
         device.pressBack()
         waitUntilAtLeastOneExists(hasTestTag("food recipes search"), UNTIL_TIME_TO_EXIST)
+    }
+
+    @After
+    fun shutDown() {
+        mockWebServer.shutdown()
     }
 
     companion object {
