@@ -3,5 +3,4 @@
     <string name="ingredients_label">Ingredientes:</string>
     <string name="preparation_steps_label">Pasos para preparar:</string>
     <string name="open_detail_map">Ver en mapa</string>
-    <string name="details_error">No se encontró información acerca de esta receta</string>
 </resources>
