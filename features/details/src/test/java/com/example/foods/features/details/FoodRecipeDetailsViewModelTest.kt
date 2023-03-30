@@ -74,6 +74,6 @@ class FoodRecipeDetailsViewModelTest {
 
         val state = foodRecipeDetailsViewModel.foodRecipeDetails.first()
 
-        assertThat((state as State.Error).message, equalTo("no details information"))
+        assertThat((state as State.Error).message, equalTo("No se encontró más información acerca de esta receta"))
     }
 }

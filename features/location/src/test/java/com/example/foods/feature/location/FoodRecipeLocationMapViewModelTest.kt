@@ -74,6 +74,9 @@ class FoodRecipeLocationMapViewModelTest {
 
         val state = foodRecipeLocationMapViewModel.locationMap.first()
 
-        assertThat((state as State.Error).message, equalTo("no location map information"))
+        assertThat(
+            (state as State.Error).message,
+            equalTo("No se encontró más información acerca de esta receta")
+        )
     }
 }
