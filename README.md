@@ -9,11 +9,10 @@ Contiene las siguientes 3 pantallas:
 * Pantalla de detalles.
 * Pantalla que muestra un mapa con la ubicación de el origen de la receta.
 
+<img width="300" alt="500" src="https://user-images.githubusercontent.com/33889248/228990903-0608a4f3-4add-4a1d-b30d-34520e6259a1.png"> <img width="300" alt="500" src="https://user-images.githubusercontent.com/33889248/228990930-a69cf419-76a4-45e1-b26d-489f051661a7.png"> <img width="300" alt="500" src="https://user-images.githubusercontent.com/33889248/228990948-fa01cf81-798a-4198-b7b3-95aa6ec38398.png"><img width="300" alt="500" src="https://user-images.githubusercontent.com/33889248/228990967-3b53adf3-e979-43f2-8ecf-de3f8850f6aa.png">
 
-<img width="300" alt="500" src="https://user-images.githubusercontent.com/33889248/225787819-f6af11de-5b45-4258-becf-f7a3662b9e28.png"> <img width="300" alt="500" src="https://user-images.githubusercontent.com/33889248/225788255-9fb6f12f-74d6-4dba-a010-02e7bb5465b3.png"> <img width="300" alt="500" src="https://user-images.githubusercontent.com/33889248/225788562-126a04f6-2386-4d90-95b5-b8b3e9029161.png">
 
-
-Esta aplicación contiene un patrón de diseño de architectura MVVM respetando la filosofía de Clean architecture y principios SOLID.
+Esta aplicación modular contiene un patrón de diseño de architectura MVVM respetando la filosofía de Clean architecture y principios SOLID.
 
 
 <img width="698" alt="image" src="https://user-images.githubusercontent.com/33889248/225790804-a49a5eff-4eef-422d-92db-712184af8ac9.png">
@@ -23,32 +22,21 @@ Componentes y librerías utilizadas:
 
 UI
 
-* ViewBinding
-* Glide
-* Constraints
-* Material design
-* Jetpack Navigation
-* Search View
-* CardView
-* Collapsing toolbar layout
-* Expand list
-* Google Maps
+* Jetpack Compose
+* Coil Compose
+* Material Design 3 Compose
+* Navigation compose
+* Google Maps Compose
 
 INJECTION:
 
-* Dagger 2, Decidí usar dagger 2 por lo fuerte que puede ser en proyectos modulares o multimodulares.
-
-PD: No recomiendo el uso de koin por posibles NullPointerExceptions en tiempo de ejecución, si deseas usar distinto a dagger2 recomiendo Hilt,
-para realizar la migración no necesitas un AppComponent, este es sustituido por anotación en tu clase App, de igual manera framents, actitivies,
-modules, viewmodels deben llevar sus correctas anotaciones proporcionadas por Dagger Hilt.
+* Dagger Hilt Mejor adaptación para nuevos proyectos con Jetpack compose.
 
 ASYNC:
 
 * Flow
 * Coroutines
 * Rx
-* LiveData
-* MutableLiveData
 * StateFlow
 * MutableStateFlow
 
@@ -62,23 +50,9 @@ TESTS
 
 * Mockito
 * JUnit
-* Espresso
+* Hilt compose test
 * Mock web server
 * Uiautomator
 
-Este proyecto contiene una arquitectura y guidelines que posibilita la facilidad de agregar features como:
-
-* Swipe refresh (Para actualizar la información con un gesto swipe de arriba para abajo)
-* RemoteMediator (Si requieres que tu aplicación esté disponible sin conexión)
-* Paging (Para mostrar información paginada sin sobre cargar datos en una sola llamada al servidor)
-* AdMobd (Para mostrar anunción entre la lista de items mostrados)
-* Leak cannary (Para detectar si existen memory leaks y solventarlos)
-* WorkManagers con restricciones (Para poder detectar si el teléfono es conectado a internet y actualizar los items en caso de tener opción offline)
-* Migración de XML a Compose (para desarrollar UI con programación declarativa)
-
-
-
-
-
-
-
+Recomendaciones: 
+* Gradle a Kts
