@@ -1,4 +1,4 @@
-package com.example.foods.data.test
+package com.example.foods.data.source.local
 
 import android.content.Context
 import androidx.room.Room
