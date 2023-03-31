@@ -2,9 +2,9 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
     id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -34,82 +34,41 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
-            buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
-            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path") ?: ""
-        }
-        debug {
-            buildConfigField "String", "BASE_URL", properties.getProperty("base.url.debug") ?: ""
-            buildConfigField "String", "API_KEY", properties.getProperty("api.key.debug") ?: ""
-            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path.debug") ?: ""
         }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+    buildFeatures {
+        compose = true
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    viewBinding {
-        enabled = true
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.0'
+        kotlinCompilerVersion '1.4.0'
     }
 }
 
 dependencies {
-    implementation baseDependencies.androidxCore
-    implementation baseDependencies.androidxAppCompat
     implementation baseDependencies.materialDesign
-    implementation baseDependencies.androidxConstraints
+    implementation generalDependencies.daggerHilt
+    implementation generalDependencies.daggerHiltNavigationCompose
+    implementation generalDependencies.navigationCompose
 
-    implementation generalDependencies.retrofit
-    implementation generalDependencies.retrofitGsonConverter
-    implementation generalDependencies.okHttpLoginInterceptor
-    implementation generalDependencies.retrofitAdapterRxJava
-    implementation generalDependencies.reactivexRxAndroid
-    implementation generalDependencies.androidxRoomRxJava3
-    implementation generalDependencies.androidxRoomKtx
-    implementation generalDependencies.dagger
-    implementation generalDependencies.daggerAndroidSupport
-    implementation generalDependencies.glide
-    implementation generalDependencies.playServicesMap
-    implementation generalDependencies.kotlinxCoroutines
-    implementation generalDependencies.androidxNavigationFragmentKtx
-    implementation generalDependencies.androidxNavigationUiKtx
-    implementation generalDependencies.androidxRoomRuntime
-    implementation testDependencies.mockWebServer
-
-    kapt generalDependencies.daggerAndroidProcessor
-    kapt generalDependencies.daggerCompile
-    kapt generalDependencies.androidxRoomCompile
-
-    annotationProcessor generalDependencies.glideCompiler
-
-    debugImplementation generalDependencies.androidxFragmentTesting
-    debugImplementation testDependencies.androidxTestMonitor
-
-    testImplementation testDependencies.androidxArchCoreTest
-    testImplementation testDependencies.mockitoCore
-    testImplementation testDependencies.androidxTestCore
-    testImplementation testDependencies.androidxTestMonitor
-    testImplementation testDependencies.kotlinxCoroutinesTest
+    implementation testDependencies.androidxTestMonitor
+    kapt generalDependencies.daggerHiltCompiler
 
     androidTestImplementation androidTestDependencies.androidxJUnitTest
-    androidTestImplementation androidTestDependencies.androidxEspressoTest
-    androidTestImplementation androidTestDependencies.androidxArchCoreTest
-    androidTestImplementation testDependencies.mockitoCore
     androidTestImplementation androidTestDependencies.androidxTextRunner
-    androidTestImplementation androidTestDependencies.androidxTestRules
-    androidTestImplementation androidTestDependencies.androidxTestEspresso
     androidTestImplementation androidTestDependencies.androidxTestUiautomator
-    androidTestImplementation androidTestDependencies.androidxEspressoConcurrent
-    androidTestImplementation androidTestDependencies.androidxTestEspressoContrib
-    androidTestImplementation testDependencies.kotlinxCoroutinesTest
+    androidTestImplementation androidTestDependencies.androidxComposeUiTestJunit
+    androidTestImplementation testDependencies.mockWebServer
 
+    androidTestImplementation generalDependencies.daggerHiltTesting
+    kaptAndroidTest generalDependencies.daggerHiltAndroidCompiler
 
-    kaptAndroidTest androidTestDependencies.daggerCompiler
-    androidTestAnnotationProcessor androidTestDependencies.daggerCompiler
+    implementation project(':data')
+    implementation project(':features:home')
+    implementation project(':features:details')
+    implementation project(':features:location')
+    implementation project(':core:design')
+    implementation project(':core:testing')
 }

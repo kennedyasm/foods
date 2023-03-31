@@ -1,0 +1,56 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+
+    Properties properties = new Properties()
+
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    if (keystorePropertiesFile.exists()) {
+        properties.load(keystorePropertiesFile.newDataInputStream())
+    }
+
+    namespace 'com.example.foods.data.source.network'
+    compileSdk properties.getProperty("target.sdk").toInteger()
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", properties.getProperty("base.url") ?: ""
+            buildConfigField "String", "API_KEY", properties.getProperty("api.key") ?: ""
+            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path") ?: ""
+        }
+        debug {
+            buildConfigField "String", "BASE_URL", properties.getProperty("base.url.debug") ?: ""
+            buildConfigField "String", "API_KEY", properties.getProperty("api.key.debug") ?: ""
+            buildConfigField "String", "SERVICES_PATH", properties.getProperty("services.path.debug") ?: ""
+        }
+    }
+
+}
+dependencies {
+    implementation generalDependencies.retrofitGsonConverter
+    implementation generalDependencies.retrofit
+    implementation generalDependencies.retrofitAdapterRxJava
+
+    implementation generalDependencies.daggerHilt
+    kapt generalDependencies.daggerHiltCompiler
+
+    implementation generalDependencies.okHttpLoginInterceptor
+    implementation testDependencies.mockWebServer
+
+    testImplementation testDependencies.androidxArchCoreTest
+    testImplementation testDependencies.mockitoCore
+    testImplementation testDependencies.androidxTestCore
+    testImplementation testDependencies.kotlinxCoroutinesTest
+
+    debugImplementation generalDependencies.daggerHiltTesting
+    kaptTest generalDependencies.daggerHiltAndroidCompiler
+
+    debugImplementation project(path: ':core:testing')
+}

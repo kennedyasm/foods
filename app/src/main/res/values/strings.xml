@@ -1,11 +1,3 @@
 <resources>
     <string name="app_name">Foods</string>
-    <string name="results">Resultados \n%s</string>
-    <string name="error">ERROR: %s</string>
-    <string name="retry_label">Reintentar</string>
-    <string name="origin">Origen: %s</string>
-    <string name="ingredients_label">Ingredientes:</string>
-    <string name="preparation_steps_label">Pasos para preparar:</string>
-    <string name="open_detail_map"><u>Ver en mapa</u></string>
-    <string name="search_hint_label">buscar</string>
 </resources>

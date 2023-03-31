@@ -1,0 +1,6 @@
+<resources>
+    <string name="origin">Origen: %s</string>
+    <string name="ingredients_label">Ingredientes:</string>
+    <string name="preparation_steps_label">Pasos para preparar:</string>
+    <string name="open_detail_map">Ver en mapa</string>
+</resources>

@@ -1,17 +1,7 @@
 package com.example.foods
 
-import com.example.foods.di.DaggerApplicationComponent
-import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-open class App: DaggerApplication() {
-
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return initializeComponent()
-    }
-
-    open fun initializeComponent(): AndroidInjector<out DaggerApplication> {
-        return DaggerApplicationComponent.factory().create(applicationContext)
-            .also { it.inject(this) }
-    }
-}
+@HiltAndroidApp
+open class App : Application()

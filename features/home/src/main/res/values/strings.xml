@@ -1,0 +1,4 @@
+<resources>
+    <string name="error">ERROR: %s</string>
+    <string name="search_hint_label">Buscar receta</string>
+</resources>

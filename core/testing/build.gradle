@@ -1,0 +1,35 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+
+    Properties properties = new Properties()
+
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    if (keystorePropertiesFile.exists()) {
+        properties.load(keystorePropertiesFile.newDataInputStream())
+    }
+
+    namespace 'com.example.foods.core.testing'
+    compileSdk properties.getProperty("target.sdk").toInteger()
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+dependencies {
+    implementation generalDependencies.androidxRoomRxJava3
+    implementation generalDependencies.daggerHilt
+    kapt generalDependencies.daggerHiltCompiler
+    implementation testDependencies.mockitoCore
+    implementation testDependencies.kotlinxCoroutinesTest
+    implementation testDependencies.mockWebServer
+}

@@ -2,7 +2,9 @@ package com.example.foods
 
 import android.app.Application
 import android.content.Context
+import android.os.StrictMode
 import androidx.test.runner.AndroidJUnitRunner
+import dagger.hilt.android.testing.HiltTestApplication
 
 class FoodRecipesTestRunner : AndroidJUnitRunner() {
 
@@ -11,7 +13,7 @@ class FoodRecipesTestRunner : AndroidJUnitRunner() {
         className: String?,
         context: Context?
     ): Application {
-        return super.newApplication(cl, FakeApp::class.java.name, context)
+        StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
+        return super.newApplication(cl, HiltTestApplication::class.java.name, context)
     }
-
 }

@@ -1,0 +1,42 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    Properties properties = new Properties()
+
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    if (keystorePropertiesFile.exists()) {
+        properties.load(keystorePropertiesFile.newDataInputStream())
+    }
+
+    namespace 'com.example.foods.core.ui'
+    compileSdk properties.getProperty("target.sdk").toInteger()
+
+    defaultConfig {
+        minSdk properties.getProperty("min.sdk").toInteger()
+        targetSdk properties.getProperty("target.sdk").toInteger()
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.0'
+        kotlinCompilerVersion '1.4.0'
+    }
+}
+
+dependencies {
+    implementation generalDependencies.androidxComposeUi
+    implementation generalDependencies.androidxComposeMaterial3
+}

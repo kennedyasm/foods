@@ -14,3 +14,16 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Foods"
 include ':app'
+include ':domain'
+include ':data'
+include ':data:source:local'
+include ':data:source:network'
+include ':core:testing'
+include ':core:design'
+include ':features:home'
+include ':core:ui'
+include ':features:details'
+include ':features:location'
+include ':core:testing:doubles'
+include ':core:errors'
+include ':core:scheduler'

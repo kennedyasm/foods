@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+    Properties properties = new Properties()
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+
+    if (keystorePropertiesFile.exists()) {
+        properties.load(keystorePropertiesFile.newDataInputStream())
+    }
+
+    namespace 'com.example.foods.data.source.local'
+    compileSdk properties.getProperty("target.sdk").toInteger()
+
+    defaultConfig {
+        minSdk properties.getProperty("min.sdk").toInteger()
+        targetSdk properties.getProperty("target.sdk").toInteger()
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+dependencies {
+    implementation generalDependencies.androidxRoomRxJava3
+    implementation generalDependencies.androidxRoomKtx
+    implementation generalDependencies.retrofitGsonConverter
+
+    implementation generalDependencies.androidxRoomRuntime
+    kapt generalDependencies.androidxRoomCompile
+
+    implementation generalDependencies.daggerHilt
+    kapt generalDependencies.daggerHiltCompiler
+
+    testImplementation testDependencies.androidxArchCoreTest
+    testImplementation testDependencies.mockitoCore
+    testImplementation testDependencies.androidxTestCore
+    testImplementation testDependencies.kotlinxCoroutinesTest
+
+    debugImplementation generalDependencies.daggerHiltTesting
+    kaptTest generalDependencies.daggerHiltCompiler
+
+    androidTestImplementation androidTestDependencies.androidxJUnitTest
+    androidTestImplementation androidTestDependencies.androidxArchCoreTest
+    androidTestImplementation testDependencies.mockitoCore
+    androidTestImplementation androidTestDependencies.androidxTextRunner
+    androidTestImplementation androidTestDependencies.androidxTestRules
+    androidTestImplementation testDependencies.kotlinxCoroutinesTest
+
+    testImplementation project(path: ':core:testing')
+    androidTestImplementation project(path: ':core:testing')
+}
