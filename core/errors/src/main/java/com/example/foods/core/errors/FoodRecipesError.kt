@@ -1,4 +1,4 @@
-package com.example.foods.domain.error
+package com.example.foods.core.errors
 
 sealed class FoodRecipesError(override val message: String?) : Throwable(message) {
     data class NoFoodRecipeFounded(

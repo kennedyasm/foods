@@ -3,8 +3,8 @@ package com.example.foods.features.details
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.foods.core.errors.FoodRecipesError
 import com.example.foods.domain.State
-import com.example.foods.domain.error.FoodRecipesError
 import com.example.foods.domain.usecases.GetFoodRecipeDetailsByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
