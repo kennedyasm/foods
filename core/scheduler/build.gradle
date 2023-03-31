@@ -1,0 +1,21 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    Properties properties = new Properties()
+
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    if (keystorePropertiesFile.exists()) {
+        properties.load(keystorePropertiesFile.newDataInputStream())
+    }
+
+    namespace 'com.example.foods.core.scheduler'
+    compileSdk properties.getProperty("target.sdk").toInteger()
+}
+
+dependencies {
+    implementation generalDependencies.androidxRoomRxJava3
+    implementation generalDependencies.reactivexRxAndroid
+}

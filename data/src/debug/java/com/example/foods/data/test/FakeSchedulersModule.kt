@@ -1,7 +1,8 @@
 package com.example.foods.data.test
 
+import com.example.foods.core.scheduler.RxSchedulers
+import com.example.foods.core.scheduler.RxSchedulersImplTest
 import com.example.foods.data.di.SchedulersModule
-import com.example.foods.data.scheduler.RxSchedulers
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
@@ -17,5 +18,5 @@ object FakeSchedulersModule {
 
     @Singleton
     @Provides
-    fun providesRxSchedulers(): RxSchedulers = FakeRxSchedulers()
+    fun providesRxSchedulers(): RxSchedulers = RxSchedulersImplTest()
 }

@@ -1,5 +1,6 @@
 package com.example.foods.data.repository
 
+import com.example.foods.core.scheduler.RxSchedulers
 import com.example.foods.data.source.network.datasource.FoodRecipesNetworkDataSource
 import com.example.foods.data.source.network.dto.FoodRecipesResponseDto
 import com.example.foods.data.toFoodRecipeDetailsUi
@@ -9,7 +10,6 @@ import com.example.foods.data.toFoodRecipeItemUiList
 import com.example.foods.data.toFoodRecipeMapDetailUi
 import com.example.foods.data.source.local.datasource.FoodRecipesLocalDataSource
 import com.example.foods.data.source.local.database.entities.FoodRecipeItemEntity
-import com.example.foods.data.scheduler.RxSchedulers
 import com.example.foods.domain.models.FoodRecipeDetailsUi
 import com.example.foods.domain.models.FoodRecipeItemUi
 import com.example.foods.domain.models.FoodRecipeLocationMapUi

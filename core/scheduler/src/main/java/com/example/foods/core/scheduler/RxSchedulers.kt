@@ -1,4 +1,4 @@
-package com.example.foods.data.scheduler
+package com.example.foods.core.scheduler
 
 import io.reactivex.rxjava3.core.Scheduler
 

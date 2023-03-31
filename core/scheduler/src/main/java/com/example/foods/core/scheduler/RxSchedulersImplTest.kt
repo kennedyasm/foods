@@ -1,10 +1,9 @@
-package com.example.foods.data.test
+package com.example.foods.core.scheduler
 
-import com.example.foods.data.scheduler.RxSchedulers
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class FakeRxSchedulers : RxSchedulers {
+class RxSchedulersImplTest : RxSchedulers {
     override val io: Scheduler
         get() = Schedulers.trampoline()
     override val mainThread: Scheduler

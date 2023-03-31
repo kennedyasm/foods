@@ -44,5 +44,6 @@ dependencies {
     implementation project(':domain')
     implementation project(':data:source:local')
     implementation project(':data:source:network')
+    implementation project(':core:scheduler')
     debugImplementation project(':core:testing')
 }
