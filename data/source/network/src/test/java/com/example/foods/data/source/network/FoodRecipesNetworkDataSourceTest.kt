@@ -1,10 +1,10 @@
-package com.example.data.source.network
+package com.example.foods.data.source.network
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.foods.core.testing.given
 import com.example.foods.core.testing.testAndGetData
-import com.example.data.source.network.asserts.assertGetFoodRecipesResponseDto
-import com.example.data.source.network.doubles.provideFoodRecipesResponseDto
+import com.example.foods.data.source.network.asserts.assertGetFoodRecipesResponseDto
+import com.example.foods.data.source.network.doubles.provideFoodRecipesResponseDto
 import com.example.foods.data.source.network.api.FoodRecipesApiServices
 import com.example.foods.data.source.network.datasource.FoodRecipesNetworkDataSource
 import com.example.foods.data.source.network.datasource.FoodRecipesNetworkDataSourceImpl

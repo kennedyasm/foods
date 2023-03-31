@@ -1,7 +1,7 @@
-package com.example.data.source.network
+package com.example.foods.data.source.network
 
-import com.example.data.source.network.asserts.assertGetFoodRecipesResponseDto
-import com.example.data.source.network.base.ApiServicesTest
+import com.example.foods.data.source.network.asserts.assertGetFoodRecipesResponseDto
+import com.example.foods.data.source.network.base.ApiServicesTest
 import com.example.foods.core.testing.completeAssertedTest
 import com.example.foods.core.testing.enqueueOkHttpJsonResponse
 import com.example.foods.core.testing.testAndGetData

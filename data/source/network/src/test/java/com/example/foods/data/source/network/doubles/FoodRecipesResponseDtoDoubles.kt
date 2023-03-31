@@ -1,4 +1,4 @@
-package com.example.data.source.network.doubles
+package com.example.foods.data.source.network.doubles
 
 import com.example.foods.data.source.network.dto.FoodRecipeItemDto
 import com.example.foods.data.source.network.dto.FoodRecipesResponseDto

@@ -1,4 +1,4 @@
-package com.example.data.source.network.asserts
+package com.example.foods.data.source.network.asserts
 
 import com.example.foods.data.source.network.dto.FoodRecipesResponseDto
 import org.hamcrest.CoreMatchers.equalTo

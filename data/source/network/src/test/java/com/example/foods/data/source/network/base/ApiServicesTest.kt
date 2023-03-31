@@ -1,4 +1,4 @@
-package com.example.data.source.network.base
+package com.example.foods.data.source.network.base
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.foods.data.source.network.BuildConfig
