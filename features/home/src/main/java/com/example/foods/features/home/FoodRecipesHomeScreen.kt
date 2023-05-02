@@ -32,11 +32,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -52,10 +52,9 @@ import coil.request.ImageRequest
 import com.example.foods.domain.State
 import com.example.foods.domain.State.Companion.to
 import com.example.foods.domain.models.FoodRecipeItemUi
+import com.example.foods.ui.AppIcons
 import com.example.foods.ui.common.CircleProgress
 import com.example.foods.ui.common.ErrorScreen
-import com.example.foods.ui.common.ImageIcon
-import com.example.foods.core.ui.R as UiR
 
 @Composable
 fun FoodRecipesHomeScreen(
@@ -151,7 +150,7 @@ fun LoadFoodRecipeImage(imageUrl: String) {
         contentScale = ContentScale.Crop
     ) {
         when (painter.state) {
-            is AsyncImagePainter.State.Error -> ImageIcon(UiR.mipmap.ic_broken_image)
+            is AsyncImagePainter.State.Error -> AppIcons.brokenImageIcon
             else -> SubcomposeAsyncImageContent()
         }
     }
@@ -169,9 +168,9 @@ fun FoodRecipeTitleText(title: String) {
 }
 
 @Composable
-fun SearchIcon(iconResourceId: Int, modifier: Modifier = Modifier) {
+fun SearchIcon(icon: ImageVector, modifier: Modifier = Modifier) {
     Icon(
-        painter = painterResource(id = iconResourceId),
+        imageVector = icon,
         contentDescription = null,
         modifier = modifier.size(16.dp)
     )
@@ -182,10 +181,10 @@ fun LeadingSearchIcon(hasSearchFocus: Boolean, onClick: () -> Unit) {
 
     if (hasSearchFocus) {
         IconButton(onClick = onClick, modifier = Modifier.testTag("search back button")) {
-            SearchIcon(UiR.mipmap.ic_back)
+            SearchIcon(AppIcons.arrowBackIcon)
         }
     } else {
-        SearchIcon(UiR.mipmap.ic_search, modifier = Modifier.testTag("search icon"))
+        SearchIcon(AppIcons.searchIcon, modifier = Modifier.testTag("search icon"))
     }
 }
 
@@ -193,7 +192,7 @@ fun LeadingSearchIcon(hasSearchFocus: Boolean, onClick: () -> Unit) {
 fun TrailingSearchIcon(searchText: String, onClick: () -> Unit) {
     if (searchText.isNotBlank()) {
         IconButton(onClick = onClick, modifier = Modifier.testTag("clean search text button")) {
-            SearchIcon(UiR.mipmap.ic_close)
+            SearchIcon(AppIcons.closeIcon)
         }
     }
 }

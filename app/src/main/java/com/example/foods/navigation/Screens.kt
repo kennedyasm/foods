@@ -1,7 +1,11 @@
 package com.example.foods.navigation
 
 sealed class Screen(val route: String) {
-    object Home : Screen("home")
-    object Details : Screen("details")
-    object DetailsMap : Screen("details map")
+    object RecipesList : Screen("Recipe list")
+    object Details : Screen("Details")
+    object MapDetails : Screen("Map details")
+    object Profile: Screen("Profile")
+    object FoodRecipeRecordVideo: Screen("Food recipe video")
+    object FoodRecipeVideoPreview: Screen("Food recipe video")
+    object ProfilePicture: Screen("Profile picture")
 }

@@ -39,4 +39,5 @@ android {
 dependencies {
     implementation generalDependencies.androidxComposeUi
     implementation generalDependencies.androidxComposeMaterial3
+    implementation "androidx.compose.material:material-icons-extended:1.4.0"
 }

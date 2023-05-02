@@ -31,6 +31,8 @@ ext {
     coilComposeVersion = '2.2.2'
     androidxLifecycleRuntimeComposeVersion = '2.6.1'
     googleMapsComposeVersion = '2.11.2'
+    androidxComposeMaterial = '1.4.2'
+    accompanistPermissions = '0.23.1'
 
 
     generalDependencies = [
@@ -67,7 +69,9 @@ ext {
             androidxLifecycleRuntimeCompose: "androidx.lifecycle:lifecycle-runtime-compose:$androidxLifecycleRuntimeComposeVersion",
             googleMapsCompose              : "com.google.maps.android:maps-compose:$googleMapsComposeVersion",
             daggerHiltTesting              : "com.google.dagger:hilt-android-testing:$daggerHiltVersion",
-            navigationCompose              : "androidx.navigation:navigation-compose:$androidxNavigationKtxVersion"
+            navigationCompose              : "androidx.navigation:navigation-compose:$androidxNavigationKtxVersion",
+            androidxComposeMaterial        : "androidx.compose.material:material:$androidxComposeMaterial",
+            accompanistPermissions         : "com.google.accompanist:accompanist-permissions:$accompanistPermissions"
     ]
 
     jUnitVersion = '4.13.2'

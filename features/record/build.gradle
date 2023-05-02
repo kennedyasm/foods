@@ -15,8 +15,13 @@ android {
         properties.load(keystorePropertiesFile.newDataInputStream())
     }
 
-    namespace 'com.example.foods.features.home'
+    namespace 'com.example.foods.features.record'
     compileSdk properties.getProperty("target.sdk").toInteger()
+
+    defaultConfig {
+        minSdk properties.getProperty("min.sdk").toInteger()
+        targetSdk properties.getProperty("target.sdk").toInteger()
+    }
 
     buildTypes {
         release {
@@ -47,6 +52,15 @@ dependencies {
     implementation generalDependencies.androidxLifecycleRuntimeCompose
     implementation generalDependencies.androidxComposeUi
     implementation generalDependencies.androidxComposeUiPreview
+    implementation generalDependencies.accompanistPermissions
+    def cameraxVersion = '1.3.0-alpha06'
+    implementation "androidx.camera:camera-lifecycle:$cameraxVersion"
+    implementation "androidx.camera:camera-video:$cameraxVersion"
+    implementation "androidx.camera:camera-view:$cameraxVersion"
+    implementation "androidx.camera:camera-extensions:$cameraxVersion"
+
+    def exoPlayerVersion = '2.18.1'
+    implementation "com.google.android.exoplayer:exoplayer:$exoPlayerVersion"
 
     debugImplementation generalDependencies.androidxComposeUiTooling
     debugImplementation generalDependencies.androidxComposeUiTestManifest
@@ -60,4 +74,6 @@ dependencies {
     implementation project(':core:ui')
     testImplementation project(':core:testing')
     testImplementation project(':core:testing:doubles')
+
+
 }

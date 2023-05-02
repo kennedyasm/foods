@@ -52,6 +52,8 @@ dependencies {
     implementation generalDependencies.daggerHilt
     implementation generalDependencies.daggerHiltNavigationCompose
     implementation generalDependencies.navigationCompose
+    implementation generalDependencies.androidxComposeMaterial
+    implementation generalDependencies.accompanistPermissions
 
     implementation testDependencies.androidxTestMonitor
     kapt generalDependencies.daggerHiltCompiler
@@ -69,6 +71,8 @@ dependencies {
     implementation project(':features:home')
     implementation project(':features:details')
     implementation project(':features:location')
+    implementation project(':features:profile')
+    implementation project(':features:record')
     implementation project(':core:design')
     implementation project(':core:testing')
 }

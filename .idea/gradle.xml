@@ -27,6 +27,8 @@
             <option value="$PROJECT_DIR$/features/details" />
             <option value="$PROJECT_DIR$/features/home" />
             <option value="$PROJECT_DIR$/features/location" />
+            <option value="$PROJECT_DIR$/features/profile" />
+            <option value="$PROJECT_DIR$/features/record" />
           </set>
         </option>
       </GradleProjectSettings>

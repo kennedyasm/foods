@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="retry_label">Reintentar</string>
+    <string name="open_setting_label">Abrir configuración</string>
+    <string name="no_granted_permissions">Permiso de cámara denegados, cede permisos para utilizar esta función.</string>
 </resources>

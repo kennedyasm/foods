@@ -9,21 +9,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -34,34 +33,46 @@ import coil.request.ImageRequest
 import com.example.foods.domain.State
 import com.example.foods.domain.State.Companion.to
 import com.example.foods.domain.models.FoodRecipeDetailsUi
+import com.example.foods.ui.AppIcons
 import com.example.foods.ui.common.CircleProgress
 import com.example.foods.ui.common.ErrorScreen
-import com.example.foods.ui.common.ImageIcon
-import com.example.foods.core.ui.R as UiR
 
 @Composable
 fun FoodRecipeDetailsScreen(
     viewModel: FoodRecipeDetailsViewModel = hiltViewModel(),
-    navigateToLocation: (Int) -> Unit
+    navigateToLocation: (Int) -> Unit,
+    navigateToRecord: () -> Unit
 ) {
 
     val composableState = viewModel.foodRecipeDetails.collectAsStateWithLifecycle()
 
     when (val state = composableState.value) {
-        is State.Success -> FoodRecipeDetailsScreenView(state.to(), navigateToLocation)
+        is State.Success -> FoodRecipeDetailsScreenView(
+            state.to(),
+            navigateToLocation,
+            navigateToRecord
+        )
         is State.Loading -> CircleProgress()
         is State.Error -> ErrorScreen(state.message)
     }
 }
 
 @Composable
-fun FoodRecipeDetailsScreenView(item: FoodRecipeDetailsUi, navigateToLocation: (Int) -> Unit) {
+fun FoodRecipeDetailsScreenView(
+    item: FoodRecipeDetailsUi,
+    navigateToLocation: (Int) -> Unit,
+    navigateToRecord: () -> Unit
+) {
     Surface {
         Column(modifier = Modifier.padding(horizontal = 16.dp)) {
             LazyColumn(modifier = Modifier.testTag("food description container")) {
 
                 item {
-                    FoodRecipeMainDetails(item) { navigateToLocation.invoke(item.id) }
+                    FoodRecipeMainDetails(
+                        item,
+                        { navigateToLocation.invoke(item.id) },
+                        navigateToRecord
+                    )
                 }
 
                 item { FoodRecipeDetailsTitleDescription(stringResource(id = R.string.ingredients_label)) }
@@ -80,7 +91,11 @@ fun FoodRecipeDetailsScreenView(item: FoodRecipeDetailsUi, navigateToLocation: (
 }
 
 @Composable
-fun FoodRecipeMainDetails(item: FoodRecipeDetailsUi, navigateToLocation: () -> Unit) {
+fun FoodRecipeMainDetails(
+    item: FoodRecipeDetailsUi,
+    navigateToLocation: () -> Unit,
+    navigateToRecord: () -> Unit
+) {
     Card(modifier = Modifier.padding(top = 12.dp)) {
         Column {
 
@@ -90,7 +105,7 @@ fun FoodRecipeMainDetails(item: FoodRecipeDetailsUi, navigateToLocation: () -> U
                 Text(item.title)
                 Spacer(modifier = Modifier.height(16.dp))
 
-                FoodRecipeDetailsOrigin(item.origin, navigateToLocation)
+                FoodRecipeDetailsOrigin(item.origin, navigateToLocation, navigateToRecord)
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Text(item.description)
@@ -102,15 +117,38 @@ fun FoodRecipeMainDetails(item: FoodRecipeDetailsUi, navigateToLocation: () -> U
 }
 
 @Composable
-fun FoodRecipeDetailsOrigin(origin: String, navigateToMap: () -> Unit) {
+fun FoodRecipeDetailsOrigin(
+    origin: String,
+    navigateToMap: () -> Unit,
+    navigateToRecord: () -> Unit
+) {
     Row {
-        Text(stringResource(id = R.string.origin, origin), textAlign = TextAlign.Center)
-        ClickableText(
-            text = AnnotatedString(stringResource(id = R.string.open_detail_map)),
-            onClick = { navigateToMap.invoke() },
-            style = TextStyle(textDecoration = TextDecoration.Underline),
-            modifier = Modifier.padding(start = 8.dp),
-        )
+        Text(stringResource(id = R.string.origin, origin), textAlign = TextAlign.Center, modifier = Modifier.align(Alignment.CenterVertically))
+
+        IconButton(
+            onClick = {
+                navigateToMap.invoke()
+            },
+            modifier = Modifier.padding(start = 8.dp).align(Alignment.CenterVertically)
+        ) {
+            Icon(
+                imageVector = AppIcons.worldIcon,
+                contentDescription = null,
+                modifier = Modifier.padding(start = 8.dp)
+            )
+        }
+        IconButton(
+            onClick = {
+                navigateToRecord.invoke()
+            },
+            modifier = Modifier.padding(start = 8.dp).align(Alignment.CenterVertically)
+        ) {
+            Icon(
+                imageVector = AppIcons.videoCameraIcon,
+                contentDescription = null,
+                modifier = Modifier.padding(start = 8.dp)
+            )
+        }
     }
 }
 
@@ -128,7 +166,7 @@ fun LoadFoodRecipeImageDetails(imageUrl: String) {
         contentScale = ContentScale.Crop
     ) {
         when (painter.state) {
-            is AsyncImagePainter.State.Error -> ImageIcon(UiR.mipmap.ic_broken_image)
+            is AsyncImagePainter.State.Error -> AppIcons.brokenImageIcon
             else -> SubcomposeAsyncImageContent()
         }
     }
