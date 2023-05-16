@@ -1,0 +1,69 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+
+    Properties properties = new Properties()
+
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    if (keystorePropertiesFile.exists()) {
+        properties.load(keystorePropertiesFile.newDataInputStream())
+    }
+
+    namespace 'com.example.foods.features.login'
+    compileSdk properties.getProperty("target.sdk").toInteger()
+
+    defaultConfig {
+        minSdk properties.getProperty("min.sdk").toInteger()
+        targetSdk properties.getProperty("target.sdk").toInteger()
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.0'
+        kotlinCompilerVersion '1.4.0'
+    }
+}
+
+dependencies {
+    implementation generalDependencies.androidxRoomRxJava3
+
+    implementation generalDependencies.daggerHilt
+    implementation generalDependencies.daggerHiltNavigationCompose
+    kapt generalDependencies.daggerHiltCompiler
+
+    implementation generalDependencies.androidxComposeMaterial3
+    implementation generalDependencies.coilCompose
+    implementation generalDependencies.androidxLifecycleRuntimeCompose
+    implementation generalDependencies.androidxComposeUi
+    implementation generalDependencies.androidxComposeUiPreview
+    implementation generalDependencies.accompanistPermissions
+
+    debugImplementation generalDependencies.androidxComposeUiTooling
+    debugImplementation generalDependencies.androidxComposeUiTestManifest
+
+    testImplementation testDependencies.androidxArchCoreTest
+    testImplementation testDependencies.mockitoCore
+    testImplementation testDependencies.androidxTestCore
+    debugImplementation testDependencies.kotlinxCoroutinesTest
+
+    implementation project(':domain')
+    implementation project(':core:ui')
+    testImplementation project(':core:testing')
+    testImplementation project(':core:testing:doubles')
+}

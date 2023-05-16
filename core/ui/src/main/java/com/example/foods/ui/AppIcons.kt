@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material.icons.filled.SwitchCamera
 import androidx.compose.material.icons.filled.Videocam
+import androidx.compose.material.icons.outlined.FoodBank
 import androidx.compose.material.icons.rounded.Edit
 
 object AppIcons {
@@ -25,7 +26,7 @@ object AppIcons {
     val micOffIcon = Icons.Default.MicOff
     val switchCameraIcon = Icons.Default.SwitchCamera
     val videoCameraIcon = Icons.Default.Videocam
-    val worldIcon  = Icons.Default.Map
+    val worldIcon = Icons.Default.Map
     val userAccountIcon = Icons.Default.AccountCircle
     val editIcon = Icons.Rounded.Edit
     val errorIcon = Icons.Default.Error
@@ -33,4 +34,5 @@ object AppIcons {
     val arrowBackIcon = Icons.Default.ArrowBack
     val searchIcon = Icons.Default.Search
     val closeIcon = Icons.Default.Close
+    val loginFoodIcon = Icons.Outlined.FoodBank
 }
