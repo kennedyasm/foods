@@ -6,8 +6,10 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.BrokenImage
 import androidx.compose.material.icons.filled.Camera
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.FiberManualRecord
+import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.MicOff
@@ -35,4 +37,6 @@ object AppIcons {
     val searchIcon = Icons.Default.Search
     val closeIcon = Icons.Default.Close
     val loginFoodIcon = Icons.Outlined.FoodBank
+    val keyIcon = Icons.Default.Key
+    val emailIcon = Icons.Default.Email
 }
