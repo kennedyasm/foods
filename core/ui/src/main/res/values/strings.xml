@@ -3,4 +3,11 @@
     <string name="retry_label">Reintentar</string>
     <string name="open_setting_label">Abrir configuración</string>
     <string name="no_granted_permissions">Permiso de cámara denegados, cede permisos para utilizar esta función.</string>
+
+    <string name="email_lbl">Correo electrónico</string>
+    <string name="register_lbl">Registrate</string>
+    <string name="password_lbl">Contraseña</string>
+    <string name="confirm_password_lbl">Confirmar contraseña</string>
+    <string name="sign_in_lbl">Iniciar sesión</string>
+    <string name="forgotten_password_lbl">¿Olvidaste tu contraseña?</string>
 </resources>

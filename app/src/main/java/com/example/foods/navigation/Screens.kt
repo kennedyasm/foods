@@ -11,4 +11,5 @@ sealed class Screen(val route: String) {
     object FoodRecipeVideoPreview: Screen("Food recipe video")
     object ProfilePicture: Screen("Profile picture")
     object Login: Screen("Login")
+    object Signup: Screen("Signup")
 }

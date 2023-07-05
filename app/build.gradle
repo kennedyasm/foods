@@ -74,6 +74,7 @@ dependencies {
     implementation project(':features:profile')
     implementation project(':features:record')
     implementation project(':features:login')
+    implementation project(':features:signup')
     implementation project(':core:design')
     implementation project(':core:testing')
 }

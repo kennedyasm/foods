@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.foods.navigation.Screen
 import com.mamabe.features.login.FoodRecipeLoginScreen
+import com.mamabe.features.signup.SignupScreen
 
 fun NavGraphBuilder.foodRecipeLoginGraph(
     navController: NavHostController
@@ -15,8 +16,12 @@ fun NavGraphBuilder.foodRecipeLoginGraph(
             FoodRecipeLoginScreen({
                 navController.navigate(Screen.FoodRecipeListGraph.route)
             }, {
-
+                navController.navigate(Screen.Signup.route)
             })
+        }
+
+        composable(Screen.Signup.route) {
+            SignupScreen()
         }
     }
 }
